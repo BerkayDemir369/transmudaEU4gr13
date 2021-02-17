@@ -3,7 +3,7 @@ package com.transmuda.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class Us_21_Page extends BasePage{
+public class VehicleOdometerPage extends BasePage{
 
 
 
