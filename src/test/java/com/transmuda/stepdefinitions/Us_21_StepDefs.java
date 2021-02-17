@@ -20,21 +20,14 @@ import java.util.Map;
 
 public class Us_21_StepDefs {
 
-    @Given("the user is on the login page")
-    public void the_user_is_on_the_login_page() {
-
-        String url = ConfigurationReader.get("url");
-        //WebDriver driver = Driver.get();
-        Driver.get().get(url);
 
 
-    }
+    @Given("the user login as a {string}")
+    public void the_user_login_as_a(String usernameType) {
 
-    @When("the user logs in using {string} and {string}")
-    public void the_user_logs_in_using_and(String userName, String password) {
-
-        LoginPage loginPage = new LoginPage();
-        loginPage.login(userName,password);
+        LoginPage loginPage=new LoginPage();
+        loginPage.loginForSalesManagerStoreManager(usernameType);
+        BrowserUtils.waitFor(3);
     }
 
 

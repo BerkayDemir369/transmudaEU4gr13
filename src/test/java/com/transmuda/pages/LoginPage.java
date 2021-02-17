@@ -1,5 +1,6 @@
 package com.transmuda.pages;
 
+import com.transmuda.utilities.ConfigurationReader;
 import com.transmuda.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,5 +28,26 @@ public class LoginPage {
         password.sendKeys(passwordStr);
         submit.click();
         // verification that we logged
+    }
+
+    public void loginForSalesManagerStoreManager(String userType) {
+
+        Driver.get().get(ConfigurationReader.get("url"));
+
+        String username =null;
+        String password =null;
+
+        if(userType.equals("driver")){
+            username = ConfigurationReader.get("driver_username");
+            password = ConfigurationReader.get("driver_password");
+        }else if(userType.equals("sales manager")){
+            username = ConfigurationReader.get("sales_manager_username");
+            password = ConfigurationReader.get("sales_manager_password");
+        }else if(userType.equals("store manager")){
+            username = ConfigurationReader.get("store_manager_username");
+            password = ConfigurationReader.get("store_manager_password");
+        }
+        //send username and password and login
+        new LoginPage().login(username,password);
     }
 }
