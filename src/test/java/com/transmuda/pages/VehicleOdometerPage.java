@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 public class VehicleOdometerPage extends BasePage{
 
 
+    //========US-21=========
 
     @FindBy(xpath = "(//td[@class='number-cell grid-cell grid-body-cell grid-body-cell-OdometerValue'])[1]")
     public WebElement firstOdometer;
@@ -75,6 +76,65 @@ public class VehicleOdometerPage extends BasePage{
     //=========Negative========
     @FindBy(xpath = "//span[contains(text(),'This value is not valid.')]")
     public  WebElement odometerMessage;
+
+
+    //====US-23===========
+
+
+
+    @FindBy(xpath = "//body/div[@id='page']/div[2]/div[1]/div[2]/div[3]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/a[1]")
+    public  WebElement addAttachmentButton;
+
+
+    @FindBy(xpath = "//span[@id='ui-id-4']")
+    public  WebElement addAttachmentTitle;
+
+    @FindBy(xpath = "//input[@id='oro_attachment_file_file-uid-602d7f72f409d']")
+    public  WebElement chooseFileButton;
+
+    @FindBy(xpath = "//textarea[@id='oro_attachment_comment-uid-602d7f73000d4']")
+    public  WebElement commentBox;
+
+
+    @FindBy(xpath = "//body/div[5]/div[2]/div[1]/div[1]/form[1]/fieldset[1]/div[1]/div[3]/div[2]/div[1]/div[1]/button[1]/i[1]")
+    public  WebElement selectOwnerButton;
+
+    @FindBy(xpath = "//tbody/tr[1]/td[1]")
+    public WebElement firstOwnerRow;
+
+    @FindBy(xpath = "//body/div[10]/div[2]/div[1]/div[3]/div[1]/div[1]/button[1]/a[1]")
+    public WebElement manageFilters;
+
+    @FindBy(xpath = "//input[@id='ui-multiselect-6-6-option-0']")
+    public  WebElement firstNameCheckBox;
+
+    @FindBy(xpath = "//body/div[10]/div[2]/div[1]/div[3]/div[1]/div[1]/span[1]/div[2]/div[1]")
+    public WebElement lastName;
+
+    @FindBy(xpath = "//body/div[10]/div[2]/div[1]/div[3]/div[1]/div[1]/span[1]/div[2]/div[2]/div[1]/div[1]/button[1]")
+    public WebElement containsOfLastname;
+
+    @FindBy(xpath = "//a[contains(text(),'is equal to')]")
+    public WebElement isEqualTo;
+
+    @FindBy(xpath = "//body/div[10]/div[2]/div[1]/div[3]/div[1]/div[1]/span[1]/div[2]/div[2]/div[1]/div[2]/input[1]")
+    public  WebElement nameBox;
+
+    @FindBy(xpath = "//button[contains(text(),'Update')]")
+    public WebElement lastNameUpdateButton;
+
+    @FindBy(xpath = "//button[contains(text(),'Save')]")
+    public  WebElement saveButton;
+
+
+    @FindBy(xpath = "//span[contains(text(),'This value should not be blank.')]")
+    public WebElement fileChoosingErrorMessage;
+
+
+
+
+
+
 
 
 
