@@ -2,13 +2,19 @@ package com.transmuda.stepdefinitions;
 
 import com.transmuda.pages.DashboardPage;
 import com.transmuda.pages.LoginPage;
+import com.transmuda.pages.Us_21_Page;
 import com.transmuda.utilities.BrowserUtils;
 import com.transmuda.utilities.ConfigurationReader;
 import com.transmuda.utilities.Driver;
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Map;
 
@@ -24,14 +30,13 @@ public class Us_21_StepDefs {
 
     }
 
-    @When("the user login as a TruckDriver")
-    public void the_user_login_as_a_TruckDriver(Map<String,String> userInfo) {
+    @When("the user logs in using {string} and {string}")
+    public void the_user_logs_in_using_and(String userName, String password) {
 
-        new LoginPage().login(userInfo.get("username"),userInfo.get("password"));
-
-
-
+        LoginPage loginPage = new LoginPage();
+        loginPage.login(userName,password);
     }
+
 
     @Then("the user should be able to login")
     public void the_user_should_be_able_to_login() {
@@ -50,6 +55,7 @@ public class Us_21_StepDefs {
 
         new DashboardPage().navigateToModule(tab,module);
 
+
     }
 
     @When("the user click first odometer information on the table")
@@ -57,24 +63,82 @@ public class Us_21_StepDefs {
 
 
 
+        BrowserUtils.waitFor(7);
+
+        new Us_21_Page().firstOdometer.click();
+        BrowserUtils.waitFor(2);
+
     }
 
     @When("the user click Edit button")
     public void the_user_click_Edit_button() {
 
 
+        new Us_21_Page().editButton.click();
+        BrowserUtils.waitFor(2);
 
     }
 
     @Then("information  Edit page should be open")
     public void information_Edit_page_should_be_open() {
 
+       String actualTitle= new Us_21_Page().GenaeralText.getText();
+       String expectedTitle="General";
+       Assert.assertEquals(expectedTitle,actualTitle);
 
+       BrowserUtils.waitFor(1);
 
     }
 
     @When("the user enter the valid values")
     public void the_user_enter_the_valid_values() {
+
+
+        Us_21_Page us_21_page=new Us_21_Page();
+
+        us_21_page.odometerValue.click();
+        BrowserUtils.waitFor(1);
+        us_21_page.odometerValue.clear();
+        us_21_page.odometerValue.sendKeys("215");
+
+        //=======date===========
+        us_21_page.chooseDate.click();
+        BrowserUtils.waitFor(1);
+        Select select=new Select(us_21_page.monthSelect);
+
+        select.selectByIndex(4);
+
+        Select selectYear=new Select(us_21_page.yearSelect);
+
+        selectYear.selectByIndex(10);
+
+        us_21_page.daySelect.click();
+
+
+        //=======driver=====
+
+        us_21_page.driver.click();
+        us_21_page.driver.clear();
+        us_21_page.driver.sendKeys("MahmutAbi");
+
+
+
+
+        us_21_page.xButton.click();
+
+        BrowserUtils.waitFor(1);
+        us_21_page.unitDropDown.click();
+
+        us_21_page.km.click();
+
+        //=======addButton=======
+
+        us_21_page.addButton.click();
+        BrowserUtils.waitFor(3);
+        us_21_page.sdet.click();
+
+        us_21_page.selectButton.click();
+
 
 
 
@@ -83,6 +147,8 @@ public class Us_21_StepDefs {
     @When("click Save And Close button")
     public void click_Save_And_Close_button() {
 
+        new Us_21_Page().saveAndCloseButton.click();
+        BrowserUtils.waitFor(1);
 
 
     }
@@ -90,34 +156,40 @@ public class Us_21_StepDefs {
     @Then("the user should be able to see {string} message")
     public void the_user_should_be_able_to_see_message(String expectedMessage) {
 
+        BrowserUtils.waitFor(3);
+        Us_21_Page us_21_page=new Us_21_Page();
+        //
+         String  actualDisplayMessage=us_21_page.entityMessage.getText();
+//        Alert alert=Driver.get().switchTo().alert();
+//        String actualDisplayMessage=alert.getText();
+        Assert.assertEquals(expectedMessage,actualDisplayMessage);
 
     }
 
     @When("the user enter letter as a Odometer Value")
     public void the_user_enter_letter_as_a_Odometer_Value() {
 
+        Us_21_Page us_21_page=new Us_21_Page();
+
+        us_21_page.odometerValue.click();
+        BrowserUtils.waitFor(1);
+        us_21_page.odometerValue.clear();
+        us_21_page.odometerValue.sendKeys("ford");
+
+        BrowserUtils.waitFor(2);
 
     }
 
     @Then("{string} error message should be displayed")
     public void error_message_should_be_displayed(String expectedErrorMessage) {
 
+        String actualMessage=new Us_21_Page().odometerMessage.getText();
+        Assert.assertEquals(expectedErrorMessage,actualMessage);
 
 
     }
 
-    @When("the user should click date box")
-    public void the_user_should_click_date_box() {
 
-
-
-    }
-
-    @Then("The user should be able to select any date")
-    public void the_user_should_be_able_to_select_any_date() {
-
-
-    }
 
 
 }
