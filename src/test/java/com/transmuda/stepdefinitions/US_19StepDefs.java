@@ -15,11 +15,6 @@ public class US_19StepDefs {
     public void the_user_logs_in_using_and(String string, String string2) {
     }
 
-    @Then("the user should be able to login")
-    public void the_user_should_be_able_to_login() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
 
     @Given("navigate Fleet to Vehicle Odometer")
     public void navigate_Fleet_to_Vehicle_Odometer() {
