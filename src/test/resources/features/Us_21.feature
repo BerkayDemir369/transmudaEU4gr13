@@ -3,8 +3,7 @@ Feature:
 
 	Background:
 		#@TR-185
-		Given the user is on the login page
-		When the user logs in using "User10" and "UserUser123"
+		Given the user login as a "driver"
 		Then the user should be able to login
 
 		
@@ -19,7 +18,7 @@ Feature:
 	#
 	#1-Truck Driver can edit selected vehicle odometer.
 	@TR-172 @TR-173
-	Scenario: Us-21 Edit selected specific vehicle odometer Test Case
+	Scenario: Us-21 Edit selected specific vehicle odometer Test Case-1
 
 
 		When the user navigates to "Fleet" , "Vehicle Odometer"

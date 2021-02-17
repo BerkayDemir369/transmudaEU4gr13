@@ -2,39 +2,25 @@ package com.transmuda.stepdefinitions;
 
 import com.transmuda.pages.DashboardPage;
 import com.transmuda.pages.LoginPage;
-import com.transmuda.pages.Us_21_Page;
+import com.transmuda.pages.VehicleOdometerPage;
 import com.transmuda.utilities.BrowserUtils;
-import com.transmuda.utilities.ConfigurationReader;
 import com.transmuda.utilities.Driver;
-import io.cucumber.java.bs.A;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.Map;
 
 public class Us_21_StepDefs {
 
-    @Given("the user is on the login page")
-    public void the_user_is_on_the_login_page() {
-
-        String url = ConfigurationReader.get("url");
-        //WebDriver driver = Driver.get();
-        Driver.get().get(url);
 
 
-    }
+    @Given("the user login as a {string}")
+    public void the_user_login_as_a(String usernameType) {
 
-    @When("the user logs in using {string} and {string}")
-    public void the_user_logs_in_using_and(String userName, String password) {
-
-        LoginPage loginPage = new LoginPage();
-        loginPage.login(userName,password);
+        LoginPage loginPage=new LoginPage();
+        loginPage.loginForSalesManagerStoreManager(usernameType);
+        BrowserUtils.waitFor(3);
     }
 
 
@@ -65,7 +51,7 @@ public class Us_21_StepDefs {
 
         BrowserUtils.waitFor(7);
 
-        new Us_21_Page().firstOdometer.click();
+        new VehicleOdometerPage().firstOdometer.click();
         BrowserUtils.waitFor(2);
 
     }
@@ -74,7 +60,7 @@ public class Us_21_StepDefs {
     public void the_user_click_Edit_button() {
 
 
-        new Us_21_Page().editButton.click();
+        new VehicleOdometerPage().editButton.click();
         BrowserUtils.waitFor(2);
 
     }
@@ -82,7 +68,7 @@ public class Us_21_StepDefs {
     @Then("information  Edit page should be open")
     public void information_Edit_page_should_be_open() {
 
-       String actualTitle= new Us_21_Page().GenaeralText.getText();
+       String actualTitle= new VehicleOdometerPage().GenaeralText.getText();
        String expectedTitle="General";
        Assert.assertEquals(expectedTitle,actualTitle);
 
@@ -94,50 +80,50 @@ public class Us_21_StepDefs {
     public void the_user_enter_the_valid_values() {
 
 
-        Us_21_Page us_21_page=new Us_21_Page();
+        VehicleOdometerPage vehicleOdometer_page =new VehicleOdometerPage();
 
-        us_21_page.odometerValue.click();
+        vehicleOdometer_page.odometerValue.click();
         BrowserUtils.waitFor(1);
-        us_21_page.odometerValue.clear();
-        us_21_page.odometerValue.sendKeys("215");
+        vehicleOdometer_page.odometerValue.clear();
+        vehicleOdometer_page.odometerValue.sendKeys("215");
 
         //=======date===========
-        us_21_page.chooseDate.click();
+        vehicleOdometer_page.chooseDate.click();
         BrowserUtils.waitFor(1);
-        Select select=new Select(us_21_page.monthSelect);
+        Select select=new Select(vehicleOdometer_page.monthSelect);
 
         select.selectByIndex(4);
 
-        Select selectYear=new Select(us_21_page.yearSelect);
+        Select selectYear=new Select(vehicleOdometer_page.yearSelect);
 
         selectYear.selectByIndex(10);
 
-        us_21_page.daySelect.click();
+        vehicleOdometer_page.daySelect.click();
 
 
         //=======driver=====
 
-        us_21_page.driver.click();
-        us_21_page.driver.clear();
-        us_21_page.driver.sendKeys("MahmutAbi");
+        vehicleOdometer_page.driver.click();
+        vehicleOdometer_page.driver.clear();
+        vehicleOdometer_page.driver.sendKeys("MahmutAbi");
 
 
 
 
-        us_21_page.xButton.click();
+        vehicleOdometer_page.xButton.click();
 
         BrowserUtils.waitFor(1);
-        us_21_page.unitDropDown.click();
+        vehicleOdometer_page.unitDropDown.click();
 
-        us_21_page.km.click();
+        vehicleOdometer_page.km.click();
 
         //=======addButton=======
 
-        us_21_page.addButton.click();
+        vehicleOdometer_page.addButton.click();
         BrowserUtils.waitFor(3);
-        us_21_page.sdet.click();
+        vehicleOdometer_page.sdet.click();
 
-        us_21_page.selectButton.click();
+        vehicleOdometer_page.selectButton.click();
 
 
 
@@ -147,7 +133,7 @@ public class Us_21_StepDefs {
     @When("click Save And Close button")
     public void click_Save_And_Close_button() {
 
-        new Us_21_Page().saveAndCloseButton.click();
+        new VehicleOdometerPage().saveAndCloseButton.click();
         BrowserUtils.waitFor(1);
 
 
@@ -157,9 +143,9 @@ public class Us_21_StepDefs {
     public void the_user_should_be_able_to_see_message(String expectedMessage) {
 
         BrowserUtils.waitFor(3);
-        Us_21_Page us_21_page=new Us_21_Page();
+        VehicleOdometerPage vehicleOdometer_page =new VehicleOdometerPage();
         //
-         String  actualDisplayMessage=us_21_page.entityMessage.getText();
+         String  actualDisplayMessage= vehicleOdometer_page.entityMessage.getText();
 //        Alert alert=Driver.get().switchTo().alert();
 //        String actualDisplayMessage=alert.getText();
         Assert.assertEquals(expectedMessage,actualDisplayMessage);
@@ -169,12 +155,12 @@ public class Us_21_StepDefs {
     @When("the user enter letter as a Odometer Value")
     public void the_user_enter_letter_as_a_Odometer_Value() {
 
-        Us_21_Page us_21_page=new Us_21_Page();
+        VehicleOdometerPage vehicleOdometer_page =new VehicleOdometerPage();
 
-        us_21_page.odometerValue.click();
+        vehicleOdometer_page.odometerValue.click();
         BrowserUtils.waitFor(1);
-        us_21_page.odometerValue.clear();
-        us_21_page.odometerValue.sendKeys("ford");
+        vehicleOdometer_page.odometerValue.clear();
+        vehicleOdometer_page.odometerValue.sendKeys("ford");
 
         BrowserUtils.waitFor(2);
 
@@ -183,7 +169,7 @@ public class Us_21_StepDefs {
     @Then("{string} error message should be displayed")
     public void error_message_should_be_displayed(String expectedErrorMessage) {
 
-        String actualMessage=new Us_21_Page().odometerMessage.getText();
+        String actualMessage=new VehicleOdometerPage().odometerMessage.getText();
         Assert.assertEquals(expectedErrorMessage,actualMessage);
 
 
