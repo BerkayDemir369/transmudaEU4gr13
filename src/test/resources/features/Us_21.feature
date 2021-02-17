@@ -19,7 +19,7 @@ Feature:
 	#
 	#1-Truck Driver can edit selected vehicle odometer.
 	@TR-172 @TR-173
-	Scenario: Us-21 Edit selected specific vehicle odometer Test Case
+	Scenario: Us-21 Edit selected specific vehicle odometer Test Case-1
 
 
 		When the user navigates to "Fleet" , "Vehicle Odometer"
