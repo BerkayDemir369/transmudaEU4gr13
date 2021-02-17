@@ -89,10 +89,10 @@ public class VehicleOdometerPage extends BasePage{
     @FindBy(xpath = "//span[@id='ui-id-4']")
     public  WebElement addAttachmentTitle;
 
-    @FindBy(xpath = "//span[contains(text(),'Choose File')]")
+    @FindBy(xpath = "//input[@id='oro_attachment_file_file-uid-602d7f72f409d']")
     public  WebElement chooseFileButton;
 
-    @FindBy(xpath = "//body/div[6]/div[2]/div[1]/div[1]/form[1]/fieldset[1]/div[1]/div[2]/div[2]")
+    @FindBy(xpath = "//textarea[@id='oro_attachment_comment-uid-602d7f73000d4']")
     public  WebElement commentBox;
 
 
@@ -102,22 +102,22 @@ public class VehicleOdometerPage extends BasePage{
     @FindBy(xpath = "//tbody/tr[1]/td[1]")
     public WebElement firstOwnerRow;
 
-    @FindBy(xpath = "//body/div[8]/div[2]/div[1]/div[3]/div[1]/div[1]/button[1]/a[1]")
+    @FindBy(xpath = "//body/div[10]/div[2]/div[1]/div[3]/div[1]/div[1]/button[1]/a[1]")
     public WebElement manageFilters;
 
-    @FindBy(xpath = "//input[@id='ui-multiselect-1-1-option-0']")
+    @FindBy(xpath = "//input[@id='ui-multiselect-6-6-option-0']")
     public  WebElement firstNameCheckBox;
 
-    @FindBy(xpath = "//body/div[8]/div[2]/div[1]/div[3]/div[1]/div[1]/span[1]/div[2]/div[1]")
+    @FindBy(xpath = "//body/div[10]/div[2]/div[1]/div[3]/div[1]/div[1]/span[1]/div[2]/div[1]")
     public WebElement lastName;
 
-    @FindBy(xpath = "//body/div[8]/div[2]/div[1]/div[3]/div[1]/div[1]/span[1]/div[2]/div[2]/div[1]/div[1]/button[1]")
+    @FindBy(xpath = "//body/div[10]/div[2]/div[1]/div[3]/div[1]/div[1]/span[1]/div[2]/div[2]/div[1]/div[1]/button[1]")
     public WebElement containsOfLastname;
 
     @FindBy(xpath = "//a[contains(text(),'is equal to')]")
     public WebElement isEqualTo;
 
-    @FindBy(xpath = "//body/div[8]/div[2]/div[1]/div[3]/div[1]/div[1]/span[1]/div[2]/div[2]/div[1]/div[2]/input[1]")
+    @FindBy(xpath = "//body/div[10]/div[2]/div[1]/div[3]/div[1]/div[1]/span[1]/div[2]/div[2]/div[1]/div[2]/input[1]")
     public  WebElement nameBox;
 
     @FindBy(xpath = "//button[contains(text(),'Update')]")
@@ -130,9 +130,6 @@ public class VehicleOdometerPage extends BasePage{
     @FindBy(xpath = "//span[contains(text(),'This value should not be blank.')]")
     public WebElement fileChoosingErrorMessage;
 
-
-    @FindBy(xpath = "//span[contains(text(),'The file is too large (3906603 bytes). Allowed max')]")
-    public WebElement fileSizeTooLarge;
 
 
 

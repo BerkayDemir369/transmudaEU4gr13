@@ -13,7 +13,6 @@ public class Us_23_StepDefs {
 
 
 
-
     @When("the user click Add Attachment Button")
     public void the_user_click_Add_Attachment_Button() {
 
@@ -79,7 +78,7 @@ public class Us_23_StepDefs {
     @When("the user click Save Button without any choose file")
     public void the_user_click_Save_Button_without_any_choose_file() {
 
-       new  VehicleOdometerPage().saveButton.click();
+        new  VehicleOdometerPage().saveButton.click();
         BrowserUtils.waitFor(1);
 
 
@@ -94,6 +93,7 @@ public class Us_23_StepDefs {
 
 
     }
+
 
 
 
