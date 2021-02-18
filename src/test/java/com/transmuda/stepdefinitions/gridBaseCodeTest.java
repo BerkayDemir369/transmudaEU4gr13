@@ -17,7 +17,7 @@ public class gridBaseCodeTest {
         BrowserUtils.waitFor(5);
         System.out.println(gridBasePage.getGridTableHeaderIndex("DATE"));
 
-        System.out.println(gridBasePage.findRowValue("DRIVER", "Mar 28, 2019"));
+        System.out.println(gridBasePage.findRowValue("DATE", "Mar 28, 2019"));
         //Assert.assertTrue(gridBasePage.findRowValue("DATE", "Mar 28, 2019"));
 
 
