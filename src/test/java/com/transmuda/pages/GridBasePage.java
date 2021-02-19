@@ -14,6 +14,12 @@ public class GridBasePage extends BasePage {
         PageFactory.initElements(Driver.get(), this);
     }
 
+    @FindBy(xpath = "//div[@class='alert alert-error fade in top-messages ']")
+    public WebElement AlertMessage;
+
+    @FindBy(xpath = "//div[@class='alert alert-error fade in top-messages ']/button")
+    public WebElement AlertCloseButton;
+
     @FindBy(xpath = "//div[@class='pull-right title-buttons-container']/a[contains(.,'Create')]")
     public WebElement CreateButton;
 
@@ -112,6 +118,17 @@ public class GridBasePage extends BasePage {
     @FindBy(xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/thead/tr/th")
     public List<WebElement> GridTableHeaders;
 
+    @FindBy(xpath = "//thead[@class='grid-header']//div[@class='btn-group dropdown']")
+    public WebElement FirstHeaderCheckBox;
+
+    /**
+     * @return firstHeaders
+     */
+    public boolean getGridTableFirstHeaderIsCheckBox() {
+        return getGridTableHeaders().get(0).isBlank();
+    }
+
+
     /**
      * This method returns table headers
      *
@@ -143,7 +160,7 @@ public class GridBasePage extends BasePage {
 
         for (WebElement value : findRowData) {
             if (value.getText().equals(RowData))
-            return true;
+                return true;
         }
         return false;
     }

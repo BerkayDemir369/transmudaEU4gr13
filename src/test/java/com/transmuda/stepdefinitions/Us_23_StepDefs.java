@@ -13,6 +13,7 @@ public class Us_23_StepDefs {
 
 
 
+
     @When("the user click Add Attachment Button")
     public void the_user_click_Add_Attachment_Button() {
 
@@ -23,6 +24,7 @@ public class Us_23_StepDefs {
 
     @Then("user should be able to enter valid input to Add Attachment window")
     public void user_should_be_able_to_enter_valid_input_to_Add_Attachment_window() {
+
 
         VehicleOdometerPage vehicleOdometerPage= new VehicleOdometerPage();
 
@@ -61,6 +63,7 @@ public class Us_23_StepDefs {
 
 
 
+
     }
 
     @When("the user click Save Button")
@@ -78,13 +81,24 @@ public class Us_23_StepDefs {
     @When("the user click Save Button without any choose file")
     public void the_user_click_Save_Button_without_any_choose_file() {
 
+
+
         new  VehicleOdometerPage().saveButton.click();
         BrowserUtils.waitFor(1);
+
 
 
     }
 
     @Then("{string} error message should be displayed.")
+
+    public void error_message_should_be_displayed(String string) {
+
+
+
+    }
+
+
     public void error_message_should_be_displayed(String expectedMessage) {
 
 
@@ -93,6 +107,7 @@ public class Us_23_StepDefs {
 
 
     }
+
 
 
 

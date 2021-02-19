@@ -19,7 +19,7 @@ public class gridBaseCodeTest {
 
         System.out.println(gridBasePage.findRowValue("DATE", "Mar 28, 2019"));
         //Assert.assertTrue(gridBasePage.findRowValue("DATE", "Mar 28, 2019"));
-
+        System.out.println("gridBasePage.getGridTableFirstHeaderIsCheckBox() = " + gridBasePage.getGridTableFirstHeaderIsCheckBox());
 
         gridBasePage.navigateToModule("Fleet", "Vehicles");
         BrowserUtils.waitFor(5);
