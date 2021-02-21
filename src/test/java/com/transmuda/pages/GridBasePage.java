@@ -153,6 +153,12 @@ public class GridBasePage extends BasePage {
         return i;
     }
 
+    /**
+     *
+     * @param headerName send table header name
+     * @param RowData send table header row data value
+     * @return if row has RowData value then return true else false
+     */
     public boolean findRowValue(String headerName, String RowData) {
         int i = getGridTableHeaderIndex(headerName);
         String findRow = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[" + i + "]";

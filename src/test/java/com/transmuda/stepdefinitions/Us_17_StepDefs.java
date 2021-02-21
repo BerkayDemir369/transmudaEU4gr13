@@ -54,8 +54,8 @@ public class Us_17_StepDefs {
     public void clickManageFiltersLinkButton() {
     }
 
-    @Then("The truck driver user should be able to see Mana filters popup")
-    public void theTruckDriverUserShouldBeAbleToSeeManaFiltersPopup() {
+    @Then("The truck driver user should be able to see Manage filters popup")
+    public void theTruckDriverUserShouldBeAbleToSeeManageFiltersPopup() {
     }
 
     @When("The truck driver user select filter option in the Manage filters popup")
