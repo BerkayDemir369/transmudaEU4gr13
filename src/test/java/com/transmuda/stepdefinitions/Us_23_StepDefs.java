@@ -90,15 +90,9 @@ public class Us_23_StepDefs {
 
     }
 
+
+
     @Then("{string} error message should be displayed.")
-
-    public void error_message_should_be_displayed(String string) {
-
-
-
-    }
-
-
     public void error_message_should_be_displayed(String expectedMessage) {
 
 

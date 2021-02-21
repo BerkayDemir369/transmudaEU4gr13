@@ -25,7 +25,7 @@ public class VehicleOdometerPage extends BasePage{
     public WebElement odometerValue;
 
 
-    //=======date===============
+    //=======General Vehicle Odometer date===============
 
     @FindBy(xpath = "//input[@placeholder='Choose a date']")
     public WebElement chooseDate;
@@ -131,11 +131,10 @@ public class VehicleOdometerPage extends BasePage{
     public WebElement fileChoosingErrorMessage;
 
 
+    //==========Us-24========
 
-
-
-
-
+    @FindBy(xpath = "//div[contains(text(),'You do not have permission to perform this action.')]")
+    public WebElement permissionMessage;
 
 
 
