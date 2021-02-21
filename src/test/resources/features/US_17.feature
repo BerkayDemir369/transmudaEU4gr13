@@ -27,7 +27,7 @@ Feature:
     When The truck driver user clicks Filters button
     Then The truck driver user can see Manage Filters Box
     And Click Manage filters link button
-    Then The truck driver user should be able to see Mana filters popup
+    Then The truck driver user should be able to see Manage filters popup
     When The truck driver user select filter option in the Manage filters popup
     Then Truck driver user should be able to see selected filter setting on the right side of manage filter
     When Truck driver user Click selected Filter Option button
