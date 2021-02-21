@@ -23,7 +23,7 @@ public class Us_24_StepDefs {
         String actualPermissionMessage= new VehicleOdometerPage().permissionMessage.getText();
         Assert.assertEquals(expectedPermissionMessage,actualPermissionMessage);
 
-       
+
     }
 
 }

@@ -1,11 +1,14 @@
 package com.transmuda.pages;
 
+import com.transmuda.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class VehicleOdometerPage extends BasePage{
-
-
+    public VehicleOdometerPage() {
+        PageFactory.initElements(Driver.get(), this);
+    }
     //========US-21=========
 
     @FindBy(xpath = "(//td[@class='number-cell grid-cell grid-body-cell grid-body-cell-OdometerValue'])[1]")
@@ -89,8 +92,10 @@ public class VehicleOdometerPage extends BasePage{
     @FindBy(xpath = "//span[@id='ui-id-4']")
     public  WebElement addAttachmentTitle;
 
-    @FindBy(xpath = "//input[@id='oro_attachment_file_file-uid-602d7f72f409d']")
-    public  WebElement chooseFileButton;
+//    @FindBy(xpath = "//input[@id='oro_attachment_file_file-uid-602d7f72f409d']")
+//    public  WebElement chooseFileButton;
+@FindBy(name="oro_attachment[file][file]")
+public WebElement Test;
 
     @FindBy(xpath = "//textarea[@id='oro_attachment_comment-uid-602d7f73000d4']")
     public  WebElement commentBox;
