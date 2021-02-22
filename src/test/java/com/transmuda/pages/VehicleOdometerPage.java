@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class VehicleOdometerPage extends BasePage{
+public class VehicleOdometerPage extends BasePage {
     public VehicleOdometerPage() {
         PageFactory.initElements(Driver.get(), this);
     }
@@ -15,12 +15,11 @@ public class VehicleOdometerPage extends BasePage{
     public WebElement firstOdometer;
 
 
-
     @FindBy(xpath = "//i[@class='fa-pencil-square-o hide-text']")
-    public  WebElement editButton;
+    public WebElement editButton;
 
 
-    @FindBy(xpath ="//a[contains(text(),'General')]")
+    @FindBy(xpath = "//a[contains(text(),'General')]")
     public WebElement GenaeralText;
 
     //===============Entities Vehicle Odometer================
@@ -37,11 +36,11 @@ public class VehicleOdometerPage extends BasePage{
     public WebElement monthSelect;
 
     @FindBy(xpath = "//body/div[@id='ui-datepicker-div']/div[1]/div[1]/select[2]")
-    public  WebElement yearSelect;
+    public WebElement yearSelect;
 
 
     @FindBy(xpath = "//tbody/tr[2]/td[4]/a[1]")
-    public  WebElement daySelect;
+    public WebElement daySelect;
 
     //==========Driver=======
 
@@ -50,11 +49,11 @@ public class VehicleOdometerPage extends BasePage{
 
     //========Unit===============
 
-    @FindBy(xpath ="//body/div[@id='page']/div[2]/div[1]/div[2]/div[3]/form[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/fieldset[1]/div[1]/div[4]/div[2]/div[1]/a[1]/abbr[1]")
-    public  WebElement xButton;
+    @FindBy(xpath = "//body/div[@id='page']/div[2]/div[1]/div[2]/div[3]/form[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/fieldset[1]/div[1]/div[4]/div[2]/div[1]/a[1]/abbr[1]")
+    public WebElement xButton;
 
     @FindBy(xpath = "//body/div[@id='page']/div[2]/div[1]/div[2]/div[3]/form[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/fieldset[1]/div[1]/div[4]/div[2]/div[1]/a[1]/span[1]")
-    public  WebElement unitDropDown;
+    public WebElement unitDropDown;
 
     @FindBy(xpath = "//div[contains(text(),'km')]")
     public WebElement km;
@@ -71,65 +70,68 @@ public class VehicleOdometerPage extends BasePage{
 
 
     @FindBy(xpath = "//button[@type='submit']")
-    public  WebElement saveAndCloseButton;
+    public WebElement saveAndCloseButton;
 
     @FindBy(xpath = "//div[@class='message']")
     public WebElement entityMessage;
 
     //=========Negative========
     @FindBy(xpath = "//span[contains(text(),'This value is not valid.')]")
-    public  WebElement odometerMessage;
+    public WebElement odometerMessage;
 
 
     //====US-23===========
 
 
-
     @FindBy(xpath = "//body/div[@id='page']/div[2]/div[1]/div[2]/div[3]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/a[1]")
-    public  WebElement addAttachmentButton;
+    public WebElement addAttachmentButton;
 
 
     @FindBy(xpath = "//span[@id='ui-id-4']")
-    public  WebElement addAttachmentTitle;
+    public WebElement addAttachmentTitle;
 
-//    @FindBy(xpath = "//input[@id='oro_attachment_file_file-uid-602d7f72f409d']")
-//    public  WebElement chooseFileButton;
-@FindBy(name="oro_attachment[file][file]")
-public WebElement Test;
+    @FindBy(xpath = "//div[@class='control-group']/div/input")
+    public WebElement upload;
+
+    @FindBy(xpath = "//div[@class='control-group']")
+    public WebElement Test;
 
     @FindBy(xpath = "//textarea[@id='oro_attachment_comment-uid-602d7f73000d4']")
-    public  WebElement commentBox;
+    public WebElement commentBox;
+
+    @FindBy(xpath = "//span[.='Save']")
+    public WebElement attachmentSave;
 
 
-    @FindBy(xpath = "//body/div[5]/div[2]/div[1]/div[1]/form[1]/fieldset[1]/div[1]/div[3]/div[2]/div[1]/div[1]/button[1]/i[1]")
-    public  WebElement selectOwnerButton;
+    @FindBy(xpath = "//button[@class='add-on btn entity-select-btn']/i[@class='fa-bars']")
+    public WebElement selectOwnerButton;
 
-    @FindBy(xpath = "//tbody/tr[1]/td[1]")
+    @FindBy(css=".grid-body-cell-lastName")
     public WebElement firstOwnerRow;
 
-    @FindBy(xpath = "//body/div[10]/div[2]/div[1]/div[3]/div[1]/div[1]/button[1]/a[1]")
+    @FindBy(xpath = "//div[@class='oro-datagrid']//i[@class='fa-cog hide-text']")
     public WebElement manageFilters;
 
-    @FindBy(xpath = "//input[@id='ui-multiselect-6-6-option-0']")
-    public  WebElement firstNameCheckBox;
+    @FindBy(xpath = "//tbody[@class='ui-sortable']/tr[1]//input[1]")
+    public WebElement firstNameCheckBox;
 
-    @FindBy(xpath = "//body/div[10]/div[2]/div[1]/div[3]/div[1]/div[1]/span[1]/div[2]/div[1]")
+    @FindBy(xpath = " //span[.='Last name']")
     public WebElement lastName;
 
-    @FindBy(xpath = "//body/div[10]/div[2]/div[1]/div[3]/div[1]/div[1]/span[1]/div[2]/div[2]/div[1]/div[1]/button[1]")
+    @FindBy(xpath = "//span[@class='filter-items']/div[2]//b[@class='filter-criteria-hint']")
     public WebElement containsOfLastname;
 
-    @FindBy(xpath = "//a[contains(text(),'is equal to')]")
+    @FindBy(xpath = "//button[@class='btn dropdown-toggle']")
     public WebElement isEqualTo;
 
-    @FindBy(xpath = "//body/div[10]/div[2]/div[1]/div[3]/div[1]/div[1]/span[1]/div[2]/div[2]/div[1]/div[2]/input[1]")
-    public  WebElement nameBox;
+    @FindBy(xpath = "//input[@name='value']")
+    public WebElement nameBox;
 
-    @FindBy(xpath = "//button[contains(text(),'Update')]")
+    @FindBy(xpath = "//button[@class='btn btn-primary filter-update']")
     public WebElement lastNameUpdateButton;
 
     @FindBy(xpath = "//button[contains(text(),'Save')]")
-    public  WebElement saveButton;
+    public WebElement saveButton;
 
 
     @FindBy(xpath = "//span[contains(text(),'This value should not be blank.')]")
@@ -140,7 +142,6 @@ public WebElement Test;
 
     @FindBy(xpath = "//div[contains(text(),'You do not have permission to perform this action.')]")
     public WebElement permissionMessage;
-
 
 
 }
