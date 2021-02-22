@@ -42,10 +42,9 @@ public class Us_23_StepDefs {
         BrowserUtils.waitFor(1);
         robot.keyPress(java.awt.event.KeyEvent.VK_ENTER);
 
-        //======
-//        vehicleOdometerPage.commentBox.click();
-//        BrowserUtils.waitFor(5);
-//        vehicleOdometerPage.commentBox.sendKeys("Benden sana bir akil, aklin varsa tek takil");
+        vehicleOdometerPage.commentBox.click();
+        BrowserUtils.waitFor(5);
+        vehicleOdometerPage.commentBox.sendKeys("Benden sana bir akil, aklin varsa tek takil");
 
         vehicleOdometerPage.selectOwnerButton.click();
         BrowserUtils.waitFor(2);
