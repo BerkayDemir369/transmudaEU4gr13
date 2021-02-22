@@ -96,7 +96,7 @@ public class VehicleOdometerPage extends BasePage {
     @FindBy(xpath = "//div[@class='control-group']")
     public WebElement Test;
 
-    @FindBy(xpath = "//textarea[@id='oro_attachment_comment-uid-602d7f73000d4']")
+    @FindBy(tagName = "textarea")
     public WebElement commentBox;
 
     @FindBy(xpath = "//span[.='Save']")
