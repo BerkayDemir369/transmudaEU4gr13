@@ -12,6 +12,8 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.concurrent.Callable;
+
 public class US_19StepDefs {
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page() {
@@ -34,12 +36,14 @@ public class US_19StepDefs {
 
     }
 
-    @Given("navigate to {string} {string}")
-    public void navigate_to(String tab, String module) {
+    @Given("navigate  Fleet to  Vehicle Odometer")
+    public void navigateFleetToVehicleOdometer() {
 
-      //  DashboardPage dashboardPage=new DashboardPage();
 
-        new DashboardPage().navigateToModule(tab,module);
+       DashboardPage dashboardPage=new DashboardPage();
+
+      //  new DashboardPage().navigateToModule(tab,module);
+        dashboardPage.navigateToModule("Fleet", "Vehicle Odometer");
 
     }
 
@@ -54,8 +58,8 @@ public class US_19StepDefs {
 
     }
 
-    @When("truck driver enter the valid informations on the vehicle odometer page")
-    public void truck_driver_enter_the_valid_informations_on_the_vehicle_odometer_page() {
+    @When("truck driver enter the valid information on the vehicle odometer page")
+    public void truck_driver_enter_the_valid_information_on_the_vehicle_odometer_page() {
 
      CreateVehicleOdometerPage createVehicleOdometerPage=new CreateVehicleOdometerPage();
       createVehicleOdometerPage.odometervehicleInput.sendKeys("123");
@@ -95,7 +99,7 @@ public class US_19StepDefs {
         Assert.assertEquals("General Information",actualGeneralInformation);
     }
 
-    @When("truck driver enter the invalid informations on the vehicle odometer page")
+    @When("truck driver enter the invalid information on the vehicle odometer page")
     public void truck_driver_enter_the_invalid_informations_on_the_vehicle_odometer_page() {
 
 
@@ -122,7 +126,7 @@ public class US_19StepDefs {
         BrowserUtils.waitFor(3);
     }
 
-    @Then("{string} information should display and truck driver can not create Vehicle Odometer")
+    @Then("This value is invalid  information should display and truck driver can not create Vehicle Odometer")
     public void information_should_display_and_truck_driver_can_not_create_Vehicle_Odometer(String expectedError) {
 
         CreateVehicleOdometerPage createVehicleOdometerPage =new CreateVehicleOdometerPage();
@@ -133,15 +137,7 @@ public class US_19StepDefs {
         BrowserUtils.waitFor(3);
     }
 
-    @When("click on the Carreservation button the Create Vehicle Odometer page")
-    public void click_on_the_Carreservation_button_the_Create_Vehicle_Odometer_page() {
 
-        CreateVehicleOdometerPage createVehicleOdometerPage =new CreateVehicleOdometerPage();
-        createVehicleOdometerPage.Carreservation.click();
-
-        BrowserUtils.waitFor(3);
-
-    }
 
     @When("click on the Add button on the Create Vehicle Odometer page")
     public void click_on_the_Add_button_on_the_Create_Vehicle_Odometer_page() {
@@ -152,14 +148,151 @@ public class US_19StepDefs {
     }
 
     @Then("can see Licence Plate information window")
-    public void can_see_Licence_Plate_information_window(String expectedselectcarreservationWindowMassage) {
+    public void can_see_Licence_Plate_information_window(String expectedselectcarreservationWindowMessage) {
         CreateVehicleOdometerPage createVehicleOdometerPage =new CreateVehicleOdometerPage();
 
-        String actualSelectCarreservationMessage= createVehicleOdometerPage.selectCarreservationWindow.getText();
-        Assert.assertEquals(expectedselectcarreservationWindowMassage,actualSelectCarreservationMessage);
+
+        String actualSelectCarreservationWindowMessage=createVehicleOdometerPage.selectCarreservationWindowMessage.getText();
+        Assert.assertEquals(expectedselectcarreservationWindowMessage,actualSelectCarreservationWindowMessage);
 
         BrowserUtils.waitFor(3);
     }
+
+
+
+   // @Then("can see selected license plate on the list")
+   // public void can_see_selected_license_plate_on_the_list() {
+        // Write code here that turns the phrase above into concrete actions
+      //  throw new io.cucumber.java.PendingException();
+   // }
+
+
+
+
+    @When("truck driver click on the view per page dropdown button on the licence plate information window")
+    public void truck_driver_click_on_the_view_per_page_dropdown_button_on_the_licence_plate_information_window() {
+
+
+
+        new CreateVehicleOdometerPage().pageDropdownBNT.click();
+        BrowserUtils.waitFor(3);
+
+
+    }
+
+
+
+
+    @When("truck driver select the per page number options")
+    public void truck_driver_select_the_per_page_number_options() {
+        // Write code here that turns the phrase above into concrete actions
+
+
+        new CreateVehicleOdometerPage().pageDropdown.click();
+
+        BrowserUtils.waitFor(3);
+    }
+
+
+
+     @Then("truck driver can select number of options per page on the licence plate information window")
+     public void truckDriverCanSelectNumberOfOptionsPerPageOnTheLicencePlateInformationWindow() {
+
+
+    }
+
+
+    @When("truck driver click on Refresh button on the licence plate information window")
+    public void truck_driver_click_on_Refresh_button_on_the_licence_plate_information_window() {
+
+     new CreateVehicleOdometerPage().refresh.click();
+        BrowserUtils.waitFor(3);
+    }
+
+     @Then("truck driver refresh the licence plate information window")
+    public void truck_driver_refresh_the_licence_plate_information_window() {
+        CreateVehicleOdometerPage createVehicleOdometerPage=new CreateVehicleOdometerPage() ;
+        Assert.assertTrue("verify refresh window is open", createVehicleOdometerPage.refreshconfirmationWindow.isDisplayed());
+
+        createVehicleOdometerPage.refreshconfirmationOkBTN.click();
+
+         BrowserUtils.waitFor(3);
+        }
+
+//    @When("truck driver select any license plate on the license plate information window")
+ //   public void truck_driver_select_any_license_plate_on_the_license_plate_information_window() {
+        // Write code here that turns the phrase above into concrete actions
+   //     throw new io.cucumber.java.PendingException();
+//    }
+
+    @When("truck driver click on the Reset button")
+    public void truck_driver_click_on_the_Reset_button() {
+        // Write code here that turns the phrase above into concrete actions
+
+        new CreateVehicleOdometerPage().reset.click();
+        BrowserUtils.waitFor(3);
+
+
+
+
+    }
+
+    @Then("truck driver can see reset confirmation window")
+    public void truck_driver_can_see_reset_confirmation_window() {
+        // Write code here that turns the phrase above into concrete a throw new io.cucumber.java.PendingException();
+
+       CreateVehicleOdometerPage createVehicleOdometerPage=new CreateVehicleOdometerPage();
+        Assert.assertTrue("verify refresh window is open", createVehicleOdometerPage.resetconfirmationWindow.isDisplayed());
+
+        createVehicleOdometerPage.refreshconfirmationOkBTN.click();
+
+        BrowserUtils.waitFor(3);
+
+    }
+
+    @When("truck driver click on the OK button on the reset confirmation window")
+    public void truck_driver_click_on_the_OK_button_on_the_reset_confirmation_window() {
+      new CreateVehicleOdometerPage().resetconfirmationOkBTN.click();
+        BrowserUtils.waitFor(3);
+    }
+
+    @Then("truck driver can reset the license plate")
+    public void truck_driver_can_reset_the_license_plate() {
+        // Write code here that turns the phrase above into concrete actions
+
+    }
+
+    @When("click on the Grid Settings button on the licence plate information window")
+    public void click_on_the_Grid_Settings_button_on_the_licence_plate_information_window() {
+       new CreateVehicleOdometerPage().gearSetting.click();
+        BrowserUtils.waitFor(3);
+
+
+    }
+
+    @Then("can see Grid Settings window")
+    public void can_see_Grid_Settings_window() {
+
+        CreateVehicleOdometerPage createVehicleOdometerPage=new CreateVehicleOdometerPage();
+        Assert.assertTrue("verify gear setting window is open", createVehicleOdometerPage.gearSettingWindow.isDisplayed());
+        BrowserUtils.waitFor(3);
+
+    }
+
+    @When("click on the Select All on the Grid Settings window")
+    public void click_on_the_Select_All_on_the_Grid_Settings_window() {
+       new CreateVehicleOdometerPage().allSelectBNT.click();
+
+    }
+
+    @Then("can see assinged and license plate on the table")
+    public void can_see_assinged_and_license_plate_on_the_table() {
+        // Write code here that turns the phrase above into concrete actions
+        new CreateVehicleOdometerPage().closeBNT.click();
+    }
+
+
+
 
     @When("select license plate from the top the list and click the select button")
     public void select_license_plate_from_the_top_the_list_and_click_the_select_button() {
@@ -171,135 +304,25 @@ public class US_19StepDefs {
         BrowserUtils.waitFor(3);
     }
 
-   // @Then("can see selected license plate on the list")
-   // public void can_see_selected_license_plate_on_the_list() {
-        // Write code here that turns the phrase above into concrete actions
-      //  throw new io.cucumber.java.PendingException();
-   // }
-
-
-
-    @When("truck driver click on the assigned button on the licence plate information window")
-    public void truck_driver_click_on_the_assigned_button_on_the_licence_plate_information_window() {
+    @Then("can see selected license plate on the list")
+    public void canSeeSelectedLicensePlateOnTheList() {
 
         CreateVehicleOdometerPage createVehicleOdometerPage =new CreateVehicleOdometerPage();
-        createVehicleOdometerPage.assigned.click();
-    }
+        createVehicleOdometerPage.licensePlate.isDisplayed();
 
-   // @Then("truck driver can assign license plate on the licence plate information window")
-  //  public void truck_driver_can_assign_license_plate_on_the_licence_plate_information_window() {
-    //    // Write code here that turns the phrase above into concrete actions
-      //  throw new io.cucumber.java.PendingException();
-   // }
-
-    @When("truck driver click on the view per page dropdown button on the licence plate information window")
-    public void truck_driver_click_on_the_view_per_page_dropdown_button_on_the_licence_plate_information_window() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @Then("truck driver can see the view per page options by clicking on the view per page dropdown button on the licence plate information window")
-    public void truck_driver_can_see_the_view_per_page_options_by_clicking_on_the_view_per_page_dropdown_button_on_the_licence_plate_information_window() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @When("truck driver select the per page number options")
-    public void truck_driver_select_the_per_page_number_options() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @Then("truck driver can select number of options per page on the licence plate information window")
-    public void truck_driver_can_select_number_of_options_per_page_on_the_licence_plate_information_window() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @When("truck driver click on Refresh button on the licence plate information window")
-    public void truck_driver_click_on_Refresh_button_on_the_licence_plate_information_window() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @Then("truck driver refresh the licence plate information window")
-    public void truck_driver_refresh_the_licence_plate_information_window() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @When("truck driver select any license plate on the license plate information window")
-    public void truck_driver_select_any_license_plate_on_the_license_plate_information_window() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @When("truck driver click on the Reset button")
-    public void truck_driver_click_on_the_Reset_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @Then("truck driver can see reset confirmation window")
-    public void truck_driver_can_see_reset_confirmation_window() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @When("truck driver click on the OK button on the reset confirmation window")
-    public void truck_driver_click_on_the_OK_button_on_the_reset_confirmation_window() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @Then("truck driver can reset the license plate")
-    public void truck_driver_can_reset_the_license_plate() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @When("click on the Grid Settings button on the licence plate information window")
-    public void click_on_the_Grid_Settings_button_on_the_licence_plate_information_window() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @Then("can see Grid Settings window")
-    public void can_see_Grid_Settings_window() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @When("click on the Select All on the Grid Settings window")
-    public void click_on_the_Select_All_on_the_Grid_Settings_window() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @Then("can see assinged and license plate on the table")
-    public void can_see_assinged_and_license_plate_on_the_table() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @When("unclick on the Select All on the Grid Settings window")
-    public void unclick_on_the_Select_All_on_the_Grid_Settings_window() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @Then("can see only license plate on the table")
-    public void can_see_only_license_plate_on_the_table() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-
-
-
-
-
-
+        Assert.assertTrue("verify license plate is shown", createVehicleOdometerPage.licensePlate.isDisplayed());
 
 
 }
+
+
+
+
+    }
+
+
+
+
+
+
+
