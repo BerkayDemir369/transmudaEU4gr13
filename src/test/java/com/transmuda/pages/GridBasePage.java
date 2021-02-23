@@ -75,8 +75,11 @@ public class GridBasePage extends BasePage {
 
 
     //Grid Settings Elements
-    @FindBy(xpath = "//div[1]/div/div[3]/div[1]/div/div/a")
+    @FindBy(xpath = "//i[@class='fa-cog hide-text']")
     public WebElement GridSettingsButton;
+
+    @FindBy(xpath = "//div[@class='dropdown-menu']")
+    public WebElement GridSettingsPopup;
 
     @FindBy(css = "div[class*='column-manager-search'] > input")
     public WebElement QuickSearch;
@@ -87,7 +90,7 @@ public class GridBasePage extends BasePage {
     @FindBy(linkText = "All")
     public WebElement All;
 
-    @FindBy(linkText = "SelectAll")
+    @FindBy(xpath = "//a[.='Select All']")
     public WebElement SelectAll;
 
     @FindBy(xpath = "//div[@class='table-wrapper']//table[@class='grid table-hover table table-condensed']/tbody/tr/td[2]/span")
@@ -109,6 +112,13 @@ public class GridBasePage extends BasePage {
         return rowNames;
     }
 
+    public String getGridSettingsRowName(int index) {
+        String rowNames = "";
+        for (WebElement name : GridSettingsRowNames) {
+            rowNames = GridSettingsRowNames.get(index).getText();
+        }
+        return rowNames;
+    }
 
     @FindBy(xpath = "//div[@class='table-wrapper']//table[@class='grid table-hover table table-condensed']/tbody/tr/td[3]/input")
     public List<WebElement> GridSettingsRowCheckBoxes;
@@ -153,6 +163,11 @@ public class GridBasePage extends BasePage {
         return i;
     }
 
+    /**
+     * @param headerName send table header name
+     * @param RowData    send table header row data value
+     * @return if row has RowData value then return true else false
+     */
     public boolean findRowValue(String headerName, String RowData) {
         int i = getGridTableHeaderIndex(headerName);
         String findRow = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[" + i + "]";
