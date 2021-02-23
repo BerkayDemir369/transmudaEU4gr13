@@ -30,12 +30,9 @@ public class US_19StepDefs {
 
     @When("click on the Create Vehicle Odometer button")
     public void click_on_the_Create_Vehicle_Odometer_button() {
-
        CreateVehicleOdometerPage createVehicleOdometerPage=new CreateVehicleOdometerPage();
-        createVehicleOdometerPage.createOdometerVehicle.click();
-
         BrowserUtils.waitFor(3);
-
+        createVehicleOdometerPage.createOdometerVehicle.click();
 
     }
 
@@ -123,6 +120,7 @@ public class US_19StepDefs {
     @When("click on the Add button on the Create Vehicle Odometer page")
     public void click_on_the_Add_button_on_the_Create_Vehicle_Odometer_page() {
         CreateVehicleOdometerPage createVehicleOdometerPage =new CreateVehicleOdometerPage();
+        BrowserUtils.waitFor(3);
         createVehicleOdometerPage.addBTNt.click();
 
         BrowserUtils.waitFor(3);
@@ -133,7 +131,7 @@ public class US_19StepDefs {
         CreateVehicleOdometerPage createVehicleOdometerPage =new CreateVehicleOdometerPage();
         Assert.assertTrue(  createVehicleOdometerPage.selectCarreservationWindowMessage.isDisplayed());
 
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(5);
     }
 
 
@@ -278,12 +276,8 @@ public class US_19StepDefs {
 
         CreateVehicleOdometerPage createVehicleOdometerPage =new CreateVehicleOdometerPage();
         BrowserUtils.waitFor(3);
-
         createVehicleOdometerPage.selectTable.click();
-
         createVehicleOdometerPage.selectBNT.click();
-
-        BrowserUtils.waitFor(3);
     }
 
     @Then("can see selected license plate on the list")

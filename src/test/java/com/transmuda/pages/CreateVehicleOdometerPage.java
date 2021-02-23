@@ -64,7 +64,7 @@ public class CreateVehicleOdometerPage extends BasePage {
     public WebElement errorMessage;
 
 
-    @FindBy(xpath = "//body/div[@id='page']/div[2]/div[1]/div[2]/div[3]/form[1]/div[2]/div[2]/div[1]/div[2]/div[2]/div[1]/fieldset[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/button[1]")
+    @FindBy(xpath="//button[@class='btn btn-medium add-btn']")
     public WebElement addBTNt;
 
     // @FindBy(xpath = "//h4[contains(text(),'Carreservation')]")
@@ -73,14 +73,15 @@ public class CreateVehicleOdometerPage extends BasePage {
     @FindBy(css=".ui-dialog")
     public WebElement selectCarreservationWindowMessage;
 
-    @FindBy(xpath = " //a[contains(text(),'victory13')]")
+    @FindBy(xpath = " //a[contains(text(),'victory13-5')]")
     public WebElement licensePlate;
 
     //a[contains(text(),'victory13-5')]
-    @FindBy(xpath="//td[.='victory13-5']")
+
+    @FindBy(xpath="//div[@class='grid-container']/table/tbody/tr[6]")
     public WebElement selectTable;
 
-    @FindBy(xpath = "//button[contains(text(),'Select')]")
+    @FindBy(xpath="//button[@data-action-name='select']")
     public WebElement selectBNT;
 
     @FindBy(xpath = "//body/div[7]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/i[1]")
