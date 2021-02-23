@@ -112,7 +112,7 @@ public class US_19StepDefs {
 //        createVehicleOdometerPage.model.click();
 //        createVehicleOdometerPage.modelInput.sendKeys("gul");
 
-        new CreateVehicleOdometerPage().saveAndClose.click();
+      createVehicleOdometerPage.saveAndClose.click();
 
         BrowserUtils.waitFor(3);
     }
