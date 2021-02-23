@@ -51,7 +51,7 @@ public class CreateVehicleOdometerPage extends BasePage {
     @FindBy(xpath = "//body/div[@id='select2-drop']/div[1]/input[1]")
     public WebElement modelInput;
 
-    @FindBy(xpath = "//ul[@class='dropdown-menu']/li[1]/button[1]")
+    @FindBy(xpath="//button[@class='btn btn-success action-button']")
     public WebElement saveAndClose;
 
     @FindBy(xpath = " //span[contains(text(),'General Information')]")

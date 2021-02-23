@@ -58,18 +58,15 @@ public class US_19StepDefs {
         createVehicleOdometerPage.driverInput.sendKeys("aynur");
         createVehicleOdometerPage.unitInput.click();
         createVehicleOdometerPage.km.click();
-        //createVehicleOdometerPage.model.click();
-        //createVehicleOdometerPage.modelInput.sendKeys("ford");
+        createVehicleOdometerPage.model.click();
+        createVehicleOdometerPage.modelInput.sendKeys("ford");
 
         BrowserUtils.waitFor(3);
 
     }
     @When("truck driver click on the Save and Close button on the Vehicle Odometer page")
     public void truck_driver_click_on_the_Save_and_Close_button_on_the_Vehicle_Odometer_page() {
-
-
         createVehicleOdometerPage.saveAndClose.click();
-
         BrowserUtils.waitFor(3);
 
 
@@ -85,7 +82,7 @@ public class US_19StepDefs {
     public void truck_driver_enter_the_invalid_informations_on_the_vehicle_odometer_page() {
 
 
-        BrowserUtils.waitFor(7);
+        BrowserUtils.waitFor(5);
 
         createVehicleOdometerPage.odometervehicleInput.sendKeys("aynur");
 
