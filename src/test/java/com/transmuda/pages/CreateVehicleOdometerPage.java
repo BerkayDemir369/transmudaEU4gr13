@@ -99,8 +99,9 @@ public class CreateVehicleOdometerPage extends BasePage {
     public WebElement refresh;
 
 
-    @FindBy(xpath = "//body/div[7]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[2]/div[1]/div[1]/button[1]/span[1]")
-    public WebElement pageDropdownBNT;
+ @FindBy(css = "button[class='btn dropdown-toggle ']")
+
+ public WebElement pageDropdownBNT;
 
     @FindBy(xpath = "//a[contains(text(),'25')]")
     public WebElement pageDropdown;
