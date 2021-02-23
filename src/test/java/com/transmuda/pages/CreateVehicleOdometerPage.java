@@ -1,15 +1,20 @@
 package com.transmuda.pages;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 public class CreateVehicleOdometerPage extends BasePage {
+
+    @FindBy(css = "div[class='select2-drop-mask']")
+    @CacheLookup
+    public WebElement select2_drop_mask;
 
     @FindBy(xpath = "//div[@class='pull-right title-buttons-container']/a[contains(.,'Create')]")
     public WebElement createOdometerVehicle;
 
 
-    @FindBy(xpath = "(//input[@type='text'])[2]")
+    @FindBy(name = "custom_entity_type[OdometerValue]")
     public WebElement odometervehicleInput;
 
 
@@ -51,7 +56,7 @@ public class CreateVehicleOdometerPage extends BasePage {
     @FindBy(xpath = "//body/div[@id='select2-drop']/div[1]/input[1]")
     public WebElement modelInput;
 
-    @FindBy(xpath="//button[@class='btn btn-success action-button']")
+    @FindBy(css = "button.btn-success")
     public WebElement saveAndClose;
 
     @FindBy(xpath = " //span[contains(text(),'General Information')]")
@@ -59,17 +64,16 @@ public class CreateVehicleOdometerPage extends BasePage {
     public WebElement generalInformation;
 
     @FindBy(xpath = " //span[contains(text(),'This value is not valid.')]")
-
     public WebElement errorMessage;
 
 
-    @FindBy(xpath="//button[@class='btn btn-medium add-btn']")
+    @FindBy(xpath = "//button[@class='btn btn-medium add-btn']")
     public WebElement addBTNt;
 
     // @FindBy(xpath = "//h4[contains(text(),'Carreservation')]")
     //  public WebElement Carreservation;
 
-    @FindBy(css=".ui-dialog")
+    @FindBy(css = ".ui-dialog")
     public WebElement selectCarreservationWindowMessage;
 
     @FindBy(xpath = " //a[contains(text(),'victory13-5')]")
@@ -77,10 +81,10 @@ public class CreateVehicleOdometerPage extends BasePage {
 
     //a[contains(text(),'victory13-5')]
 
-    @FindBy(xpath="//div[@class='grid-container']/table/tbody/tr[6]")
+    @FindBy(xpath = "//div[@class='grid-container']/table/tbody/tr[6]")
     public WebElement selectTable;
 
-    @FindBy(xpath="//button[@data-action-name='select']")
+    @FindBy(xpath = "//button[@data-action-name='select']")
     public WebElement selectBNT;
 
     @FindBy(xpath = "//body/div[7]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/i[1]")
@@ -92,20 +96,20 @@ public class CreateVehicleOdometerPage extends BasePage {
     @FindBy(xpath = "//span[contains(text(),'×')]")
     public WebElement closeBNT;
 
-    @FindBy(xpath = "//body/div[8]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/a[2]/i[1]")
+    @FindBy(css = "a.reset-action > .fa-refresh")
     public WebElement reset;
 
-    @FindBy(xpath = "//body/div[8]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/a[1]/i[1]")
+    @FindBy(css = ".fa-repeat")
     public WebElement refresh;
 
 
-    @FindBy(xpath = "//body/div[7]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[2]/div[1]/div[1]/button[1]/span[1]")
+    @FindBy(xpath = "//button[@class='btn dropdown-toggle ']")
     public WebElement pageDropdownBNT;
 
     @FindBy(xpath = "//a[contains(text(),'25')]")
     public WebElement pageDropdown;
 
-    @FindBy(xpath = "//h3[contains(text(),'Refresh Confirmation')]")
+    @FindBy(css=".modal-backdrop")
     public WebElement refreshconfirmationWindow;
 
     @FindBy(xpath = "//a[contains(text(),'OK, got it.')]")

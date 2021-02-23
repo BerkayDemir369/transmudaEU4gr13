@@ -56,8 +56,8 @@ Feature:
 	#1-Truck driver can create vehicle odometer by using Create Vehicle Odometer button
 	#2-Truck driver can also add Licence plate information by using +Add button when creating vehicle odometer
 	@TR-182 @TR-171
-	Scenario: US-19 Truck Driver should be able to create vehicle odometer (negative scenario) test case (4) 
-		
+	Scenario: US-19 Truck Driver should be able to create vehicle odometer (negative scenario) test case (4)
+		Given navigate  Fleet to  Vehicle Odometer
 		When   truck driver enter the invalid information on the vehicle odometer page
 		And    truck driver click on the Save and Close button on the Vehicle Odometer page
 		Then  This value is invalid  information should display and truck driver can not create Vehicle Odometer
@@ -87,8 +87,8 @@ Feature:
 	#1-Truck driver can create vehicle odometer by using Create Vehicle Odometer button
 	#2-Truck driver can also add Licence plate information by using +Add button when creating vehicle odometer
 	@TR-187 @TR-171
-	Scenario: US-19 Truck Driver should be able to click the view per page dropdown button on the license plate information window test case 
-		
+	Scenario: US-19 Truck Driver should be able to click the view per page dropdown button on the license plate information window test case
+		Given navigate  Fleet to  Vehicle Odometer
 		When  truck driver click on the view per page dropdown button on the licence plate information window
 		And  truck driver select the per page number options
 		Then  truck driver can select number of options per page on the licence plate information window	
@@ -107,7 +107,9 @@ Feature:
 	# 2-Truck driver can also add Licence plate information by using +Add button when creating vehicle odometer
 	@TR-190 @TR-171
 	Scenario: US-19 Truck Driver should be able to click  on the  Refresh button on the license plate information window test case
-		
+		Given navigate  Fleet to  Vehicle Odometer
+		When click on the Create Vehicle Odometer button
+		And click on the Add button on the Create Vehicle Odometer page
 		When  truck driver click on Refresh button on the licence plate information window
 		Then  truck driver refresh the licence plate information window
 			
@@ -123,8 +125,9 @@ Feature:
 	#1-Truck driver can create vehicle odometer by using Create Vehicle Odometer button
 	#2-Truck driver can also add Licence plate information by using +Add button when creating vehicle odometer
 	@TR-191 @TR-171
-	Scenario: US-19 Truck Driver should be able to click on the Reset button on the license plate information window test case 
-		
+	Scenario: US-19 Truck Driver should be able to click on the Reset button on the license plate information window test case
+
+		Given navigate  Fleet to  Vehicle Odometer
 
 		When   truck driver click on the Reset button
 		Then  truck driver can see reset confirmation window 
