@@ -109,7 +109,7 @@ public class CreateVehicleOdometerPage extends BasePage {
     @FindBy(xpath = "//a[contains(text(),'25')]")
     public WebElement pageDropdown;
 
-    @FindBy(css=".modal-backdrop")
+    @FindBy(xpath="//div[@class='modal modal-primary in']")
     public WebElement refreshconfirmationWindow;
 
     @FindBy(xpath = "//a[contains(text(),'OK, got it.')]")

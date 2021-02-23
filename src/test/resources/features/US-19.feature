@@ -128,7 +128,8 @@ Feature:
 	Scenario: US-19 Truck Driver should be able to click on the Reset button on the license plate information window test case
 
 		Given navigate  Fleet to  Vehicle Odometer
-
+		When click on the Create Vehicle Odometer button
+		And click on the Add button on the Create Vehicle Odometer page
 		When   truck driver click on the Reset button
 		Then  truck driver can see reset confirmation window 
 		When  truck driver click on the OK button on the reset confirmation window 
