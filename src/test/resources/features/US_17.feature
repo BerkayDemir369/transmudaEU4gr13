@@ -12,7 +12,7 @@ Feature:
     When The truck driver click Grid Settings button
     Then The truck driver can see Grid Settings Popup
     And The truck driver should only be able to see the column headings selected from the grid settings popup in the odometer table
-    When The truck driver change selected headers in the grid settings popup
+    When The truck driver change selected header "Odometer Value" in the grid settings popup
     Then The truck driver should only be able to see the column headings selected from the grid settings popup in the odometer table
     When the truck driver clicks on the Selected link in the grid settings popup
     Then Truck driver should be able to see only those with checkboxes in popup table
