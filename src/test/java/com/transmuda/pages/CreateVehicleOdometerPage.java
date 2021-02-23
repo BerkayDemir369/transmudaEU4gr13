@@ -1,10 +1,15 @@
 package com.transmuda.pages;
 
+import com.transmuda.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class CreateVehicleOdometerPage extends BasePage {
+    public CreateVehicleOdometerPage() {
+        PageFactory.initElements(Driver.get(), this);
+    }
 
     @FindBy(css = "div[class='select2-drop-mask']")
     @CacheLookup
@@ -84,13 +89,19 @@ public class CreateVehicleOdometerPage extends BasePage {
     @FindBy(xpath = "//div[@class='grid-container']/table/tbody/tr[6]")
     public WebElement selectTable;
 
+    @FindBy(xpath = "//tbody/tr")
+    public WebElement selectTable2;
+
     @FindBy(xpath = "//button[@data-action-name='select']")
     public WebElement selectBNT;
 
-    @FindBy(xpath = "//body/div[7]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/i[1]")
+    @FindBy(xpath = "//i[@class='fa-cog hide-text']")
     public WebElement gearSetting;
 
-    @FindBy(xpath = "//a[contains(text(),'Select All')]")
+    @FindBy(xpath = "//tbody[@class='ui-sortable']/tr[1]//input[1]")
+    public WebElement unselectOne;
+
+    @FindBy(xpath = "//a[.='Select All']")
     public WebElement allSelectBNT;
 
     @FindBy(xpath = "//span[contains(text(),'×')]")
@@ -109,20 +120,19 @@ public class CreateVehicleOdometerPage extends BasePage {
     @FindBy(xpath = "//a[contains(text(),'25')]")
     public WebElement pageDropdown;
 
-    @FindBy(xpath="//div[@class='modal modal-primary in']")
+    @FindBy(xpath = "//div[@class='modal modal-primary in']")
     public WebElement refreshconfirmationWindow;
 
-    @FindBy(xpath = "//a[contains(text(),'OK, got it.')]")
+    @FindBy(css = ".ok")
     public WebElement refreshconfirmationOkBTN;
 
-    @FindBy(xpath = "//h3[contains(text(),'Reset Confirmation')]")
+    @FindBy(xpath = "//div[@class='modal modal-primary in']")
     public WebElement resetconfirmationWindow;
-
 
     @FindBy(xpath = "//a[contains(text(),'OK, got it.')]")
     public WebElement resetconfirmationOkBTN;
 
-    @FindBy(xpath = "//div[contains(text(),'Grid Settings')]")
+    @FindBy(xpath = "//div[@class='dropdown-menu']")
     public WebElement gearSettingWindow;
 
 

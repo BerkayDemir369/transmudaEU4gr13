@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
 
 public class US_19StepDefs {
 
@@ -112,7 +113,7 @@ public class US_19StepDefs {
 //        createVehicleOdometerPage.model.click();
 //        createVehicleOdometerPage.modelInput.sendKeys("gul");
 
-      createVehicleOdometerPage.saveAndClose.click();
+        createVehicleOdometerPage.saveAndClose.click();
 
         BrowserUtils.waitFor(3);
     }
@@ -162,11 +163,7 @@ public class US_19StepDefs {
 
     @When("truck driver select the per page number options")
     public void truck_driver_select_the_per_page_number_options() {
-        // Write code here that turns the phrase above into concrete actions
-
-
         createVehicleOdometerPage.pageDropdown.click();
-
         BrowserUtils.waitFor(3);
     }
 
@@ -202,8 +199,9 @@ public class US_19StepDefs {
 
     @When("truck driver click on the Reset button")
     public void truck_driver_click_on_the_Reset_button() {
-        // Write code here that turns the phrase above into concrete actions
-
+        BrowserUtils.waitFor(3);
+        createVehicleOdometerPage.selectTable2.click();
+        BrowserUtils.waitFor(3);
         createVehicleOdometerPage.reset.click();
         BrowserUtils.waitFor(3);
 
@@ -212,18 +210,14 @@ public class US_19StepDefs {
 
     @Then("truck driver can see reset confirmation window")
     public void truck_driver_can_see_reset_confirmation_window() {
-        // Write code here that turns the phrase above into concrete a throw new io.cucumber.java.PendingException();
-
-        Assert.assertTrue("verify refresh window is open", createVehicleOdometerPage.resetconfirmationWindow.isDisplayed());
-
-        createVehicleOdometerPage.refreshconfirmationOkBTN.click();
-
         BrowserUtils.waitFor(3);
-
+        Driver.get().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        Assert.assertTrue("verify refresh window is open", createVehicleOdometerPage.resetconfirmationWindow.isDisplayed());
     }
 
     @When("truck driver click on the OK button on the reset confirmation window")
     public void truck_driver_click_on_the_OK_button_on_the_reset_confirmation_window() {
+        BrowserUtils.waitFor(3);
         createVehicleOdometerPage.resetconfirmationOkBTN.click();
         BrowserUtils.waitFor(3);
     }
@@ -236,10 +230,8 @@ public class US_19StepDefs {
 
     @When("click on the Grid Settings button on the licence plate information window")
     public void click_on_the_Grid_Settings_button_on_the_licence_plate_information_window() {
+        BrowserUtils.waitFor(2);
         createVehicleOdometerPage.gearSetting.click();
-        BrowserUtils.waitFor(3);
-
-
     }
 
     @Then("can see Grid Settings window")
@@ -247,20 +239,22 @@ public class US_19StepDefs {
 
         Assert.assertTrue("verify gear setting window is open", createVehicleOdometerPage.gearSettingWindow.isDisplayed());
         BrowserUtils.waitFor(3);
+        createVehicleOdometerPage.unselectOne.click();
+        BrowserUtils.waitFor(3);
 
     }
 
     @When("click on the Select All on the Grid Settings window")
     public void click_on_the_Select_All_on_the_Grid_Settings_window() {
+        Driver.get().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         createVehicleOdometerPage.allSelectBNT.click();
-
+        BrowserUtils.waitFor(3);
     }
 
     @Then("can see assinged and license plate on the table")
     public void can_see_assinged_and_license_plate_on_the_table() {
-        // Write code here that turns the phrase above into concrete actions
-        createVehicleOdometerPage.closeBNT.click();
         BrowserUtils.waitFor(3);
+        createVehicleOdometerPage.closeBNT.click();
     }
 
 
@@ -268,12 +262,9 @@ public class US_19StepDefs {
     public void select_license_plate_from_the_top_the_list_and_click_the_select_button() {
 
         BrowserUtils.waitFor(3);
-
         createVehicleOdometerPage.selectTable.click();
-
         BrowserUtils.waitFor(2);
         createVehicleOdometerPage.selectBNT.click();
-
         BrowserUtils.waitFor(3);
     }
 
