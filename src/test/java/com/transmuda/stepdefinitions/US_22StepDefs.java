@@ -12,6 +12,8 @@ import org.junit.Assert;
 
 public class US_22StepDefs {
 
+    CreateVehicleOdometerPage createVehicleOdometerPage=new CreateVehicleOdometerPage();
+
     @Given("navigate Fleet to Vehicle Odometer")
     public void navigate_Fleet_to_Vehicle_Odometer() {
         DashboardPage dashboardPage=new DashboardPage();
@@ -22,26 +24,26 @@ public class US_22StepDefs {
     @And("select any vehicle odometer on the Vehicle Odometer list")
     public void select_any_vehicle_odometer_on_the_Vehicle_Odometer_list() {
 
-        new CreateVehicleOdometerPage().vechileOdometerlist.click();
+        createVehicleOdometerPage.vechileOdometerlist.click();
         BrowserUtils.waitFor(3);
     }
 
     @And("click on the Delete Button to delete Vehicle Odometer")
     public void click_on_the_Delete_Button_to_delete_Vehicle_Odometer() {
-      new CreateVehicleOdometerPage().deleteBNT.click();
+      createVehicleOdometerPage.deleteBNT.click();
         BrowserUtils.waitFor(3);
     }
 
     @Then("can see the delete confirmation window")
     public void can_see_the_delete_confirmation_window() {
-        new CreateVehicleOdometerPage().deleteconfirmationWindow.isDisplayed();
+ createVehicleOdometerPage.deleteconfirmationWindow.isDisplayed();
         BrowserUtils.waitFor(3);
 
     }
 
     @When("click on the Yes, Delete Button on the delete confirmation window")
     public void click_on_the_Yes_Delete_Button_on_the_delete_confirmation_window() {
-     new CreateVehicleOdometerPage().yesDeleteBNT.click();
+   createVehicleOdometerPage.yesDeleteBNT.click();
         BrowserUtils.waitFor(3);
     }
 

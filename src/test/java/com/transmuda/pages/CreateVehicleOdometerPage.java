@@ -132,7 +132,7 @@ public class CreateVehicleOdometerPage extends BasePage {
     @FindBy(xpath = "  //a[contains(text(),'Yes, Delete')]")
     public WebElement yesDeleteBNT;
 
-    @FindBy(xpath = "  //tbody/tr[1]")
+    @FindBy(xpath = "  //tbody/tr[2]")
     public WebElement vechileOdometerlist;
 
 
