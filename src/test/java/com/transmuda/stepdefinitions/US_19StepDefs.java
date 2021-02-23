@@ -15,26 +15,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.concurrent.Callable;
 
 public class US_19StepDefs {
-    @Given("the user is on the login page")
-    public void the_user_is_on_the_login_page() {
 
-        String url= ConfigurationReader.get("url");
-        Driver.get().get(url);
-
-    }
-
-    @When("the user logs in using {string} and {string}")
-    public void the_user_logs_in_using_and(String username, String password) {
-
-        LoginPage loginPage= new LoginPage();
-        loginPage.login(username,password);
-        BrowserUtils.waitFor(3);
-
-
-        String actualTitle = Driver.get().getTitle();
-        Assert.assertEquals("Dashboard",actualTitle);
-
-    }
 
     @Given("navigate  Fleet to  Vehicle Odometer")
     public void navigateFleetToVehicleOdometer() {
