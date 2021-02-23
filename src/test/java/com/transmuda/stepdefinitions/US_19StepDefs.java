@@ -16,7 +16,7 @@ import java.util.concurrent.Callable;
 
 public class US_19StepDefs {
 
-
+     CreateVehicleOdometerPage createVehicleOdometerPage= new CreateVehicleOdometerPage();
     @Given("navigate  Fleet to  Vehicle Odometer")
     public void navigateFleetToVehicleOdometer() {
 
@@ -30,17 +30,21 @@ public class US_19StepDefs {
 
     @When("click on the Create Vehicle Odometer button")
     public void click_on_the_Create_Vehicle_Odometer_button() {
-       CreateVehicleOdometerPage createVehicleOdometerPage=new CreateVehicleOdometerPage();
-        BrowserUtils.waitFor(3);
+
         createVehicleOdometerPage.createOdometerVehicle.click();
+
+        BrowserUtils.waitFor(3);
+
 
     }
 
     @When("truck driver enter the valid information on the vehicle odometer page")
     public void truck_driver_enter_the_valid_information_on_the_vehicle_odometer_page() {
 
-     CreateVehicleOdometerPage createVehicleOdometerPage=new CreateVehicleOdometerPage();
-      createVehicleOdometerPage.odometervehicleInput.sendKeys("123");
+
+      createVehicleOdometerPage.createOdometerVehicle.click();
+      BrowserUtils.waitFor(3);
+     createVehicleOdometerPage.odometervehicleInput.sendKeys("123");
        createVehicleOdometerPage.choosedate.click();
         Select selectM=new Select(createVehicleOdometerPage.month);
 
@@ -54,8 +58,8 @@ public class US_19StepDefs {
         createVehicleOdometerPage.driverInput.sendKeys("aynur");
         createVehicleOdometerPage.unitInput.click();
         createVehicleOdometerPage.km.click();
-        createVehicleOdometerPage.model.click();
-        createVehicleOdometerPage.modelInput.sendKeys("gul");
+        //createVehicleOdometerPage.model.click();
+        //createVehicleOdometerPage.modelInput.sendKeys("ford");
 
         BrowserUtils.waitFor(3);
 
@@ -63,7 +67,8 @@ public class US_19StepDefs {
     @When("truck driver click on the Save and Close button on the Vehicle Odometer page")
     public void truck_driver_click_on_the_Save_and_Close_button_on_the_Vehicle_Odometer_page() {
 
-        new CreateVehicleOdometerPage().saveAndClose.click();
+
+        createVehicleOdometerPage.saveAndClose.click();
 
         BrowserUtils.waitFor(3);
 
@@ -72,7 +77,6 @@ public class US_19StepDefs {
     @Then("truck driver can create Vehicle Odometer")
     public void truck_driver_can_create_Vehicle_Odometer() {
 
-        CreateVehicleOdometerPage createVehicleOdometerPage =new CreateVehicleOdometerPage();
         String actualGeneralInformation=createVehicleOdometerPage.generalInformation.getText();
         Assert.assertEquals("General Information",actualGeneralInformation);
     }
@@ -81,8 +85,10 @@ public class US_19StepDefs {
     public void truck_driver_enter_the_invalid_informations_on_the_vehicle_odometer_page() {
 
 
-        CreateVehicleOdometerPage createVehicleOdometerPage=new CreateVehicleOdometerPage();
+        BrowserUtils.waitFor(7);
+
         createVehicleOdometerPage.odometervehicleInput.sendKeys("aynur");
+
         createVehicleOdometerPage.choosedate.click();
         Select selectM=new Select(createVehicleOdometerPage.month);
 
@@ -107,7 +113,6 @@ public class US_19StepDefs {
     @Then("This value is invalid  information should display and truck driver can not create Vehicle Odometer")
     public void information_should_display_and_truck_driver_can_not_create_Vehicle_Odometer(String expectedError) {
 
-        CreateVehicleOdometerPage createVehicleOdometerPage =new CreateVehicleOdometerPage();
 
       String actualMessage= createVehicleOdometerPage.errorMessage.getText();
       Assert.assertEquals(expectedError,actualMessage);
@@ -119,8 +124,6 @@ public class US_19StepDefs {
 
     @When("click on the Add button on the Create Vehicle Odometer page")
     public void click_on_the_Add_button_on_the_Create_Vehicle_Odometer_page() {
-        CreateVehicleOdometerPage createVehicleOdometerPage =new CreateVehicleOdometerPage();
-        BrowserUtils.waitFor(3);
         createVehicleOdometerPage.addBTNt.click();
 
         BrowserUtils.waitFor(3);
@@ -128,10 +131,9 @@ public class US_19StepDefs {
 
     @Then("can see Licence Plate information window")
     public void can_see_Licence_Plate_information_window() {
-        CreateVehicleOdometerPage createVehicleOdometerPage =new CreateVehicleOdometerPage();
         Assert.assertTrue(  createVehicleOdometerPage.selectCarreservationWindowMessage.isDisplayed());
 
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(3);
     }
 
 
@@ -276,8 +278,13 @@ public class US_19StepDefs {
 
         CreateVehicleOdometerPage createVehicleOdometerPage =new CreateVehicleOdometerPage();
         BrowserUtils.waitFor(3);
+
         createVehicleOdometerPage.selectTable.click();
-        createVehicleOdometerPage.selectBNT.click();
+
+        BrowserUtils.waitFor(2);
+       createVehicleOdometerPage.selectBNT.click();
+
+        BrowserUtils.waitFor(3);
     }
 
     @Then("can see selected license plate on the list")

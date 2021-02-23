@@ -9,7 +9,7 @@ public class CreateVehicleOdometerPage extends BasePage {
     public WebElement createOdometerVehicle;
 
 
-    @FindBy(xpath = "//input[@id='custom_entity_type_OdometerValue-uid-602eab9438680']")
+    @FindBy(xpath = "(//input[@type='text'])[2]")
     public WebElement odometervehicleInput;
 
 
@@ -30,7 +30,7 @@ public class CreateVehicleOdometerPage extends BasePage {
     public WebElement day;
 
 
-    @FindBy(xpath = "(//input[@id='custom_entity_type_Driver-uid-602eaccc2a927']")
+    @FindBy(xpath = "//input[@name='custom_entity_type[Driver]']")
     public WebElement driverInput;
 
     @FindBy(xpath = "//body/div[@id='page']/div[2]/div[1]/div[2]/div[3]/form[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/fieldset[1]/div[1]/div[4]/div[2]/div[1]/a[1]/span[1]")
@@ -51,8 +51,7 @@ public class CreateVehicleOdometerPage extends BasePage {
     @FindBy(xpath = "//body/div[@id='select2-drop']/div[1]/input[1]")
     public WebElement modelInput;
 
-    @FindBy(xpath = " //button[contains(text(),'Save and Close')]")
-
+    @FindBy(xpath = "//ul[@class='dropdown-menu']/li[1]/button[1]")
     public WebElement saveAndClose;
 
     @FindBy(xpath = " //span[contains(text(),'General Information')]")

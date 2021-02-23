@@ -39,8 +39,8 @@ Feature:
 	#2-Truck driver can also add Licence plate information by using +Add button when creating vehicle odometer
 	@TR-181 @TR-171
 	Scenario: US- 19  Truck Driver  should be able to create vehicle odometer test case(2)
-		
-		
+
+		Given navigate  Fleet to  Vehicle Odometer
 		When   truck driver enter the valid information on the vehicle odometer page
 		And    truck driver click on the Save and Close button on the Vehicle Odometer page
 		Then   truck driver can create Vehicle Odometer	
