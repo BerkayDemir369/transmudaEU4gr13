@@ -14,7 +14,7 @@ public class Us_17_StepDefs extends GridBasePage {
     @Given("The truck driver user accesses the {string} - {string}")
     public void theTruckDriverUserAccessesThe(String tab, String module) {
         new DashboardPage().navigateToModule(tab, module);
-        BrowserUtils.waitFor(9);
+        BrowserUtils.waitFor(5);
     }
 
     @When("The truck driver click Grid Settings button")
