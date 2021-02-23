@@ -1,25 +1,49 @@
 package com.transmuda.stepdefinitions;
 
+import com.transmuda.pages.DashboardPage;
+import com.transmuda.pages.GridBasePage;
+import com.transmuda.utilities.BrowserUtils;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 
-public class Us_17_StepDefs {
+public class Us_17_StepDefs extends GridBasePage {
     @Given("The truck driver user accesses the {string} - {string}")
-    public void theTruckDriverUserAccessesThe(String arg0, String arg1) {
+    public void theTruckDriverUserAccessesThe(String tab, String module) {
+        new DashboardPage().navigateToModule(tab, module);
+        BrowserUtils.waitFor(5);
     }
 
     @When("The truck driver click Grid Settings button")
     public void theTruckDriverClickGridSettingsButton() {
+        GridSettingsButton.click();
+        BrowserUtils.waitFor(2);
     }
 
     @Then("The truck driver can see Grid Settings Popup")
     public void theTruckDriverCanSeeGridSettingsPopup() {
+        Assert.assertTrue(GridSettingsPopup.isDisplayed());
     }
 
     @And("The truck driver should only be able to see the column headings selected from the grid settings popup in the odometer table")
     public void theTruckDriverShouldOnlyBeAbleToSeeTheColumnHeadingsSelectedFromTheGridSettingsPopupInTheOdometerTable() {
+
+        for (WebElement gridSettingsRowName : GridSettingsRowNames) {
+            boolean flag = true;
+            for (WebElement gridTableHeader : GridTableHeaders) {
+                if (gridSettingsRowName.getText().equals(gridTableHeader.getText())) {
+                    flag = true;
+                    System.out.println("gridTableHeader.getText() = " + gridTableHeader.getText());
+                    return;
+                } else {
+                    flag = false;
+                }
+            }
+
+        }
     }
 
     @When("The truck driver change selected headers in the grid settings popup")

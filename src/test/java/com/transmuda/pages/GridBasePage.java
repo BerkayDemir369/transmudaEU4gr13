@@ -75,8 +75,11 @@ public class GridBasePage extends BasePage {
 
 
     //Grid Settings Elements
-    @FindBy(xpath = "//div[1]/div/div[3]/div[1]/div/div/a")
+    @FindBy(xpath="//i[@class='fa-cog hide-text']")
     public WebElement GridSettingsButton;
+
+    @FindBy(xpath="//div[@class='dropdown-menu']")
+    public WebElement GridSettingsPopup;
 
     @FindBy(css = "div[class*='column-manager-search'] > input")
     public WebElement QuickSearch;
