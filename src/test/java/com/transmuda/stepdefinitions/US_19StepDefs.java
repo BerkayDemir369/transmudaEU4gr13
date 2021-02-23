@@ -152,7 +152,7 @@ public class US_19StepDefs {
 
 
 
-        new CreateVehicleOdometerPage().pageDropdownBNT.click();
+       createVehicleOdometerPage.pageDropdownBNT.click();
         BrowserUtils.waitFor(3);
 
 
@@ -166,7 +166,7 @@ public class US_19StepDefs {
         // Write code here that turns the phrase above into concrete actions
 
 
-        new CreateVehicleOdometerPage().pageDropdown.click();
+       createVehicleOdometerPage.pageDropdown.click();
 
         BrowserUtils.waitFor(3);
     }
@@ -183,13 +183,13 @@ public class US_19StepDefs {
     @When("truck driver click on Refresh button on the licence plate information window")
     public void truck_driver_click_on_Refresh_button_on_the_licence_plate_information_window() {
 
-     new CreateVehicleOdometerPage().refresh.click();
+    createVehicleOdometerPage.refresh.click();
         BrowserUtils.waitFor(3);
     }
 
      @Then("truck driver refresh the licence plate information window")
     public void truck_driver_refresh_the_licence_plate_information_window() {
-        CreateVehicleOdometerPage createVehicleOdometerPage=new CreateVehicleOdometerPage() ;
+
         Assert.assertTrue("verify refresh window is open", createVehicleOdometerPage.refreshconfirmationWindow.isDisplayed());
 
         createVehicleOdometerPage.refreshconfirmationOkBTN.click();
@@ -207,7 +207,7 @@ public class US_19StepDefs {
     public void truck_driver_click_on_the_Reset_button() {
         // Write code here that turns the phrase above into concrete actions
 
-        new CreateVehicleOdometerPage().reset.click();
+         createVehicleOdometerPage.reset.click();
         BrowserUtils.waitFor(3);
 
 
@@ -219,7 +219,6 @@ public class US_19StepDefs {
     public void truck_driver_can_see_reset_confirmation_window() {
         // Write code here that turns the phrase above into concrete a throw new io.cucumber.java.PendingException();
 
-       CreateVehicleOdometerPage createVehicleOdometerPage=new CreateVehicleOdometerPage();
         Assert.assertTrue("verify refresh window is open", createVehicleOdometerPage.resetconfirmationWindow.isDisplayed());
 
         createVehicleOdometerPage.refreshconfirmationOkBTN.click();
@@ -230,7 +229,7 @@ public class US_19StepDefs {
 
     @When("truck driver click on the OK button on the reset confirmation window")
     public void truck_driver_click_on_the_OK_button_on_the_reset_confirmation_window() {
-      new CreateVehicleOdometerPage().resetconfirmationOkBTN.click();
+     createVehicleOdometerPage.resetconfirmationOkBTN.click();
         BrowserUtils.waitFor(3);
     }
 
@@ -242,7 +241,7 @@ public class US_19StepDefs {
 
     @When("click on the Grid Settings button on the licence plate information window")
     public void click_on_the_Grid_Settings_button_on_the_licence_plate_information_window() {
-       new CreateVehicleOdometerPage().gearSetting.click();
+     createVehicleOdometerPage.gearSetting.click();
         BrowserUtils.waitFor(3);
 
 
@@ -251,7 +250,6 @@ public class US_19StepDefs {
     @Then("can see Grid Settings window")
     public void can_see_Grid_Settings_window() {
 
-        CreateVehicleOdometerPage createVehicleOdometerPage=new CreateVehicleOdometerPage();
         Assert.assertTrue("verify gear setting window is open", createVehicleOdometerPage.gearSettingWindow.isDisplayed());
         BrowserUtils.waitFor(3);
 
@@ -259,14 +257,14 @@ public class US_19StepDefs {
 
     @When("click on the Select All on the Grid Settings window")
     public void click_on_the_Select_All_on_the_Grid_Settings_window() {
-       new CreateVehicleOdometerPage().allSelectBNT.click();
+     createVehicleOdometerPage.allSelectBNT.click();
 
     }
 
     @Then("can see assinged and license plate on the table")
     public void can_see_assinged_and_license_plate_on_the_table() {
         // Write code here that turns the phrase above into concrete actions
-        new CreateVehicleOdometerPage().closeBNT.click();
+     createVehicleOdometerPage.closeBNT.click();
         BrowserUtils.waitFor(3);
     }
 
@@ -276,7 +274,6 @@ public class US_19StepDefs {
     @When("select license plate from the top the list and click the select button")
     public void select_license_plate_from_the_top_the_list_and_click_the_select_button() {
 
-        CreateVehicleOdometerPage createVehicleOdometerPage =new CreateVehicleOdometerPage();
         BrowserUtils.waitFor(3);
 
         createVehicleOdometerPage.selectTable.click();
@@ -290,7 +287,6 @@ public class US_19StepDefs {
     @Then("can see selected license plate on the list")
     public void canSeeSelectedLicensePlateOnTheList() {
 
-        CreateVehicleOdometerPage createVehicleOdometerPage =new CreateVehicleOdometerPage();
         createVehicleOdometerPage.licensePlate.isDisplayed();
 
         Assert.assertTrue("verify license plate is shown", createVehicleOdometerPage.licensePlate.isDisplayed());
