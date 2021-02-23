@@ -101,7 +101,7 @@ public class CreateVehicleOdometerPage extends BasePage {
     @FindBy(xpath = "//tbody[@class='ui-sortable']/tr[1]//input[1]")
     public WebElement unselectOne;
 
-    @FindBy(xpath = "//a[.='Select All']")
+    @FindBy(xpath="//a[.='Select All']")
     public WebElement allSelectBNT;
 
     @FindBy(xpath = "//span[contains(text(),'×')]")

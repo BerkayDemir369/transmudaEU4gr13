@@ -10,6 +10,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -246,9 +247,12 @@ public class US_19StepDefs {
 
     @When("click on the Select All on the Grid Settings window")
     public void click_on_the_Select_All_on_the_Grid_Settings_window() {
-        Driver.get().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        createVehicleOdometerPage.allSelectBNT.click();
         BrowserUtils.waitFor(3);
+        JavascriptExecutor executor = (JavascriptExecutor) Driver.get();
+        executor.executeScript("arguments[0].scrollIntoView(true).click();", createVehicleOdometerPage.allSelectBNT);
+       // createVehicleOdometerPage.allSelectBNT.click();
+
+        //createVehicleOdometerPage.allSelectBNT.click();
     }
 
     @Then("can see assinged and license plate on the table")
