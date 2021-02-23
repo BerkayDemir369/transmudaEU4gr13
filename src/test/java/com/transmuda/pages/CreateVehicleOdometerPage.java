@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class CreateVehicleOdometerPage extends BasePage {
 
-    @FindBy(xpath = "(//body/div[@id='page']/div[2]/div[1]/div[2]/div[3]/div[2]/div[1]/div[1]/div[2]/a[1]")
+    @FindBy(xpath = "//div[@class='pull-right title-buttons-container']/a[contains(.,'Create')]")
     public WebElement createOdometerVehicle;
 
 
@@ -70,14 +70,14 @@ public class CreateVehicleOdometerPage extends BasePage {
     // @FindBy(xpath = "//h4[contains(text(),'Carreservation')]")
     //  public WebElement Carreservation;
 
-    @FindBy(xpath = " //span[@id='ui-id-14']")
+    @FindBy(css=".ui-dialog")
     public WebElement selectCarreservationWindowMessage;
 
     @FindBy(xpath = " //a[contains(text(),'victory13')]")
     public WebElement licensePlate;
 
     //a[contains(text(),'victory13-5')]
-    @FindBy(xpath = "//tbody[@class='grid-body']/tr[6]")
+    @FindBy(xpath="//td[.='victory13-5']")
     public WebElement selectTable;
 
     @FindBy(xpath = "//button[contains(text(),'Select')]")

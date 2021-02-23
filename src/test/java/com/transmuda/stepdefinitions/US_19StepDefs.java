@@ -25,7 +25,7 @@ public class US_19StepDefs {
 
       //  new DashboardPage().navigateToModule(tab,module);
         dashboardPage.navigateToModule("Fleet", "Vehicle Odometer");
-
+        BrowserUtils.waitFor(5);
     }
 
     @When("click on the Create Vehicle Odometer button")
@@ -129,12 +129,9 @@ public class US_19StepDefs {
     }
 
     @Then("can see Licence Plate information window")
-    public void can_see_Licence_Plate_information_window(String expectedselectcarreservationWindowMessage) {
+    public void can_see_Licence_Plate_information_window() {
         CreateVehicleOdometerPage createVehicleOdometerPage =new CreateVehicleOdometerPage();
-
-
-        String actualSelectCarreservationWindowMessage=createVehicleOdometerPage.selectCarreservationWindowMessage.getText();
-        Assert.assertEquals(expectedselectcarreservationWindowMessage,actualSelectCarreservationWindowMessage);
+        Assert.assertTrue(  createVehicleOdometerPage.selectCarreservationWindowMessage.isDisplayed());
 
         BrowserUtils.waitFor(3);
     }
@@ -270,6 +267,7 @@ public class US_19StepDefs {
     public void can_see_assinged_and_license_plate_on_the_table() {
         // Write code here that turns the phrase above into concrete actions
         new CreateVehicleOdometerPage().closeBNT.click();
+        BrowserUtils.waitFor(3);
     }
 
 
@@ -279,7 +277,10 @@ public class US_19StepDefs {
     public void select_license_plate_from_the_top_the_list_and_click_the_select_button() {
 
         CreateVehicleOdometerPage createVehicleOdometerPage =new CreateVehicleOdometerPage();
+        BrowserUtils.waitFor(3);
+
         createVehicleOdometerPage.selectTable.click();
+
         createVehicleOdometerPage.selectBNT.click();
 
         BrowserUtils.waitFor(3);
