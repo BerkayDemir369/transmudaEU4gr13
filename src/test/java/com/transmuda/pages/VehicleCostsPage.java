@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.nio.file.Watchable;
 
-public class VehicleCostsPage {
+public class VehicleCostsPage extends BasePage{
 
                   //US-25
 
