@@ -249,10 +249,19 @@ public class US_19StepDefs {
     public void click_on_the_Select_All_on_the_Grid_Settings_window() {
         BrowserUtils.waitFor(3);
         JavascriptExecutor executor = (JavascriptExecutor) Driver.get();
-        executor.executeScript("arguments[0].scrollIntoView(true).click();", createVehicleOdometerPage.allSelectBNT);
-       // createVehicleOdometerPage.allSelectBNT.click();
+        executor.executeScript("arguments[0].click();", createVehicleOdometerPage.allSelectBNT);
+
+
+      //  JavascriptExecutor executor = (JavascriptExecutor) Driver.get();
+      //  executor.executeScript("arguments[0].scrollIntoView(true).click();",
+     // createVehicleOdometerPage.allSelectBNT);
+
+
+       //   createVehicleOdometerPage.allSelectBNT.click();
 
         //createVehicleOdometerPage.allSelectBNT.click();
+
+
     }
 
     @Then("can see assinged and license plate on the table")

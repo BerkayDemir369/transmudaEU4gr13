@@ -101,7 +101,7 @@ public class CreateVehicleOdometerPage extends BasePage {
     @FindBy(xpath = "//tbody[@class='ui-sortable']/tr[1]//input[1]")
     public WebElement unselectOne;
 
-    @FindBy(xpath="//a[.='Select All']")
+    @FindBy(xpath="//a[contains(text(),'Select All')]")
     public WebElement allSelectBNT;
 
     @FindBy(xpath = "//span[contains(text(),'×')]")
@@ -120,13 +120,13 @@ public class CreateVehicleOdometerPage extends BasePage {
     @FindBy(xpath = "//a[contains(text(),'25')]")
     public WebElement pageDropdown;
 
-    @FindBy(xpath = "//div[@class='modal modal-primary in']")
+    @FindBy(xpath = "//h3[.='Refresh Confirmation']")
     public WebElement refreshconfirmationWindow;
 
     @FindBy(css = ".ok")
     public WebElement refreshconfirmationOkBTN;
 
-    @FindBy(xpath = "//div[@class='modal modal-primary in']")
+    @FindBy(xpath = "//h3[.='Reset Confirmation']")
     public WebElement resetconfirmationWindow;
 
     @FindBy(xpath = "//a[contains(text(),'OK, got it.')]")
