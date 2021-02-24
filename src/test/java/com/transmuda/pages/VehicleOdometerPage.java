@@ -143,5 +143,19 @@ public class VehicleOdometerPage extends BasePage {
     @FindBy(xpath = "//div[contains(text(),'You do not have permission to perform this action.')]")
     public WebElement permissionMessage;
 
+    //=========Us-16=========
+    @FindBy(xpath = "//a[@title='With this button you will export the content of the grid as it appears to you, with filters and sorting applied. All pages will be exported.']")
+    public  WebElement exportGrid;
+
+    @FindBy(xpath = "//a[@title='CSV']")
+    public  WebElement csv;
+
+    @FindBy(xpath = "//a[@title='XLSX']")
+    public  WebElement xlsx;
+
+    @FindBy(css = ".message")
+    public  WebElement successfullyMessage;
+
+
 
 }
