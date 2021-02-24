@@ -85,15 +85,21 @@ public class VehicleOdometerPage extends BasePage{
 
 
 
-    @FindBy(xpath = "//body/div[@id='page']/div[2]/div[1]/div[2]/div[3]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/a[1]")
+    @FindBy(xpath = "(//a[@href='javascript: void(0);'])[2]")
     public  WebElement addAttachmentButton;
 
 
     @FindBy(xpath = "//span[@id='ui-id-4']")
     public  WebElement addAttachmentTitle;
-
-    @FindBy(xpath = "//div[@class='uploader input-widget-file']")
+//==========================file uploading=================
+    @FindBy(xpath = "//input[@data-ftid='oro_attachment_file_file']")
     public  WebElement chooseFileButton;
+
+    String projectPath=System.getProperty("user.dir");
+    String filePath="src/test/resources/Collection_Type_Selection.001.jpeg";
+    public String fullPath=projectPath+"/"+filePath;
+   //================================
+
 
     //input[@id='oro_attachment_file_file-uid-6036d88f00c9f']
       @FindBy(name="oro_attachment[file][file]")
