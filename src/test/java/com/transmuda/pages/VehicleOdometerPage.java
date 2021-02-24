@@ -92,12 +92,14 @@ public class VehicleOdometerPage extends BasePage{
     @FindBy(xpath = "//span[@id='ui-id-4']")
     public  WebElement addAttachmentTitle;
 
-//    @FindBy(xpath = "//input[@id='oro_attachment_file_file-uid-602d7f72f409d']")
-//    public  WebElement chooseFileButton;
+    @FindBy(xpath = "//div[@class='uploader input-widget-file']")
+    public  WebElement chooseFileButton;
+
+    //input[@id='oro_attachment_file_file-uid-6036d88f00c9f']
       @FindBy(name="oro_attachment[file][file]")
       public WebElement Test;
 
-    @FindBy(xpath = "//textarea[@id='oro_attachment_comment-uid-602d7f73000d4']")
+    @FindBy(xpath = "//textarea[@name='oro_attachment[comment]']")
     public  WebElement commentBox;
 
 
@@ -135,6 +137,8 @@ public class VehicleOdometerPage extends BasePage{
     @FindBy(xpath = "//span[contains(text(),'This value should not be blank.')]")
     public WebElement fileChoosingErrorMessage;
 
+    @FindBy(xpath = "//span[.='Save']")
+    public WebElement attachmentSave;
 
     //==========Us-24========
 
