@@ -185,9 +185,12 @@ public class US_19StepDefs {
 
     @Then("truck driver refresh the licence plate information window")
     public void truck_driver_refresh_the_licence_plate_information_window() {
-        BrowserUtils.waitFor(3);
-        Assert.assertTrue("verify refresh window is open", createVehicleOdometerPage.refreshconfirmationWindow.isDisplayed());
-        createVehicleOdometerPage.refreshconfirmationOkBTN.click();
+        BrowserUtils.waitFor(10);
+
+       Assert.assertTrue("verify refresh window is open", createVehicleOdometerPage.refreshconfirmationWindow.isDisplayed());
+
+       BrowserUtils.waitFor(3);
+      createVehicleOdometerPage.refreshconfirmationOkBTN.click();
 
         BrowserUtils.waitFor(3);
     }
