@@ -29,10 +29,10 @@ public class Us_23_StepDefs {
 
         VehicleOdometerPage vehicleOdometerPage = new VehicleOdometerPage();
 
-        vehicleOdometerPage.commentBox.sendKeys("omment]']");
 
-        vehicleOdometerPage.chooseFileButton.sendKeys("/Users/s.o.f/Desktop/Collection_Type_Selection.001.jpeg");
-        BrowserUtils.waitFor(3);
+        System.out.println(vehicleOdometerPage.fullPath);
+        vehicleOdometerPage.chooseFileButton.sendKeys(vehicleOdometerPage.fullPath);
+        BrowserUtils.waitFor(10);
 
 
 
