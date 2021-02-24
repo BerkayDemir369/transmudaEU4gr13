@@ -13,7 +13,7 @@ public class LoginStepDefs {
 
         LoginPage loginPage=new LoginPage();
         loginPage.loginForSalesManagerStoreManager(usernameType);
-        BrowserUtils.waitFor(3);
+        
     }
 
 
