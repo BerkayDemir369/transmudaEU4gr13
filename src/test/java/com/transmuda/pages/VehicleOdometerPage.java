@@ -11,7 +11,7 @@ public class VehicleOdometerPage extends BasePage{
     }
     //========US-21=========
 
-    @FindBy(xpath = "(//td[@class='number-cell grid-cell grid-body-cell grid-body-cell-OdometerValue'])[1]")
+    @FindBy(xpath = "//td[@class='number-cell grid-cell grid-body-cell grid-body-cell-OdometerValue']")
     public WebElement firstOdometer;
 
 
@@ -94,8 +94,8 @@ public class VehicleOdometerPage extends BasePage{
 
 //    @FindBy(xpath = "//input[@id='oro_attachment_file_file-uid-602d7f72f409d']")
 //    public  WebElement chooseFileButton;
-@FindBy(name="oro_attachment[file][file]")
-public WebElement Test;
+      @FindBy(name="oro_attachment[file][file]")
+      public WebElement Test;
 
     @FindBy(xpath = "//textarea[@id='oro_attachment_comment-uid-602d7f73000d4']")
     public  WebElement commentBox;

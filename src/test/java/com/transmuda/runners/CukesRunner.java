@@ -10,8 +10,8 @@ import org.junit.runner.RunWith;
                 "html:target/default-html-reports",
                 "rerun:target/rerun.txt"},
         features = "src/test/resources/features",
-        glue = "com/transmuda/step_definitions",
-        dryRun = true,
+        glue = "com/transmuda/stepdefinitions",
+        dryRun = false,
    tags = "@TR-208"
 
 )

@@ -91,7 +91,7 @@ public class Us_23_StepDefs {
         //======
 //        vehicleOdometerPage.commentBox.click();
 //        BrowserUtils.waitFor(5);
-//        vehicleOdometerPage.commentBox.sendKeys("Benden sana bir akil, aklin varsa tek takil");
+//        vehicleOdometerPage.commentBox.sendKeys("input");
 
         vehicleOdometerPage.selectOwnerButton.click();
         BrowserUtils.waitFor(7);
