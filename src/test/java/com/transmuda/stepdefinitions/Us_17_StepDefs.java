@@ -1,65 +1,113 @@
 package com.transmuda.stepdefinitions;
 
+import com.transmuda.pages.DashboardPage;
+import com.transmuda.pages.GridBasePage;
+import com.transmuda.utilities.BrowserUtils;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 
-public class Us_17_StepDefs {
+public class Us_17_StepDefs extends GridBasePage {
     @Given("The truck driver user accesses the {string} - {string}")
-    public void theTruckDriverUserAccessesThe(String arg0, String arg1) {
+    public void theTruckDriverUserAccessesThe(String tab, String module) {
+        new DashboardPage().navigateToModule(tab, module);
+        BrowserUtils.waitFor(5);
     }
 
     @When("The truck driver click Grid Settings button")
     public void theTruckDriverClickGridSettingsButton() {
+        GridSettingsButton.click();
+        BrowserUtils.waitFor(2);
     }
 
     @Then("The truck driver can see Grid Settings Popup")
     public void theTruckDriverCanSeeGridSettingsPopup() {
+        Assert.assertTrue(GridSettingsPopup.isDisplayed());
     }
 
     @And("The truck driver should only be able to see the column headings selected from the grid settings popup in the odometer table")
     public void theTruckDriverShouldOnlyBeAbleToSeeTheColumnHeadingsSelectedFromTheGridSettingsPopupInTheOdometerTable() {
+
+        for (WebElement gridSettingsRowName : GridSettingsRowNames) {
+            boolean flag = true;
+            for (WebElement gridTableHeader : GridTableHeaders) {
+                if (gridSettingsRowName.getText().equals(gridTableHeader.getText())) {
+                    flag = true;
+                    System.out.println("gridTableHeader.getText() = " + gridTableHeader.getText());
+                    return;
+                } else {
+                    flag = false;
+                }
+            }
+
+        }
     }
 
-    @When("The truck driver change selected headers in the grid settings popup")
-    public void theTruckDriverChangeSelectedHeadersInTheGridSettingsPopup() {
+    @When("The truck driver change selected header {string} in the grid settings popup")
+    public void theTruckDriverChangeSelectedHeaderInTheGridSettingsPopup(String RowHeaderName) {
+        for (WebElement gridSettingsRowName : GridSettingsRowNames) {
+            if (gridSettingsRowName.getText().equals(RowHeaderName)) {
+                GridSettingsRowCheckBoxes.get(GridSettingsRowNames.indexOf(gridSettingsRowName)).click();
+            }
+        }
     }
 
     @When("the truck driver clicks on the Selected link in the grid settings popup")
     public void theTruckDriverClicksOnTheSelectedLinkInTheGridSettingsPopup() {
+        Selected.click();
     }
 
     @Then("Truck driver should be able to see only those with checkboxes in popup table")
     public void truckDriverShouldBeAbleToSeeOnlyThoseWithCheckboxesInPopupTable() {
+
+        for (WebElement gridSettingsRowName : GridSettingsRowNames) {
+            if (gridSettingsRowName.isSelected()) {
+                Assert.assertTrue(GridSettingsRowCheckBoxes.get(GridSettingsRowNames.indexOf(gridSettingsRowName)).isDisplayed());
+            }
+        }
+
     }
 
     @When("the truck driver clicks on the Select All link in the grid settings popup")
     public void theTruckDriverClicksOnTheSelectAllLinkInTheGridSettingsPopup() {
+        All.click();
+        BrowserUtils.waitFor(1);
+        SelectAll.click();
     }
 
     @Then("The truck driver should be able to see in the popup table that all checkboxes have been marked")
     public void theTruckDriverShouldBeAbleToSeeInThePopupTableThatAllCheckboxesHaveBeenMarked() {
+        for (WebElement gridSettingsRowName : GridSettingsRowNames) {
+            Assert.assertTrue(gridSettingsRowName.isDisplayed());
+        }
     }
 
     @When("The truck driver user clicks Filters button")
     public void theTruckDriverUserClicksFiltersButton() {
+        FilterButton.click();
     }
 
     @Then("The truck driver user can see Manage Filters Box")
     public void theTruckDriverUserCanSeeManageFiltersBox() {
+        Assert.assertTrue(FilterBoxArea.isDisplayed());
     }
 
     @And("Click Manage filters link button")
     public void clickManageFiltersLinkButton() {
+        ManageFilters.click();
     }
 
-    @Then("The truck driver user should be able to see Mana filters popup")
-    public void theTruckDriverUserShouldBeAbleToSeeManaFiltersPopup() {
+    @Then("The truck driver user should be able to see Manage filters popup")
+    public void theTruckDriverUserShouldBeAbleToSeeManageFiltersPopup() {
+        Assert.assertTrue(ManageFiltersPopup.isDisplayed());
     }
 
     @When("The truck driver user select filter option in the Manage filters popup")
     public void theTruckDriverUserSelectFilterOptionInTheManageFiltersPopup() {
+
     }
 
     @Then("Truck driver user should be able to see selected filter setting on the right side of manage filter")
