@@ -18,14 +18,14 @@ public class US_22StepDefs {
     public void navigate_Fleet_to_Vehicle_Odometer() {
         DashboardPage dashboardPage=new DashboardPage();
         dashboardPage.navigateToModule("Fleet","Vehicle Odometer");
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(10);
     }
 
     @And("select any vehicle odometer on the Vehicle Odometer list")
     public void select_any_vehicle_odometer_on_the_Vehicle_Odometer_list() {
 
         createVehicleOdometerPage.vechileOdometerlist.click();
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(10);
     }
 
     @And("click on the Delete Button to delete Vehicle Odometer")
