@@ -2,10 +2,9 @@ Feature:
 
 	Background:
 		#@TR-185
-		
-		    Given the user is on the login page
-		    When the user logs in using "User10" and "UserUser123"
-		    Then the user should be able to login
+
+		Given the user login as a "driver"
+		Then the user should be able to login
 		
 
 	#User Story : 
@@ -28,5 +27,7 @@ Feature:
 		Then truck driver can change page number 
 		When click on the View Per Page button on the Vehicle Costs page
 		Then truck driver can change the entity number
-		When click on the Export Grid button on the Vehicle Costs page 
+		When click on the Export Grid CSV button on the Vehicle Costs page
+		Then truck driver can get all informations to own email adress
+		When click on the Export Grid XLSX button on the Vehicle Costs page
 		Then truck driver can get all informations to own email adress

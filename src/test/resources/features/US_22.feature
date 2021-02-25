@@ -1,4 +1,4 @@
-
+@test
 Feature:
 
 	Background:
@@ -25,3 +25,5 @@ Feature:
 		Then  can see the delete confirmation window 
 		When  click on the Yes, Delete Button on the delete confirmation window
 		Then  vehicle odometer deleted from the list
+
+
