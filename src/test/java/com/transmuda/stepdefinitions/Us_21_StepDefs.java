@@ -31,7 +31,7 @@ public class Us_21_StepDefs {
 
 
 
-        BrowserUtils.waitFor(10);
+        BrowserUtils.waitFor(12);
 
         new VehicleOdometerPage().firstOdometer.click();
         BrowserUtils.waitFor(2);
