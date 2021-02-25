@@ -1,13 +1,13 @@
 package com.transmuda.pages;
 
 import com.transmuda.utilities.Driver;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class GridBasePage extends BasePage {
     public GridBasePage() {
@@ -55,7 +55,7 @@ public class GridBasePage extends BasePage {
 
 
     //Filter Button and popup elements
-    @FindBy(xpath = "//div[2]/div[1]/div/div[3]/div[1]/div/a[1]")
+    @FindBy(css = ".fa-filter")
     public WebElement FilterButton;
 
     @FindBy(css = "button[class*='ui-multiselect']")
@@ -63,6 +63,9 @@ public class GridBasePage extends BasePage {
 
     @FindBy(css = "div[class*='ui-multiselect-menu']")
     public WebElement ManageFiltersPopup;
+
+    @FindBy(xpath = "//div[@class='filter-item oro-drop open-filter']/div[@class='filter-criteria dropdown-menu']")
+    public WebElement ManageFilterSelectedPopup;
 
     @FindBy(css = "div[class*='filter-box']")
     public WebElement FilterBoxArea;
@@ -73,6 +76,76 @@ public class GridBasePage extends BasePage {
     @FindBy(xpath = "//ul[@class='ui-multiselect-checkboxes ui-helper-reset fixed-li']/li")
     public List<WebElement> ManageFiltersHeaders;
 
+    // Selected filters
+    @FindBy(xpath = "//span[@class='filter-items']/div")
+    public List<WebElement> ManageFilterItems;
+
+
+    public List<List<String>> types = new ArrayList<List<String>>();
+    public Map<String, List<WebElement>> filterElements;
+
+    public void getTypesFromFilterOptions() {
+        int i = 1;
+
+        for (WebElement manageFilterItem : ManageFilterItems) {
+
+            String FindFilterName = "//span[@class='filter-items']/div[" + i + "]/div";
+            String FindCondition = "//span[@class='filter-items']/div/div/div/div/ul/li";
+            List<WebElement> conditions = manageFilterItem.findElements(By.xpath(FindCondition));
+
+            filterElements.put(
+                    manageFilterItem.findElement(By.xpath(FindFilterName)).getText(), conditions);
+            i++;
+        }
+
+
+        types.add(Arrays.asList("fading", "dfg"));
+    }
+
+
+    /**
+     * @param activeFilter send table header name
+     * @param condition    send table header row data value
+     * @param searchText   starting Data
+     * @param searchText2  ending Data
+     * @return if row has searchText or searchText2 value then return true else false
+     */
+    public boolean checkRowValue(String activeFilter, String condition, String searchText, String searchText2) {
+        int i = getGridTableHeaderIndex(activeFilter);
+        String findRow = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[" + i + "]";
+        List<WebElement> findRowData = Driver.get().findElements(By.xpath(findRow));
+
+        for (WebElement value : findRowData) {
+            if (!value.getText().equals(searchText)) {
+                switch (condition) {
+                    case "Equal":
+                    case "Not Equals":
+                        System.out.println("getPageSubTitle() = " + getPageSubTitle());
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+        }
+        return false;
+    }
+
+
+    @FindBy(xpath = "//button[@class='btn dropdown-toggle']")
+    public WebElement FilterConditionButton;
+
+    @FindBy(xpath = "//a[.='equals']")
+    public WebElement ConditionType;
+
+    @FindBy(xpath = "//div[@class='filter-start']/input[@name='value']")
+    public WebElement FilterStartValue;
+
+    @FindBy(xpath = "//input[@name='value_end']")
+    public WebElement FilterEndValue;
+
+    @FindBy(xpath = "//div[@class='choice-filter number-range-filter']//button[@class='btn btn-primary filter-update']")
+    public WebElement FilterUpdateButton;
 
     //Grid Settings Elements
     @FindBy(xpath = "//i[@class='fa-cog hide-text']")
@@ -179,6 +252,7 @@ public class GridBasePage extends BasePage {
         }
         return false;
     }
+
 
     @FindBy(xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[1]/input")
     public List<WebElement> GridTableRowsCheckBoxes;
