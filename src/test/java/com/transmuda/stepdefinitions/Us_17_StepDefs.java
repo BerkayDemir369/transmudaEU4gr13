@@ -168,19 +168,9 @@ public class Us_17_StepDefs extends GridBasePage {
     public void truckDriverUserShouldBeAbleToSeeResultsForSelectedFilterSettingsInTheFilterSettings(String condition, String searchText, String searchText2) {
 
         switch (condition) {
-            case "Between":
-
-                break;
-            case "Not Between":
-
-                break;
-
             case "Equal":
-                GridTableHeaders.get(1).click();
-                break;
-
             case "Not Equals":
-
+                Assert.assertTrue(findRowValue(condition,activeFilter,searchText));
                 break;
 
             default:
