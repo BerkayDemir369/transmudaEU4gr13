@@ -1,13 +1,13 @@
 package com.transmuda.pages;
 
 import com.transmuda.utilities.Driver;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class GridBasePage extends BasePage {
     public GridBasePage() {
@@ -77,8 +77,60 @@ public class GridBasePage extends BasePage {
     public List<WebElement> ManageFiltersHeaders;
 
     // Selected filters
-    @FindBy(css = ".filter-items")
+    @FindBy(xpath = "//span[@class='filter-items']/div")
     public List<WebElement> ManageFilterItems;
+
+
+    public List<List<String>> types = new ArrayList<List<String>>();
+    public Map<String, List<WebElement>> filterElements;
+
+    public void getTypesFromFilterOptions() {
+        int i = 1;
+
+        for (WebElement manageFilterItem : ManageFilterItems) {
+
+            String FindFilterName = "//span[@class='filter-items']/div[" + i + "]/div";
+            String FindCondition = "//span[@class='filter-items']/div/div/div/div/ul/li";
+            List<WebElement> conditions = manageFilterItem.findElements(By.xpath(FindCondition));
+
+            filterElements.put(
+                    manageFilterItem.findElement(By.xpath(FindFilterName)).getText(), conditions);
+            i++;
+        }
+
+
+        types.add(Arrays.asList("fading", "dfg"));
+    }
+
+
+    /**
+     * @param activeFilter send table header name
+     * @param condition    send table header row data value
+     * @param searchText   starting Data
+     * @param searchText2  ending Data
+     * @return if row has searchText or searchText2 value then return true else false
+     */
+    public boolean checkRowValue(String activeFilter, String condition, String searchText, String searchText2) {
+        int i = getGridTableHeaderIndex(activeFilter);
+        String findRow = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[" + i + "]";
+        List<WebElement> findRowData = Driver.get().findElements(By.xpath(findRow));
+
+        for (WebElement value : findRowData) {
+            if (!value.getText().equals(searchText)) {
+                switch (condition) {
+                    case "Equal":
+                    case "Not Equals":
+                        System.out.println("getPageSubTitle() = " + getPageSubTitle());
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+        }
+        return false;
+    }
+
 
     @FindBy(xpath = "//button[@class='btn dropdown-toggle']")
     public WebElement FilterConditionButton;
@@ -201,22 +253,6 @@ public class GridBasePage extends BasePage {
         return false;
     }
 
-    /**
-     * @param headerName send table header name
-     * @param RowData    send table header row data value
-     * @return if row has RowData value then return true else false
-     */
-    public boolean findRowValue(String condition, String headerName, String RowData) {
-        int i = getGridTableHeaderIndex(headerName);
-        String findRow = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[" + i + "]";
-        List<WebElement> findRowData = Driver.get().findElements(By.xpath(findRow));
-
-        for (WebElement value : findRowData) {
-            if (value.getText().equals(RowData))
-                return true;
-        }
-        return false;
-    }
 
     @FindBy(xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[1]/input")
     public List<WebElement> GridTableRowsCheckBoxes;

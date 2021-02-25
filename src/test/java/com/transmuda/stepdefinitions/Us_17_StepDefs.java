@@ -172,16 +172,7 @@ public class Us_17_StepDefs extends GridBasePage {
 
     @Then("Truck driver user should only be able to see results for {string} {string} {string} selected filter settings in the Filter settings")
     public void truckDriverUserShouldBeAbleToSeeResultsForSelectedFilterSettingsInTheFilterSettings(String condition, String searchText, String searchText2) {
-
-        switch (condition) {
-            case "Equal":
-            case "Not Equals":
-                Assert.assertTrue(findRowValue(condition, activeFilter, searchText));
-                break;
-
-            default:
-                break;
-        }
+        Assert.assertTrue(checkRowValue(activeFilter, condition, searchText, searchText2));
     }
 
     @When("The truck driver user clicks Refresh button")
