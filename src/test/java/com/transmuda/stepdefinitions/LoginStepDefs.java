@@ -21,7 +21,7 @@ public class LoginStepDefs {
     public void the_user_should_be_able_to_login() {
 
 
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(8);
         String actualTitle = Driver.get().getTitle();
         Assert.assertEquals("Dashboard",actualTitle);
 
