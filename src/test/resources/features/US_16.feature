@@ -1,12 +1,10 @@
 @TR-218
-Feature: 
+Feature:
 
 	Background:
 		#@TR-185
-		
-		    Given the user is on the login page
-		    When the user logs in using "User10" and "UserUser123"
-		    Then the user should be able to login
+		Given the user login as a "driver"
+		Then the user should be able to login
 		
 
 	#{color:#00875a}*User Story :* {color}
@@ -52,6 +50,7 @@ Feature:
 		Then verify options are 10, 25, 50, 100
 		When the user select 10
 		Then verify record table content decrease 10
+		And the user click view per page dropdown button
 		When the user select 25
 		Then verify record table content decrease 25
 			

@@ -1,12 +1,10 @@
 package com.transmuda.stepdefinitions;
 
-import com.transmuda.pages.GridBasePage;
 import com.transmuda.pages.LoginPage;
 import com.transmuda.utilities.BrowserUtils;
-import org.junit.Assert;
 
 public class gridBaseCodeTest {
-    public static void main(String[] args) {
+ /*   public static void main(String[] args) {
 
         //GridBasePage code tests
         LoginPage loginPage = new LoginPage();
@@ -28,4 +26,6 @@ public class gridBaseCodeTest {
         System.out.println(gridBasePage.findRowValue("LICENSE PLATE", "victory13-3"));
 
     }
+
+ */
 }

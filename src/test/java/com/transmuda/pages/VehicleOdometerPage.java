@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class VehicleOdometerPage extends BasePage {
     public VehicleOdometerPage() {
         PageFactory.initElements(Driver.get(), this);
@@ -155,6 +157,24 @@ public class VehicleOdometerPage extends BasePage {
 
     @FindBy(css = ".message")
     public  WebElement successfullyMessage;
+
+    @FindBy(css="[class='btn dropdown-toggle ']")
+    public WebElement perpageDropdown;
+
+    @FindBy(css="[class='dropdown-item']")
+    public List<WebElement> dropdownItemList;
+
+    @FindBy(xpath="//table/tbody/tr")
+    public  List<WebElement> tableRow;
+
+    @FindBy(css="[class='fa-chevron-right hide-text']")
+    public  WebElement nextPageButton;
+
+    @FindBy(css="[type='number']")
+    public  WebElement pageNumber;
+
+
+
 
 
 
