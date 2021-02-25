@@ -201,6 +201,23 @@ public class GridBasePage extends BasePage {
         return false;
     }
 
+    /**
+     * @param headerName send table header name
+     * @param RowData    send table header row data value
+     * @return if row has RowData value then return true else false
+     */
+    public boolean findRowValue(String condition, String headerName, String RowData) {
+        int i = getGridTableHeaderIndex(headerName);
+        String findRow = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[" + i + "]";
+        List<WebElement> findRowData = Driver.get().findElements(By.xpath(findRow));
+
+        for (WebElement value : findRowData) {
+            if (value.getText().equals(RowData))
+                return true;
+        }
+        return false;
+    }
+
     @FindBy(xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[1]/input")
     public List<WebElement> GridTableRowsCheckBoxes;
 
