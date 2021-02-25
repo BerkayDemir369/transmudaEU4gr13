@@ -11,6 +11,9 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
 public class Us_17_StepDefs extends GridBasePage {
+
+    String activeFilter = null;
+
     @Given("The truck driver user accesses the {string} - {string}")
     public void theTruckDriverUserAccessesThe(String tab, String module) {
         new DashboardPage().navigateToModule(tab, module);
@@ -87,6 +90,7 @@ public class Us_17_StepDefs extends GridBasePage {
 
     @When("The truck driver user clicks Filters button")
     public void theTruckDriverUserClicksFiltersButton() {
+        BrowserUtils.waitFor(3);
         FilterButton.click();
     }
 
@@ -105,37 +109,83 @@ public class Us_17_StepDefs extends GridBasePage {
         Assert.assertTrue(ManageFiltersPopup.isDisplayed());
     }
 
-    @When("The truck driver user select filter option in the Manage filters popup")
-    public void theTruckDriverUserSelectFilterOptionInTheManageFiltersPopup() {
+    @When("The truck driver user select filter option {string} in the Manage filters popup")
+    public void theTruckDriverUserSelectFilterOptionInTheManageFiltersPopup(String FilterColumnName) {
+        for (int i = 0; i < ManageFiltersHeaders.size(); i++) {
+            if (ManageFiltersHeaders.get(i).getText().contains(FilterColumnName)) {
+                ManageFiltersHeaders.get(i).click();
+            }
+        }
+    }
+
+    @Then("Truck driver user should be able to see selected {string} filter setting on the right side of manage filter")
+    public void truckDriverUserShouldBeAbleToSeeSelectedFilterSettingOnTheRightSideOfManageFilter(String FilterColumnName) {
+
+        for (WebElement manageFilterItem : ManageFilterItems) {
+            Assert.assertTrue(manageFilterItem.getText().contains(FilterColumnName));
+        }
+    }
+
+    @When("Truck driver user Click selected Filter Option {string} button")
+    public void truckDriverUserClickSelectedFilterOptionButton(String FilterColumnName) {
+        for (WebElement manageFilterItem : ManageFilterItems) {
+            if (manageFilterItem.getText().contains(FilterColumnName)) {
+                manageFilterItem.click();
+            }
+        }
+    }
+
+    @Then("Truck driver user should be able to see {string} in the Filter Option popup")
+    public void truckDriverUserShouldBeAbleToSeeFilterOptionPopup(String FilterColumnName) {
+        activeFilter=FilterColumnName;
+        Assert.assertTrue(ManageFilterSelectedPopup.isDisplayed());
+    }
+
+    @When("Truck driver user Select Condition keyword {string} for in the selected Filter Option popup")
+    public void truckDriverUserSelectConditionKeywordInTheSelectedFilterOptionPopup(String conditionKeyword) {
+        FilterConditionButton.click();
+        ConditionType.click();
+        // TO-DO: select condition type must be dynamic
 
     }
 
-    @Then("Truck driver user should be able to see selected filter setting on the right side of manage filter")
-    public void truckDriverUserShouldBeAbleToSeeSelectedFilterSettingOnTheRightSideOfManageFilter() {
-    }
-
-    @When("Truck driver user Click selected Filter Option button")
-    public void truckDriverUserClickSelectedFilterOptionButton() {
-    }
-
-    @Then("Truck driver user should be able to see Filter Option popup")
-    public void truckDriverUserShouldBeAbleToSeeFilterOptionPopup() {
-    }
-
-    @When("Truck driver user Select Condition keyword in the selected Filter Option popup")
-    public void truckDriverUserSelectConditionKeywordInTheSelectedFilterOptionPopup() {
-    }
-
-    @And("Truck driver user enter data for selected Condition keyword in the selected Filter Option popup")
-    public void truckDriverUserEnterDataForSelectedConditionKeywordInTheSelectedFilterOptionPopup() {
+    @And("Truck driver user enter data {string} {string} for Condition keyword in the selected Filter Option popup")
+    public void truckDriverUserEnterDataForSelectedConditionKeywordInTheSelectedFilterOptionPopup(String searchText, String searchText2) {
+        FilterStartValue.sendKeys(searchText);
+        if (searchText2 != null) {
+            FilterEndValue.sendKeys(searchText2);
+        }
+        BrowserUtils.waitFor(10);
     }
 
     @And("Truck driver user Click Update button in the selected Filter Option popup")
     public void truckDriverUserClickUpdateButtonInTheSelectedFilterOptionPopup() {
+        FilterUpdateButton.click();
+        BrowserUtils.waitFor(10);
     }
 
-    @Then("Truck driver user should be able to see results for selected filter settings in the Filter settings")
-    public void truckDriverUserShouldBeAbleToSeeResultsForSelectedFilterSettingsInTheFilterSettings() {
+    @Then("Truck driver user should only be able to see results for {string} {string} {string} selected filter settings in the Filter settings")
+    public void truckDriverUserShouldBeAbleToSeeResultsForSelectedFilterSettingsInTheFilterSettings(String condition, String searchText, String searchText2) {
+
+        switch (condition) {
+            case "Between":
+
+                break;
+            case "Not Between":
+
+                break;
+
+            case "Equal":
+                GridTableHeaders.get(1).click();
+                break;
+
+            case "Not Equals":
+
+                break;
+
+            default:
+                break;
+        }
     }
 
     @When("The truck driver user clicks Refresh button")
