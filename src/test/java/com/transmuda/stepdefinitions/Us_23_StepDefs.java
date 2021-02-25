@@ -6,6 +6,8 @@ import com.transmuda.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
@@ -32,31 +34,15 @@ public class Us_23_StepDefs {
 
         System.out.println(vehicleOdometerPage.fullPath);
         vehicleOdometerPage.chooseFileButton.sendKeys(vehicleOdometerPage.fullPath);
-        BrowserUtils.waitFor(10);
+        BrowserUtils.waitFor(1);
 
 
-
-//        BrowserUtils.waitFor(1);
-//        StringSelection file = new StringSelection("C:\\Users\\ss\\OneDrive\\Pictures\\test.jpg");
-//        BrowserUtils.waitFor(1);
-//        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(file, null);
-//        Robot robot = new Robot();
-//        robot.keyPress(java.awt.event.KeyEvent.VK_ENTER);
-//        robot.keyRelease(java.awt.event.KeyEvent.VK_ENTER);
-//        robot.keyPress(java.awt.event.KeyEvent.VK_CONTROL);
-//        robot.keyPress(java.awt.event.KeyEvent.VK_V);
-//        robot.keyRelease(java.awt.event.KeyEvent.VK_CONTROL);
-//        BrowserUtils.waitFor(1);
-//        robot.keyPress(java.awt.event.KeyEvent.VK_ENTER);
-
-        vehicleOdometerPage.commentBox.click();
-        BrowserUtils.waitFor(5);
         vehicleOdometerPage.commentBox.sendKeys("text");
 
         vehicleOdometerPage.selectOwnerButton.click();
         BrowserUtils.waitFor(2);
         vehicleOdometerPage.manageFilters.click();
-        BrowserUtils.waitFor(1);
+        BrowserUtils.waitFor(3);
         vehicleOdometerPage.firstNameCheckBox.click();
 
         vehicleOdometerPage.lastName.click();
@@ -69,9 +55,8 @@ public class Us_23_StepDefs {
         vehicleOdometerPage.lastNameUpdateButton.click();
         BrowserUtils.waitFor(3);
         vehicleOdometerPage.firstOwnerRow.click();
-        BrowserUtils.waitFor(3);
-        vehicleOdometerPage.saveButton.click();
-        BrowserUtils.waitFor(3);
+
+
 
 
     }
@@ -79,14 +64,17 @@ public class Us_23_StepDefs {
     @When("the user click Save Button")
     public void the_user_click_Save_Button() {
 
-        new VehicleOdometerPage().attachmentSave.click();
-        BrowserUtils.waitFor(1);
+        BrowserUtils.waitFor(3);
+        new VehicleOdometerPage().saveButton.click();
+
     }
 
     @Then("{string} message should be displayed")
-    public void message_should_be_displayed(String string) {
+    public void message_should_be_displayed(String expectedMessage) {
 
-
+        BrowserUtils.waitFor(3);
+        String actualMessage = new VehicleOdometerPage().fileErrorMessage.getText();
+        Assert.assertEquals(expectedMessage, actualMessage);
     }
 
     @When("the user click Save Button without any choose file")
