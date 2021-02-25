@@ -27,14 +27,14 @@ Feature:
     Then The truck driver user can see Manage Filters Box
     And Click Manage filters link button
     Then The truck driver user should be able to see Manage filters popup
-    When The truck driver user select filter option in the Manage filters popup
-    Then Truck driver user should be able to see selected filter setting on the right side of manage filter
-    When Truck driver user Click selected Filter Option button
-    Then Truck driver user should be able to see Filter Option popup
-    When Truck driver user Select Condition keyword in the selected Filter Option popup
-    And Truck driver user enter data for selected Condition keyword in the selected Filter Option popup
+    When The truck driver user select filter option "Odometer Value" in the Manage filters popup
+    Then Truck driver user should be able to see selected "Odometer Value" filter setting on the right side of manage filter
+    When Truck driver user Click selected Filter Option "Odometer Value" button
+    Then Truck driver user should be able to see "Odometer Value" in the Filter Option popup
+    When Truck driver user Select Condition keyword "Equal" for in the selected Filter Option popup
+    And Truck driver user enter data "123" "" for Condition keyword in the selected Filter Option popup
     And Truck driver user Click Update button in the selected Filter Option popup
-    Then Truck driver user should be able to see results for selected filter settings in the Filter settings
+    Then Truck driver user should only be able to see results for "Equal" "123" "" selected filter settings in the Filter settings
 
 
   @TR-202 @TR-204

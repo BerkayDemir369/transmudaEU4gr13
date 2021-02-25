@@ -55,7 +55,7 @@ public class GridBasePage extends BasePage {
 
 
     //Filter Button and popup elements
-    @FindBy(xpath = "//div[2]/div[1]/div/div[3]/div[1]/div/a[1]")
+    @FindBy(css = ".fa-filter")
     public WebElement FilterButton;
 
     @FindBy(css = "button[class*='ui-multiselect']")
@@ -63,6 +63,9 @@ public class GridBasePage extends BasePage {
 
     @FindBy(css = "div[class*='ui-multiselect-menu']")
     public WebElement ManageFiltersPopup;
+
+    @FindBy(xpath = "//div[@class='filter-item oro-drop open-filter']/div[@class='filter-criteria dropdown-menu']")
+    public WebElement ManageFilterSelectedPopup;
 
     @FindBy(css = "div[class*='filter-box']")
     public WebElement FilterBoxArea;
@@ -73,6 +76,24 @@ public class GridBasePage extends BasePage {
     @FindBy(xpath = "//ul[@class='ui-multiselect-checkboxes ui-helper-reset fixed-li']/li")
     public List<WebElement> ManageFiltersHeaders;
 
+    // Selected filters
+    @FindBy(css = ".filter-items")
+    public List<WebElement> ManageFilterItems;
+
+    @FindBy(xpath = "//button[@class='btn dropdown-toggle']")
+    public WebElement FilterConditionButton;
+
+    @FindBy(xpath = "//a[.='equals']")
+    public WebElement ConditionType;
+
+    @FindBy(xpath = "//div[@class='filter-start']/input[@name='value']")
+    public WebElement FilterStartValue;
+
+    @FindBy(xpath = "//input[@name='value_end']")
+    public WebElement FilterEndValue;
+
+    @FindBy(xpath = "//div[@class='choice-filter number-range-filter']//button[@class='btn btn-primary filter-update']")
+    public WebElement FilterUpdateButton;
 
     //Grid Settings Elements
     @FindBy(xpath = "//i[@class='fa-cog hide-text']")
