@@ -3,11 +3,13 @@ package com.transmuda.stepdefinitions;
 import com.transmuda.pages.DashboardPage;
 import com.transmuda.pages.GridBasePage;
 import com.transmuda.utilities.BrowserUtils;
+import com.transmuda.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 public class Us_17_StepDefs extends GridBasePage {
@@ -78,7 +80,10 @@ public class Us_17_StepDefs extends GridBasePage {
     public void theTruckDriverClicksOnTheSelectAllLinkInTheGridSettingsPopup() {
         All.click();
         BrowserUtils.waitFor(1);
-        SelectAll.click();
+        JavascriptExecutor executor = (JavascriptExecutor) Driver.get();
+        executor.executeScript("arguments[0].click();", SelectAll);
+
+        //SelectAll.click();
     }
 
     @Then("The truck driver should be able to see in the popup table that all checkboxes have been marked")
@@ -137,7 +142,7 @@ public class Us_17_StepDefs extends GridBasePage {
 
     @Then("Truck driver user should be able to see {string} in the Filter Option popup")
     public void truckDriverUserShouldBeAbleToSeeFilterOptionPopup(String FilterColumnName) {
-        activeFilter=FilterColumnName;
+        activeFilter = FilterColumnName;
         Assert.assertTrue(ManageFilterSelectedPopup.isDisplayed());
     }
 
@@ -153,15 +158,16 @@ public class Us_17_StepDefs extends GridBasePage {
     public void truckDriverUserEnterDataForSelectedConditionKeywordInTheSelectedFilterOptionPopup(String searchText, String searchText2) {
         FilterStartValue.sendKeys(searchText);
         if (searchText2 != null) {
-            FilterEndValue.sendKeys(searchText2);
+            try {
+                FilterEndValue.sendKeys(searchText2);
+            } catch (Exception ignored) {
+            }
         }
-        BrowserUtils.waitFor(10);
     }
 
     @And("Truck driver user Click Update button in the selected Filter Option popup")
     public void truckDriverUserClickUpdateButtonInTheSelectedFilterOptionPopup() {
         FilterUpdateButton.click();
-        BrowserUtils.waitFor(10);
     }
 
     @Then("Truck driver user should only be able to see results for {string} {string} {string} selected filter settings in the Filter settings")
@@ -170,7 +176,7 @@ public class Us_17_StepDefs extends GridBasePage {
         switch (condition) {
             case "Equal":
             case "Not Equals":
-                Assert.assertTrue(findRowValue(condition,activeFilter,searchText));
+                Assert.assertTrue(findRowValue(condition, activeFilter, searchText));
                 break;
 
             default:
@@ -180,14 +186,17 @@ public class Us_17_StepDefs extends GridBasePage {
 
     @When("The truck driver user clicks Refresh button")
     public void theTruckDriverUserClicksRefreshButton() {
+        RefreshButton.click();
     }
 
     @Then("The truck driver user should be able to see the page reloaded")
     public void theTruckDriverUserShouldBeAbleToSeeThePageReloaded() {
+
     }
 
     @When("The truck driver user clicks Reset button")
     public void theTruckDriverUserClicksResetButton() {
+        ResetButton.click();
     }
 
     @Then("The truck driver user should be able to see if all filters and settings applied to the page have been reset and reloaded")
