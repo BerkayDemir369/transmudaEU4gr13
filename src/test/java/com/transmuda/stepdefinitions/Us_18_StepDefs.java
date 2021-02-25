@@ -17,7 +17,7 @@ public class Us_18_StepDefs {
 
         DashboardPage dashboardPage=new DashboardPage();
         dashboardPage.navigateToModule("Fleet","Vehicles");
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(8);
 
     }
 

@@ -14,10 +14,10 @@ public class VehicleCostsPage extends BasePage{
     public WebElement pageChangeButton;
 
     //change the entity number by clicking the View Per Page dropdown(10,25,50,100)
-    @FindBy(xpath = "(//span[@class='caret'])[2]")
+    @FindBy(xpath = "//button[@class='btn dropdown-toggle ']")
     public WebElement viewPerPageChooseButton;
 
-    @FindBy(xpath = "(//a[@class='dropdown-item'])[1]")
+    @FindBy(xpath = "//div[@class='page-size pull-right form-horizontal']//li[1]")
     public WebElement perPage10Button;
 
     @FindBy(xpath = "(//a[@class='dropdown-item'])[2]")
@@ -35,8 +35,11 @@ public class VehicleCostsPage extends BasePage{
     public WebElement exportGridButton;
 
     //csv format button
-    @FindBy()
+    @FindBy(xpath = "//a[@title='CSV']")
     public WebElement csvButton;
+
+    @FindBy(css = ".alert")
+    public WebElement AlertMessage;
 
     //XLSX Format button
     @FindBy(xpath = "//a[@title='XLSX']")
