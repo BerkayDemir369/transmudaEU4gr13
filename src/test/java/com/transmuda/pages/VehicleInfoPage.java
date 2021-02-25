@@ -15,6 +15,8 @@ public class VehicleInfoPage extends BasePage{
     public WebElement stickyNoteAddButton;
     @FindBy(xpath = "(//a[contains(text(),'Add')])[3]")
     public WebElement taskListAddButton;
+    @FindBy(xpath = "//a[contains(text(),'Close')]")
+    public WebElement closeButton;
 
     //pin button to pin the page
     @FindBy(xpath = "//i[@class='fa-thumb-tack hide-text']")

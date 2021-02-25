@@ -1,10 +1,12 @@
 package com.transmuda.stepdefinitions;
 
+import com.transmuda.pages.VehicleCostsPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class Us_25_StepDefs {
+    VehicleCostsPage vehicleCostsPage=new VehicleCostsPage();
     @Given("navigate to Fleet Vehicle Costs")
     public void navigate_to_Fleet_Vehicle_Costs() {
         // Write code here that turns the phrase above into concrete actions

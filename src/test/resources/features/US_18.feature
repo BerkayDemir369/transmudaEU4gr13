@@ -2,10 +2,9 @@ Feature:
 
 	Background:
 		#@TR-185
-		
-		    Given the user is on the login page
-		    When the user logs in using "User10" and "UserUser123"
-		    Then the user should be able to login
+
+		Given the user login as a "driver"
+		Then the user should be able to login
 		
 
 	#User Story : 
