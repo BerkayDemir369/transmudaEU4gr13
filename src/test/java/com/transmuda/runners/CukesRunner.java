@@ -12,11 +12,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/transmuda/stepdefinitions",
         dryRun = false,
-
-   tags = "TR-198"
-
-
-
+   tags = "@TR-213"
 
 )
 public class CukesRunner {
