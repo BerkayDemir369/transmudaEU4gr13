@@ -6,6 +6,7 @@ import com.transmuda.pages.LoginPage;
 import com.transmuda.utilities.BrowserUtils;
 import com.transmuda.utilities.ConfigurationReader;
 import com.transmuda.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -30,22 +31,19 @@ public class US_19StepDefs {
 
         //  new DashboardPage().navigateToModule(tab,module);
         dashboardPage.navigateToModule("Fleet", "Vehicle Odometer");
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(10);
     }
 
-    @When("click on the Create Vehicle Odometer button")
-    public void click_on_the_Create_Vehicle_Odometer_button() {
-
-        createVehicleOdometerPage.createOdometerVehicle.click();
-
-        BrowserUtils.waitFor(3);
 
 
-    }
+
+
+
 
     @When("truck driver enter the valid information on the vehicle odometer page")
     public void truck_driver_enter_the_valid_information_on_the_vehicle_odometer_page() {
 
+        BrowserUtils.waitFor(5);
 
         createVehicleOdometerPage.createOdometerVehicle.click();
         BrowserUtils.waitFor(3);
@@ -126,14 +124,22 @@ public class US_19StepDefs {
         String actualMessage = createVehicleOdometerPage.errorMessage.getText();
         Assert.assertEquals("This value is not valid.", actualMessage);
 
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(10);
     }
 
 
-    @When("click on the Add button on the Create Vehicle Odometer page")
+    @When("click on the Create Vehicle Odometer button")
+    public void click_on_the_Create_Vehicle_Odometer_button() {
+
+        createVehicleOdometerPage.createOdometerVehicle.click();
+
+        BrowserUtils.waitFor(5);
+    }
+
+    @And("click on the Add button on the Create Vehicle Odometer page")
     public void click_on_the_Add_button_on_the_Create_Vehicle_Odometer_page() {
         createVehicleOdometerPage.addBTNt.click();
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(10);
     }
 
     @Then("can see Licence Plate information window")
@@ -178,16 +184,23 @@ public class US_19StepDefs {
 
     @When("truck driver click on Refresh button on the licence plate information window")
     public void truck_driver_click_on_Refresh_button_on_the_licence_plate_information_window() {
+
+        BrowserUtils.waitFor(10);
+
+        createVehicleOdometerPage.refreshwindowselectfirstrow.click();
+
         BrowserUtils.waitFor(3);
+
         createVehicleOdometerPage.refresh.click();
 
     }
 
     @Then("truck driver refresh the licence plate information window")
     public void truck_driver_refresh_the_licence_plate_information_window() {
-        BrowserUtils.waitFor(10);
 
-       Assert.assertTrue("verify refresh window is open", createVehicleOdometerPage.refreshconfirmationWindow.isDisplayed());
+        BrowserUtils.waitFor(3);
+
+        Assert.assertTrue("verify refresh window is open", createVehicleOdometerPage.refreshconfirmationWindow.isDisplayed());
 
        BrowserUtils.waitFor(3);
       createVehicleOdometerPage.refreshconfirmationOkBTN.click();
@@ -293,6 +306,7 @@ public class US_19StepDefs {
 
 
     }
+
 
 
 }
