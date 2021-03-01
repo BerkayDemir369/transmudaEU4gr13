@@ -20,6 +20,7 @@ public class Us_21_StepDefs {
     public void the_user_navigates_to(String tab, String module) {
 
 
+        BrowserUtils.waitFor(1);
         new DashboardPage().navigateToModule(tab,module);
 
 
@@ -30,7 +31,7 @@ public class Us_21_StepDefs {
 
 
 
-        BrowserUtils.waitFor(7);
+        BrowserUtils.waitFor(12);
 
         new VehicleOdometerPage().firstOdometer.click();
         BrowserUtils.waitFor(2);
