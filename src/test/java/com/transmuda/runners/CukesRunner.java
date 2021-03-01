@@ -13,7 +13,6 @@ import org.junit.runner.RunWith;
         glue = "com/transmuda/stepdefinitions",
         dryRun = false,
         tags = "@TR-205"
-
 )
 public class CukesRunner {
 }

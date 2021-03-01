@@ -23,7 +23,6 @@ public class gridBaseCodeTest {
 //        gridBasePage.navigateToModule("Fleet", "Vehicles");
 //        BrowserUtils.waitFor(5);
 //        System.out.println(gridBasePage.getGridTableHeaderIndex("License Plate"));
-//
 //        System.out.println(gridBasePage.findRowValue("License Plate", "victory13-3"));
 
     }
