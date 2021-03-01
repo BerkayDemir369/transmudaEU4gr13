@@ -19,17 +19,17 @@ public class Us_17_StepDefs extends GridBasePage {
     @Given("The truck driver user accesses the {string} - {string}")
     public void theTruckDriverUserAccessesThe(String tab, String module) {
         new DashboardPage().navigateToModule(tab, module);
-        BrowserUtils.waitFor(5);
     }
 
     @When("The truck driver click Grid Settings button")
     public void theTruckDriverClickGridSettingsButton() {
+        BrowserUtils.waitFor(7);
         GridSettingsButton.click();
-        BrowserUtils.waitFor(2);
     }
 
     @Then("The truck driver can see Grid Settings Popup")
     public void theTruckDriverCanSeeGridSettingsPopup() {
+        BrowserUtils.waitFor(3);
         Assert.assertTrue(GridSettingsPopup.isDisplayed());
     }
 
@@ -95,7 +95,7 @@ public class Us_17_StepDefs extends GridBasePage {
 
     @When("The truck driver user clicks Filters button")
     public void theTruckDriverUserClicksFiltersButton() {
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(10);
         FilterButton.click();
     }
 
@@ -116,6 +116,7 @@ public class Us_17_StepDefs extends GridBasePage {
 
     @When("The truck driver user select filter option {string} in the Manage filters popup")
     public void theTruckDriverUserSelectFilterOptionInTheManageFiltersPopup(String FilterColumnName) {
+        activeFilter = FilterColumnName;
         for (int i = 0; i < ManageFiltersHeaders.size(); i++) {
             if (ManageFiltersHeaders.get(i).getText().contains(FilterColumnName)) {
                 ManageFiltersHeaders.get(i).click();
@@ -125,10 +126,7 @@ public class Us_17_StepDefs extends GridBasePage {
 
     @Then("Truck driver user should be able to see selected {string} filter setting on the right side of manage filter")
     public void truckDriverUserShouldBeAbleToSeeSelectedFilterSettingOnTheRightSideOfManageFilter(String FilterColumnName) {
-
-        for (WebElement manageFilterItem : ManageFilterItems) {
-            Assert.assertTrue(manageFilterItem.getText().contains(FilterColumnName));
-        }
+        Assert.assertTrue(findFilterHeader(FilterColumnName));
     }
 
     @When("Truck driver user Click selected Filter Option {string} button")
@@ -142,7 +140,6 @@ public class Us_17_StepDefs extends GridBasePage {
 
     @Then("Truck driver user should be able to see {string} in the Filter Option popup")
     public void truckDriverUserShouldBeAbleToSeeFilterOptionPopup(String FilterColumnName) {
-        activeFilter = FilterColumnName;
         Assert.assertTrue(ManageFilterSelectedPopup.isDisplayed());
     }
 
