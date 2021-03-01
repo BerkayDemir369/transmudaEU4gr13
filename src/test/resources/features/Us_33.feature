@@ -31,7 +31,7 @@ Feature:
 		Then System should be change the entity number of View Per Page
 		And the user click Export Grid button
 		When the user select any options of Export Grid Button
-		Then "Export started successfully. You will receive email notification upon completion." message should be displayed
+		Then "×Export started successfully. You will receive email notification upon completion." Email message should be displayed
 		
 		
 		
