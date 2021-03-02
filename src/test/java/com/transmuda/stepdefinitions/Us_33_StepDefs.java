@@ -121,9 +121,15 @@ public class Us_33_StepDefs {
     public void email_message_should_be_displayed(String expectedMessage) {
 
         BrowserUtils.waitFor(2);
-        String actualMessage= vehicleCostsPage.flashMessage.getText();
+        String actualMessage= vehicleCostsPage.AlertMessage.getText();
+        String arrangeMessage=actualMessage.substring(1).trim();
+        System.out.println("arrangeMessage = " + arrangeMessage);
         System.out.println("actualMessage = " + actualMessage);
-        Assert.assertEquals(expectedMessage,actualMessage);
+
+        Assert.assertEquals(expectedMessage,arrangeMessage);
+
+        //lazy way
+        Assert.assertTrue(vehicleCostsPage.AlertMessage.isDisplayed());
 
 
     }

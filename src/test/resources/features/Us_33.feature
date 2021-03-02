@@ -4,7 +4,8 @@ Feature:
 		#@TR-174
 		Given the user login as a "sales manager"
 		Then the user should be able to login
-		
+		When the user navigates to "Fleet" , "Vehicle Costs"
+		Then the user should be able to see costs information
 		
 
 	#{color:#00875a}*User Story :* {color}
@@ -21,8 +22,7 @@ Feature:
 	#4-Store manager/Sales Manager can get all informations to her/his own email address by using Export Grid button in csv and xlsx formats
 	@TR-224
 	Scenario: Us-33 as a Salesmanager/storemanager Get Vehicle Costs Information
-		When the user navigates to "Fleet" , "Vehicle Costs"
-		Then the user should be able to see costs information
+
 		When the user click Page button to next page or previous page
 		Then the user should be able to see next or previous page
 		And the user click View Per Page button
@@ -31,7 +31,7 @@ Feature:
 		Then System should be change the entity number of View Per Page
 		And the user click Export Grid button
 		When the user select any options of Export Grid Button
-		Then "×Export started successfully. You will receive email notification upon completion." Email message should be displayed
+		Then "Export started successfully. You will receive email notification upon completion." Email message should be displayed
 		
 		
 		
