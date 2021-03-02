@@ -1,12 +1,16 @@
 package com.transmuda.pages;
 
+import com.transmuda.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.nio.file.Watchable;
 
 public class VehicleCostsPage extends BasePage{
-
+    public VehicleCostsPage() {
+        PageFactory.initElements(Driver.get(), this);
+    }
                   //US-25
 
     //change page number for getting following vehicle costs informations
@@ -44,6 +48,23 @@ public class VehicleCostsPage extends BasePage{
     //XLSX Format button
     @FindBy(xpath = "//a[@title='XLSX']")
     public WebElement xlsxButton;
+
+
+    //========Us-34=======
+
+    @FindBy (xpath = "//h1[@class='oro-subtitle']")
+    public WebElement allVehicleCosts;
+
+
+    @FindBy(xpath = "//input[@class='input-widget']")
+    public WebElement pageNumber;
+
+    @FindBy(xpath = "//i[@class='fa-chevron-left hide-text']")
+    public WebElement previousPage;
+
+    @FindBy(xpath = "//div[@class='flash-messages-holder']")
+    public WebElement flashMessage;
+
 
 
 }

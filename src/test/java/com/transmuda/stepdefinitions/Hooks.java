@@ -35,7 +35,5 @@ public class Hooks {
         System.out.println("\tdisconnecting to database...");
 
     }
-
-
-
+}
 }
