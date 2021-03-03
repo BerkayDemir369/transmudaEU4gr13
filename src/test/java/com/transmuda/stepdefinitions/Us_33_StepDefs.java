@@ -128,8 +128,8 @@ public class Us_33_StepDefs {
 
         Assert.assertEquals(expectedMessage,arrangeMessage);
 
-        //lazy way
-        Assert.assertTrue(vehicleCostsPage.AlertMessage.isDisplayed());
+//        //lazy way
+//        Assert.assertTrue(vehicleCostsPage.AlertMessage.isDisplayed());
 
 
     }

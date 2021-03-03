@@ -66,5 +66,87 @@ public class VehicleCostsPage extends BasePage{
     public WebElement flashMessage;
 
 
+    @FindBy(xpath ="//i[@class='fa-cog hide-text']")
+    public WebElement gridSettingsButton;
+
+    @FindBy(xpath = "//tbody[@class='ui-sortable']/tr[1]//input[1]")
+    public WebElement idCheckBox;
+
+    @FindBy(xpath = "//tbody[@class='ui-sortable']/tr[2]//input[1]")
+    public WebElement typeCheckBox;
+
+    @FindBy(xpath = "//tbody[@class='ui-sortable']/tr[3]//input[1]")
+    public  WebElement totalPriceCheckBox;
+
+    @FindBy(xpath = "//tbody[@class='ui-sortable']/tr[4]//input[1]")
+    public  WebElement dateCheckBox;
+
+
+
+
+    @FindBy(xpath = "//a[.='Select All']")
+    public WebElement selectAll;
+
+    @FindBy(xpath = "//span[.='Id']")
+    public WebElement idColumn;
+
+    @FindBy(xpath = "//span[.='Type']")
+    public WebElement typeColumn;
+
+    @FindBy(xpath = "//span[.='Total Price']")
+    public WebElement totalPriceColumn;
+
+    @FindBy(xpath = "//span[.='Date']")
+    public WebElement dateColumn;
+
+
+    @FindBy(xpath = "//span[@class='close']")
+    public WebElement xButton;
+
+
+    @FindBy(xpath = "//i[@class='fa-filter hide-text']")
+    public WebElement filterButton;
+
+    @FindBy(xpath = "//a[.='Manage filters']")
+    public  WebElement manageFiltersButton;
+
+
+    @FindBy(xpath = "//label[contains(.,'Type')]")
+    public WebElement typeFilterBox;
+
+    @FindBy(xpath = "//label[contains(.,'Total Price')]")
+    public WebElement totalPriceFilterBox;
+
+    @FindBy(xpath = "//label[contains(.,'Date')]")
+    public  WebElement dateFilterBox;
+
+
+    @FindBy(xpath = "//span[@class='filter-items']/div[1]/div[@class='btn filter-criteria-selector oro-drop-opener oro-dropdown-toggle filter-default-value']")
+    public WebElement typeAll;
+
+    @FindBy(xpath = "//span[@class='filter-items']/div[2]/div[@class='btn filter-criteria-selector oro-drop-opener oro-dropdown-toggle filter-default-value']")
+    public  WebElement totalPriceAll;
+
+    @FindBy(xpath = "//span[@class='filter-items']/div[3]/div[@class='btn filter-criteria-selector oro-drop-opener oro-dropdown-toggle filter-default-value']")
+    public  WebElement dateAll;
+
+    @FindBy(xpath = "//i[@class='fa-repeat']")
+    public  WebElement refreshButton;
+
+    @FindBy(xpath = "//a[3]/i[@class='fa-refresh']")
+    public WebElement resetButton;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

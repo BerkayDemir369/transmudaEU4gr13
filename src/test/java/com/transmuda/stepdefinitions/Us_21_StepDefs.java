@@ -23,6 +23,7 @@ public class Us_21_StepDefs {
         BrowserUtils.waitFor(1);
         new DashboardPage().navigateToModule(tab,module);
 
+        BrowserUtils.waitFor(5);
 
     }
 
