@@ -72,8 +72,6 @@ public class VehicleCostsPage extends BasePage{
     @FindBy(xpath="//button[@class='sidebar__add-widget']")
     public WebElement AddSign;
 
-
-
     @FindBy(xpath = "//div[@class='widget-picker-containers']/div[1]//a[contains(.,'Add')]")
     public WebElement recentAddBNT;
 
@@ -103,7 +101,6 @@ public class VehicleCostsPage extends BasePage{
 
     @FindBy(xpath = " //div[@class='list-bar']//a[.='Vehicle Costs - Entities - System']")
     public WebElement addpinInformation;
-
 
 
 
