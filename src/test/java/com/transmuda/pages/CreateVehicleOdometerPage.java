@@ -120,6 +120,11 @@ public class CreateVehicleOdometerPage extends BasePage {
     @FindBy(xpath = "//a[contains(text(),'25')]")
     public WebElement pageDropdown;
 
+    @FindBy(xpath = "//tbody/tr[1]")
+
+    public WebElement refreshwindowselectfirstrow;
+
+    //tbody/tr[1]
     @FindBy(xpath = "//h3[.='Refresh Confirmation']")
     public WebElement refreshconfirmationWindow;
 

@@ -21,7 +21,7 @@ public class Hooks {
             scenario.attach(screenshot, "image/png", "screenshot");
         }
 
-       Driver.closeDriver();
+        Driver.closeDriver();
 
     }
 
@@ -35,6 +35,4 @@ public class Hooks {
         System.out.println("\tdisconnecting to database...");
 
     }
-
-
 }
