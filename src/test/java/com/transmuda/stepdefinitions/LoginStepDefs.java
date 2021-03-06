@@ -34,6 +34,6 @@ public class LoginStepDefs extends BasePage {
 
     @When("the user logs in using {string} and {string}")
     public void theUserLogsInUsingAnd(String username, String password) {
-        loginPage.login(username, password);
+        loginPage.login(username,password);
     }
 }

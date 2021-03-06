@@ -699,10 +699,19 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
     }
 
+//    @Then("{string} error message should be displayed")
+//    public void error_message_should_be_displayed(String expectedErrorMessage) {
+//
+//        String actualMessage=new VehicleOdometerPage().odometerMessage.getText();
+//        Assert.assertEquals(expectedErrorMessage,actualMessage);
+//
+//
+//    }
+
     @Then("{string} error message should be displayed")
     public void error_message_should_be_displayed(String expectedErrorMessage) {
 
-        String actualMessage=new VehicleOdometerPage().odometerMessage.getText();
+        String actualMessage=new VehicleOdometerPage().AlertMessage.getText();
         Assert.assertEquals(expectedErrorMessage,actualMessage);
 
 
@@ -808,14 +817,20 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
     }
 
+//    @Then("{string} message should be displayed")
+//    public void message_should_be_displayed(String expectedMessage) {
+//
+//        BrowserUtils.waitFor(3);
+//        String actualMessage = new VehicleOdometerPage().fileErrorMessage.getText();
+//        Assert.assertEquals(expectedMessage, actualMessage);
+//    }
     @Then("{string} message should be displayed")
     public void message_should_be_displayed(String expectedMessage) {
 
         BrowserUtils.waitFor(3);
-        String actualMessage = new VehicleOdometerPage().fileErrorMessage.getText();
+        String actualMessage = new VehicleOdometerPage().AlertMessage.getText();
         Assert.assertEquals(expectedMessage, actualMessage);
     }
-
     @When("the user click Save Button without any choose file")
     public void the_user_click_Save_Button_without_any_choose_file() {
 
@@ -827,15 +842,15 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
     }
 
 // To do Berky
-    @Then("{string} error message should be displayed.")
-    public void error_message_should_be_displayed(String expectedMessage) {
-
-
-        String actualMessage = new VehicleOdometerPage().fileChoosingErrorMessage.getText();
-        Assert.assertEquals(expectedMessage, actualMessage);
-
-
-    }
+//    @Then("{string} error message should be displayed.")
+//    public void error_message_should_be_displayed(String expectedMessage) {
+//
+//
+//        String actualMessage = new VehicleOdometerPage().fileChoosingErrorMessage.getText();
+//        Assert.assertEquals(expectedMessage, actualMessage);
+//
+//
+//    }
 
 //US-24
 @Then("expected title should be {string}")
@@ -847,15 +862,15 @@ public void expected_title_should_be(String expectedTitle) {
 
 }
 
-    @Then("{string} message should be displayed.")
-    public void message_should_be_displayed(String expectedPermissionMessage) {
-
-        BrowserUtils.waitFor(5);
-        String actualPermissionMessage= new VehicleOdometerPage().permissionMessage.getText();
-        Assert.assertEquals(expectedPermissionMessage,actualPermissionMessage);
-
-
-    }
+//    @Then("{string} message should be displayed.")
+//    public void message_should_be_displayed(String expectedPermissionMessage) {
+//
+//        BrowserUtils.waitFor(5);
+//        String actualPermissionMessage= new VehicleOdometerPage().permissionMessage.getText();
+//        Assert.assertEquals(expectedPermissionMessage,actualPermissionMessage);
+//
+//
+//    }
 
 
     //US-25

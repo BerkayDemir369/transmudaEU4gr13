@@ -145,7 +145,7 @@ public class VehicleOdometerPage extends BasePage {
     @FindBy(xpath = "//span[contains(text(),'This value should not be blank.')]")
     public WebElement fileChoosingErrorMessage;
 
-
+    @FindBy(css = ".alert")     public WebElement AlertMessage;
 
     //==========Us-24========
 
