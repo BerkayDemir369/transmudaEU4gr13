@@ -259,7 +259,7 @@ public class GridBasePage extends BasePage {
      * @return firstHeaders
      */
     public boolean getGridTableFirstHeaderIsCheckBox() {
-        return getGridTableHeaders().get(0).isBlank();
+        return getGridTableHeaders().get(0).isEmpty();
     }
 
 
