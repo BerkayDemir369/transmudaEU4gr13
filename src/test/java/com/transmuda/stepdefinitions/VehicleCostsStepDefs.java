@@ -609,6 +609,91 @@ public class VehicleCostsStepDefs {
         BrowserUtils.waitFor(3) ;
     }
 
+//US-29
+@When("the user click {string}")
+public void the_user_click(String string) {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+
+    @When("the user select Type as {string}")
+    public void the_user_select_Type_as(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user enter value to Total Price as {string}")
+    public void the_user_enter_value_to_Total_Price_as(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("verify {string} validation message appeared")
+    public void verify_validation_message_appeared(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user enter value to Total Price as {int}")
+    public void the_user_enter_value_to_Total_Price_as(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user choose date as {string}")
+    public void the_user_choose_date_as(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user choose date as Mar {int}, {int}")
+    public void the_user_choose_date_as_Mar(Integer int1, Integer int2) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user write Cost Description {string}")
+    public void the_user_write_Cost_Description(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user click {string} button")
+    public void the_user_click_button(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user select first chasis number")
+    public void the_user_select_first_chasis_number() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user click license plate add button")
+    public void the_user_click_license_plate_add_button() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user select first license plate")
+    public void the_user_select_first_license_plate() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("verify {string} message apper on the top of the page")
+    public void verify_message_apper_on_the_top_of_the_page(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("verify Chasis Number and License Plate added successfully")
+    public void verify_Chasis_Number_and_License_Plate_added_successfully() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
 }
 
 
