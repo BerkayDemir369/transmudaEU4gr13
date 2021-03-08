@@ -5,13 +5,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class VehicleOdometerPage extends BasePage {
     public VehicleOdometerPage() {
         PageFactory.initElements(Driver.get(), this);
     }
     //========US-21=========
 
-    @FindBy(xpath = "(//td[@class='number-cell grid-cell grid-body-cell grid-body-cell-OdometerValue'])[1]")
+    @FindBy(xpath = "//td[@class='number-cell grid-cell grid-body-cell grid-body-cell-OdometerValue']")
     public WebElement firstOdometer;
 
 
@@ -83,65 +85,104 @@ public class VehicleOdometerPage extends BasePage {
     //====US-23===========
 
 
-    @FindBy(xpath = "//body/div[@id='page']/div[2]/div[1]/div[2]/div[3]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/a[1]")
+    @FindBy(xpath = "(//a[@href='javascript: void(0);'])[2]")
     public WebElement addAttachmentButton;
 
 
     @FindBy(xpath = "//span[@id='ui-id-4']")
     public WebElement addAttachmentTitle;
+    //==========================file uploading=================
+    @FindBy(xpath = "//input[@data-ftid='oro_attachment_file_file']")
+    public WebElement chooseFileButton;
 
-    @FindBy(xpath = "//div[@class='control-group']/div/input")
-    public WebElement upload;
+    String projectPath = System.getProperty("user.dir");
+    String filePath = "src/test/resources/Collection_Type_Selection.001.jpeg";
+    public String fullPath = projectPath + "/" + filePath;
+    //================================
 
-    @FindBy(xpath = "//div[@class='control-group']")
+
+    //input[@id='oro_attachment_file_file-uid-6036d88f00c9f']
+    @FindBy(name = "oro_attachment[file][file]")
     public WebElement Test;
 
-    @FindBy(tagName = "textarea")
+    @FindBy(xpath = "//textarea[@name='oro_attachment[comment]']")
     public WebElement commentBox;
 
-    @FindBy(xpath = "//span[.='Save']")
-    public WebElement attachmentSave;
 
-
-    @FindBy(xpath = "//button[@class='add-on btn entity-select-btn']/i[@class='fa-bars']")
+    @FindBy(xpath = "//body/div[5]/div[2]/div[1]/div[1]/form[1]/fieldset[1]/div[1]/div[3]/div[2]/div[1]/div[1]/button[1]/i[1]")
     public WebElement selectOwnerButton;
 
-    @FindBy(css=".grid-body-cell-lastName")
+    @FindBy(xpath = "//tbody/tr[1]/td[1]")
     public WebElement firstOwnerRow;
 
-    @FindBy(xpath = "//div[@class='oro-datagrid']//i[@class='fa-cog hide-text']")
+    @FindBy(xpath = "//a[@class='add-filter-button']")
     public WebElement manageFilters;
 
-    @FindBy(xpath = "//tbody[@class='ui-sortable']/tr[1]//input[1]")
+    @FindBy(xpath = "//label[@title='First name']")
     public WebElement firstNameCheckBox;
 
-    @FindBy(xpath = " //span[.='Last name']")
+    @FindBy(xpath = "(//div[@class='btn filter-criteria-selector oro-drop-opener oro-dropdown-toggle filter-default-value'])[2]")
     public WebElement lastName;
 
-    @FindBy(xpath = "//span[@class='filter-items']/div[2]//b[@class='filter-criteria-hint']")
+    @FindBy(xpath = "//button[@class='btn dropdown-toggle']")
     public WebElement containsOfLastname;
 
-    @FindBy(xpath = "//button[@class='btn dropdown-toggle']")
+    @FindBy(xpath = "//a[contains(text(),'is equal to')]")
     public WebElement isEqualTo;
 
-    @FindBy(xpath = "//input[@name='value']")
+    @FindBy(xpath = "(//input[@type='text'])[4]")
     public WebElement nameBox;
 
-    @FindBy(xpath = "//button[@class='btn btn-primary filter-update']")
+    @FindBy(xpath = "//button[contains(text(),'Update')]")
     public WebElement lastNameUpdateButton;
 
     @FindBy(xpath = "//button[contains(text(),'Save')]")
     public WebElement saveButton;
 
+    @FindBy(xpath = "//div[contains(text(),'Widget content loading failed')]")
+    public WebElement fileErrorMessage;
 
     @FindBy(xpath = "//span[contains(text(),'This value should not be blank.')]")
     public WebElement fileChoosingErrorMessage;
 
+    @FindBy(css = ".alert")     public WebElement AlertMessage;
 
     //==========Us-24========
 
     @FindBy(xpath = "//div[contains(text(),'You do not have permission to perform this action.')]")
     public WebElement permissionMessage;
+
+    //=========Us-16=========
+    @FindBy(xpath = "//a[@title='With this button you will export the content of the grid as it appears to you, with filters and sorting applied. All pages will be exported.']")
+    public  WebElement exportGrid;
+
+    @FindBy(xpath = "//a[@title='CSV']")
+    public  WebElement csv;
+
+    @FindBy(xpath = "//a[@title='XLSX']")
+    public  WebElement xlsx;
+
+    @FindBy(css = ".message")
+    public  WebElement successfullyMessage;
+
+    @FindBy(css="[class='btn dropdown-toggle ']")
+    public WebElement perpageDropdown;
+
+    @FindBy(css="[class='dropdown-item']")
+    public List<WebElement> dropdownItemList;
+
+    @FindBy(xpath="//table/tbody/tr")
+    public  List<WebElement> tableRow;
+
+    @FindBy(css="[class='fa-chevron-right hide-text']")
+    public  WebElement nextPageButton;
+
+    @FindBy(css="[type='number']")
+    public  WebElement pageNumber;
+
+
+
+
 
 
 }

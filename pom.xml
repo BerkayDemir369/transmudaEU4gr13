@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.vytrack</groupId>
-    <artifactId>EU4CucumberSelenium</artifactId>
+    <groupId>com.transmuda</groupId>
+    <artifactId>transmudaEU4gr13</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -44,7 +44,6 @@
         </dependency>
     </dependencies>
 
-
     <build>
         <plugins>
             <plugin>
@@ -58,6 +57,7 @@
                     <runOrder>Alphabetical</runOrder>
                     <includes>
                         <include>**/*CukesRunner.java</include>
+                        <include>**/*FailedTestRunner.java</include>
                     </includes>
                 </configuration>
             </plugin>
@@ -79,6 +79,9 @@
                             <jsonFiles>
                                 <param>**/cucumber*.json</param>
                             </jsonFiles>
+                            <classificationFiles>
+                                <param>**/classifications/*.properties</param>
+                            </classificationFiles>
                         </configuration>
                     </execution>
                 </executions>
