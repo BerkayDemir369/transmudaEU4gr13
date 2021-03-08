@@ -1,5 +1,6 @@
 package com.transmuda.pages;
 
+import com.transmuda.utilities.BrowserUtils;
 import com.transmuda.utilities.ConfigurationReader;
 import com.transmuda.utilities.Driver;
 import org.openqa.selenium.WebElement;
@@ -47,15 +48,12 @@ public class LoginPage {
     public WebElement ReturnToLoginPage;
 
 
-
-
     /**
      * Methods
      */
     //------------------------------------------------
-
-
     public void login(String userName, String password) {
+        BrowserUtils.waitFor(3);
         this.userName.sendKeys(userName);
         this.password.sendKeys(password);
         submit.click();
