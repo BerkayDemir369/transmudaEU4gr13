@@ -16,7 +16,7 @@ public class LoginStepDefs extends BasePage {
 
     @Given("the user login as a {string}")
     public void the_user_login_as_a(String usernameType) {
-        loginPage.loginForSalesManagerStoreManager(usernameType);
+        loginPage.loginAs(usernameType);
     }
 
 

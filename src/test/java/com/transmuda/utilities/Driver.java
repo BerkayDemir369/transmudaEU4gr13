@@ -33,11 +33,13 @@ public class Driver {
                     break;
 
                 case "chromeAcceptSslError":
-                    ChromeOptions handlingSSL = new ChromeOptions();
+                    ChromeOptions chromeOptions = new ChromeOptions();
                     //Using the accept insecure cert method with true as parameter to accept the untrusted certificate
-                    handlingSSL.setAcceptInsecureCerts(true);
+                    chromeOptions.setAcceptInsecureCerts(true);
+                    // Also we can add other chromeOptions settings
+                    //chromeOptions.addArguments("--argument command");
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver(handlingSSL);
+                    driver = new ChromeDriver(chromeOptions);
                     break;
 
                 case "chrome-headless":

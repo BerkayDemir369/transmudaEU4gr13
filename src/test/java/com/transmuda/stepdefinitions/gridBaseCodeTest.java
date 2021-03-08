@@ -9,7 +9,7 @@ public class gridBaseCodeTest {
 
         //GridBasePage code tests
         LoginPage loginPage = new LoginPage();
-        loginPage.loginForSalesManagerStoreManager("driver");
+        loginPage.loginAs("driver");
 
         GridBasePage gridBasePage = new GridBasePage();
         gridBasePage.navigateToModule("Fleet", "Vehicle Odometer");
