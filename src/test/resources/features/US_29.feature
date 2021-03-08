@@ -3,7 +3,7 @@ Feature:
 
 	Background:
 		#@TR-174
-		Given the user login as a "driver/storemanager/salesmanager"
+		Given the user login as a "driver"
 		Then the user should be able to login
 		
 		
