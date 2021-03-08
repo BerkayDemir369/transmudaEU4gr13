@@ -16,7 +16,7 @@ public class LoginStepDefs extends BasePage {
 
     @Given("the user login as a {string}")
     public void the_user_login_as_a(String usernameType) {
-        loginPage.loginForSalesManagerStoreManager(usernameType);
+        loginPage.loginAs(usernameType);
     }
 
 
@@ -27,13 +27,13 @@ public class LoginStepDefs extends BasePage {
         Assert.assertEquals("Dashboard", actualTitle);
     }
 
-    @Given("the user is on the login page")
-    public void theUserIsOnTheLoginPage() {
-        ConfigurationReader.get("url");
-    }
+//    @Given("the user is on the login page")
+//    public void theUserIsOnTheLoginPage() {
+//        ConfigurationReader.get("url");
+//    }
 
-    @When("the user logs in using {string} and {string}")
-    public void theUserLogsInUsingAnd(String username, String password) {
-        loginPage.login(username,password);
-    }
+//    @When("the user logs in using {string} and {string}")
+//    public void theUserLogsInUsingAnd(String username, String password) {
+//        loginPage.login(username,password);
+//    }
 }

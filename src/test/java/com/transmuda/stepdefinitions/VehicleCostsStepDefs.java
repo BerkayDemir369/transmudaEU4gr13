@@ -1,8 +1,10 @@
 package com.transmuda.stepdefinitions;
 
 import com.transmuda.pages.DashboardPage;
+import com.transmuda.pages.LoginPage;
 import com.transmuda.pages.VehicleCostsPage;
 import com.transmuda.utilities.BrowserUtils;
+import com.transmuda.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -299,87 +301,398 @@ public class VehicleCostsStepDefs {
 
     }
 
+//us-34
+
+    @Then("click Grid Settings Button")
+    public void click_Grid_Settings_Button() {
+
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.gridSettingsButton.click();
+
+        BrowserUtils.waitFor(1);
+
+    }
+
+    @When("the user select any check box related columns")
+    public void the_user_select_any_check_box_related_columns() {
+
+
+        if (vehicleCostsPage.idCheckBox.isSelected()) {
+
+        } else {
+            vehicleCostsPage.idCheckBox.click();
+        }
+        BrowserUtils.waitFor(1);
+
+        if (vehicleCostsPage.typeCheckBox.isSelected()) {
+
+        } else {
+            vehicleCostsPage.typeCheckBox.click();
+        }
+
+        BrowserUtils.waitFor(1);
+
+        if (vehicleCostsPage.totalPriceCheckBox.isSelected()) {
+
+        } else {
+            vehicleCostsPage.totalPriceCheckBox.click();
+        }
+
+        BrowserUtils.waitFor(1);
+
+        if (vehicleCostsPage.dateCheckBox.isSelected()) {
+
+        } else {
+            vehicleCostsPage.dateCheckBox.click();
+        }
+
+
+    }
+
+    @Then("selected columns should be attached on the current page")
+    public void selected_columns_should_be_attached_on_the_current_page() {
+
+        BrowserUtils.waitFor(1);
+
+        String actualIdColumn = vehicleCostsPage.idColumn.getText();
+        System.out.println("actualIdColumn = " + actualIdColumn);
+
+
+        String actualTypeColumn = vehicleCostsPage.typeColumn.getText();
+        System.out.println("actualTypeColumn = " + actualTypeColumn);
+
+
+        String actualTotalPrice = vehicleCostsPage.totalPriceColumn.getText();
+        System.out.println("actualTotalPrice = " + actualTotalPrice);
+
+
+        String actualDate = vehicleCostsPage.dateColumn.getText();
+        System.out.println("actualDate = " + actualDate);
+
+
+        Assert.assertEquals("ID", actualIdColumn);
+        Assert.assertEquals("TYPE", actualTypeColumn);
+        Assert.assertEquals("TOTAL PRICE", actualTotalPrice);
+        Assert.assertEquals("DATE", actualDate);
+
+
+    }
+
+    @Then("click Filters Button")
+    public void click_Filters_Button() {
+
+        vehicleCostsPage.filterButton.click();
+
+
+    }
+
+    @When("the user click Manage Filters Button")
+    public void the_user_click_Manage_Filters_Button() {
+
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.manageFiltersButton.click();
+
+    }
+
+    @Then("the user should be able to filter informations")
+    public void the_user_should_be_able_to_filter_informations() {
+
+        vehicleCostsPage.typeFilterBox.click();
+        BrowserUtils.waitFor(2);
+        vehicleCostsPage.totalPriceFilterBox.click();
+        BrowserUtils.waitFor(5);
+        vehicleCostsPage.dateFilterBox.click();
+        BrowserUtils.waitFor(2);
+
+        Assert.assertTrue(vehicleCostsPage.typeAll.isDisplayed());
+        Assert.assertTrue(vehicleCostsPage.totalPriceAll.isDisplayed());
+        Assert.assertTrue(vehicleCostsPage.dateAll.isDisplayed());
+
+
+    }
+
+    @When("the user click Refresh Button")
+    public void the_user_click_Refresh_Button() {
+
+        vehicleCostsPage.refreshButton.click();
+
+
+
+
+
+    }
+
+    @Then("system should be able to refresh the page")
+    public void system_should_be_able_to_refresh_the_page() {
+
+        BrowserUtils.waitFor(2);
+        vehicleCostsPage.refreshButton.isDisplayed();
+
+    }
+
+    @When("the user click Reset Button")
+    public void the_user_click_Reset_Button() {
+        vehicleCostsPage.filterButton.click();
+        BrowserUtils.waitFor(1);
+
+        vehicleCostsPage.manageFiltersButton.click();
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.typeFilterBox.click();
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.totalPriceFilterBox.click();
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.dateFilterBox.click();
+        BrowserUtils.waitFor(1);
+
+        Assert.assertTrue(vehicleCostsPage.typeAll.isDisplayed());
+        Assert.assertTrue(vehicleCostsPage.totalPriceAll.isDisplayed());
+        Assert.assertTrue(vehicleCostsPage.dateAll.isDisplayed());
+
+        vehicleCostsPage.resetButton.click();
+        BrowserUtils.waitFor(5);
+
+    }
+
+    @Then("system should be able to reset the filtering settings")
+    public void system_should_be_able_to_reset_the_filtering_settings() {
+
+
+
+        vehicleCostsPage.manageFiltersButton.click();
+        BrowserUtils.waitFor(1);
+
+        Assert.assertFalse(vehicleCostsPage.typeFilterBox.isSelected());
+
+        Assert.assertFalse(vehicleCostsPage.totalPriceFilterBox.isSelected());
+
+        Assert.assertFalse(vehicleCostsPage.dateFilterBox.isSelected());
+
+
+
+
+
+
+    }
 
     //US-35
 
     @Given("sales manager navigate Fleet to Vehicle Costs")
     public void salesManagerNavigateFleetToVehicleCosts() {
-    }
 
+
+        DashboardPage dashboardPage=new DashboardPage();
+        dashboardPage.navigateToModule("Fleet","Vehicle Costs");
+        BrowserUtils.waitFor(3);
+
+    }
     @When("click on Add sign on the sidebar widgets")
     public void clickOnAddSignOnTheSidebarWidgets() {
+        vehicleCostsPage.AddSign.click();
+        BrowserUtils.waitFor(3);
+
     }
+
 
     @And("click on Recent Emial Add Button on the sidebar widgets window")
     public void clickOnRecentEmialAddButtonOnTheSidebarWidgetsWindow() {
+        vehicleCostsPage.recentAddBNT.click();
+        BrowserUtils.waitFor(3);
     }
+
 
     @And("click on Sticky Note Add Button on the sidebar widgets window")
     public void clickOnStickyNoteAddButtonOnTheSidebarWidgetsWindow() {
+        vehicleCostsPage.stickyIcon.click();
+        BrowserUtils.waitFor(3);
     }
+
+
 
     @And("click on Task list Add Button on the sidebar widgets window")
     public void clickOnTaskListAddButtonOnTheSidebarWidgetsWindow() {
+        vehicleCostsPage.tasklistIcon.click();
+        BrowserUtils.waitFor(3);
     }
 
     @And("click on Close Button on the sidebar widgets window")
     public void clickOnCloseButtonOnTheSidebarWidgetsWindow() {
+        vehicleCostsPage.closeAddBNT.click();
+        BrowserUtils.waitFor(3);
     }
 
     @Then("sales manager can use sidebar widgets on the vehicle cost page")
     public void salesManagerCanUseSidebarWidgetsOnTheVehicleCostPage() {
+
+        Assert.assertTrue("verify email is added", vehicleCostsPage.amilIcon.isDisplayed());
+        BrowserUtils.waitFor(3);
+        Assert.assertTrue("verify sticky note is added", vehicleCostsPage.stickyIcon.isDisplayed());
+        BrowserUtils.waitFor(3);
+
+        Assert.assertTrue("verify sticky note is added", vehicleCostsPage.tasklistIcon.isDisplayed());
+        BrowserUtils.waitFor(3);
+
     }
 
     @Given("sales manager navigate Fleet to Vehicle Costs page")
     public void salesManagerNavigateFleetToVehicleCostsPage() {
+        DashboardPage dashboardPage=new DashboardPage();
+        dashboardPage.navigateToModule("Fleet","Vehicle Cost");
+        BrowserUtils.waitFor(3);
+
     }
 
     @When("click on the Pin Icon on the Vehicle Costs page")
     public void clickOnThePinIconOnTheVehicleCostsPage() {
+        vehicleCostsPage.pinIcon.click();
+        BrowserUtils.waitFor(3);
     }
 
     @And("click on the Favourite on the Vehicle Costs page")
     public void clickOnTheFavouriteOnTheVehicleCostsPage() {
+        vehicleCostsPage.favoriteIcon.click();
+        BrowserUtils.waitFor(3);
     }
 
     @Then("sales manager can pin, favourite the Vehicle Costs page")
     public void salesManagerCanPinFavouriteTheVehicleCostsPage() {
+        Assert.assertTrue(vehicleCostsPage.addpinInformation.isDisplayed());
+        BrowserUtils.waitFor(3);
+
     }
 
     @When("click on the Username Dropdown Icon on Vehicle Costs page")
     public void clickOnTheUsernameDropdownIconOnVehicleCostsPage() {
+        vehicleCostsPage.facaretDown.click();
+        BrowserUtils.waitFor(3);
     }
 
     @And("select the Logout on the Dropdown list")
     public void selectTheLogoutOnTheDropdownList() {
+        vehicleCostsPage.logOutLink.click();
+        BrowserUtils.waitFor(3);
     }
 
     @Then("user able to log out")
     public void userAbleToLogOut() {
-    }
-    @Given("the user login as a “sales manager")
-    public void theUserLoginAsASalesManager() {
+        String actualUrl= Driver.get().getCurrentUrl();
+        String expectedUrl="https://qa.transmuda.com/user/login";
+        Assert.assertEquals(expectedUrl,actualUrl);
+        BrowserUtils.waitFor(3);
+
     }
 
-    @Then("user should be able to log in")
-    public void userShouldBeAbleToLogIn() {
-    }
+
+
 
     @When("click on  favourites dropdown")
     public void clickOnFavouritesDropdown() {
+
+        vehicleCostsPage.facbars.click();
+        BrowserUtils.waitFor(3);
     }
 
     @And("click  on  favourites button")
     public void clickOnFavouritesButton() {
+
+        vehicleCostsPage.favoritesContent.click();
+        BrowserUtils.waitFor(3);
+
+
     }
 
 
     @Then("user should be able to see favourites top page and page pin")
     public void userShouldBeAbleToSeeFavouritesTopPageAndPagePin() {
 
+        Assert.assertTrue(vehicleCostsPage.VehicleCostsEntitiesSystem.isDisplayed());
+        Assert.assertTrue(vehicleCostsPage.addpinInformation.isDisplayed());
+        BrowserUtils.waitFor(3) ;
     }
 
+//US-29
+@When("the user click {string}")
+public void the_user_click(String string) {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
 
+    @When("the user select Type as {string}")
+    public void the_user_select_Type_as(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user enter value to Total Price as {string}")
+    public void the_user_enter_value_to_Total_Price_as(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("verify {string} validation message appeared")
+    public void verify_validation_message_appeared(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user enter value to Total Price as {int}")
+    public void the_user_enter_value_to_Total_Price_as(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user choose date as {string}")
+    public void the_user_choose_date_as(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user choose date as Mar {int}, {int}")
+    public void the_user_choose_date_as_Mar(Integer int1, Integer int2) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user write Cost Description {string}")
+    public void the_user_write_Cost_Description(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user click {string} button")
+    public void the_user_click_button(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user select first chasis number")
+    public void the_user_select_first_chasis_number() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user click license plate add button")
+    public void the_user_click_license_plate_add_button() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user select first license plate")
+    public void the_user_select_first_license_plate() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("verify {string} message apper on the top of the page")
+    public void verify_message_apper_on_the_top_of_the_page(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("verify Chasis Number and License Plate added successfully")
+    public void verify_Chasis_Number_and_License_Plate_added_successfully() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
 
 }
 
