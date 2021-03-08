@@ -1,8 +1,10 @@
 package com.transmuda.stepdefinitions;
 
 import com.transmuda.pages.DashboardPage;
+import com.transmuda.pages.LoginPage;
 import com.transmuda.pages.VehicleCostsPage;
 import com.transmuda.utilities.BrowserUtils;
+import com.transmuda.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -476,82 +478,136 @@ public class VehicleCostsStepDefs {
 
     @Given("sales manager navigate Fleet to Vehicle Costs")
     public void salesManagerNavigateFleetToVehicleCosts() {
-    }
 
+
+        DashboardPage dashboardPage=new DashboardPage();
+        dashboardPage.navigateToModule("Fleet","Vehicle Costs");
+        BrowserUtils.waitFor(3);
+
+    }
     @When("click on Add sign on the sidebar widgets")
     public void clickOnAddSignOnTheSidebarWidgets() {
+        vehicleCostsPage.AddSign.click();
+        BrowserUtils.waitFor(3);
+
     }
+
 
     @And("click on Recent Emial Add Button on the sidebar widgets window")
     public void clickOnRecentEmialAddButtonOnTheSidebarWidgetsWindow() {
+        vehicleCostsPage.recentAddBNT.click();
+        BrowserUtils.waitFor(3);
     }
+
 
     @And("click on Sticky Note Add Button on the sidebar widgets window")
     public void clickOnStickyNoteAddButtonOnTheSidebarWidgetsWindow() {
+        vehicleCostsPage.stickyIcon.click();
+        BrowserUtils.waitFor(3);
     }
+
+
 
     @And("click on Task list Add Button on the sidebar widgets window")
     public void clickOnTaskListAddButtonOnTheSidebarWidgetsWindow() {
+        vehicleCostsPage.tasklistIcon.click();
+        BrowserUtils.waitFor(3);
     }
 
     @And("click on Close Button on the sidebar widgets window")
     public void clickOnCloseButtonOnTheSidebarWidgetsWindow() {
+        vehicleCostsPage.closeAddBNT.click();
+        BrowserUtils.waitFor(3);
     }
 
     @Then("sales manager can use sidebar widgets on the vehicle cost page")
     public void salesManagerCanUseSidebarWidgetsOnTheVehicleCostPage() {
+
+        Assert.assertTrue("verify email is added", vehicleCostsPage.amilIcon.isDisplayed());
+        BrowserUtils.waitFor(3);
+        Assert.assertTrue("verify sticky note is added", vehicleCostsPage.stickyIcon.isDisplayed());
+        BrowserUtils.waitFor(3);
+
+        Assert.assertTrue("verify sticky note is added", vehicleCostsPage.tasklistIcon.isDisplayed());
+        BrowserUtils.waitFor(3);
+
     }
 
     @Given("sales manager navigate Fleet to Vehicle Costs page")
     public void salesManagerNavigateFleetToVehicleCostsPage() {
+        DashboardPage dashboardPage=new DashboardPage();
+        dashboardPage.navigateToModule("Fleet","Vehicle Cost");
+        BrowserUtils.waitFor(3);
+
     }
 
     @When("click on the Pin Icon on the Vehicle Costs page")
     public void clickOnThePinIconOnTheVehicleCostsPage() {
+        vehicleCostsPage.pinIcon.click();
+        BrowserUtils.waitFor(3);
     }
 
     @And("click on the Favourite on the Vehicle Costs page")
     public void clickOnTheFavouriteOnTheVehicleCostsPage() {
+        vehicleCostsPage.favoriteIcon.click();
+        BrowserUtils.waitFor(3);
     }
 
     @Then("sales manager can pin, favourite the Vehicle Costs page")
     public void salesManagerCanPinFavouriteTheVehicleCostsPage() {
+        Assert.assertTrue(vehicleCostsPage.addpinInformation.isDisplayed());
+        BrowserUtils.waitFor(3);
+
     }
 
     @When("click on the Username Dropdown Icon on Vehicle Costs page")
     public void clickOnTheUsernameDropdownIconOnVehicleCostsPage() {
+        vehicleCostsPage.facaretDown.click();
+        BrowserUtils.waitFor(3);
     }
 
     @And("select the Logout on the Dropdown list")
     public void selectTheLogoutOnTheDropdownList() {
+        vehicleCostsPage.logOutLink.click();
+        BrowserUtils.waitFor(3);
     }
 
     @Then("user able to log out")
     public void userAbleToLogOut() {
-    }
-    @Given("the user login as a “sales manager")
-    public void theUserLoginAsASalesManager() {
+        String actualUrl= Driver.get().getCurrentUrl();
+        String expectedUrl="https://qa.transmuda.com/user/login";
+        Assert.assertEquals(expectedUrl,actualUrl);
+        BrowserUtils.waitFor(3);
+
     }
 
-    @Then("user should be able to log in")
-    public void userShouldBeAbleToLogIn() {
-    }
+
+
 
     @When("click on  favourites dropdown")
     public void clickOnFavouritesDropdown() {
+
+        vehicleCostsPage.facbars.click();
+        BrowserUtils.waitFor(3);
     }
 
     @And("click  on  favourites button")
     public void clickOnFavouritesButton() {
+
+        vehicleCostsPage.favoritesContent.click();
+        BrowserUtils.waitFor(3);
+
+
     }
 
 
     @Then("user should be able to see favourites top page and page pin")
     public void userShouldBeAbleToSeeFavouritesTopPageAndPagePin() {
 
+        Assert.assertTrue(vehicleCostsPage.VehicleCostsEntitiesSystem.isDisplayed());
+        Assert.assertTrue(vehicleCostsPage.addpinInformation.isDisplayed());
+        BrowserUtils.waitFor(3) ;
     }
-
-
 
 }
 

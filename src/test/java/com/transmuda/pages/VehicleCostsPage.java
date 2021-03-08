@@ -255,6 +255,22 @@ public class VehicleCostsPage extends BasePage{
     @FindBy(xpath = " //div[@class='list-bar']//a[.='Vehicle Costs - Entities - System']")
     public WebElement addpinInformation;
 
+    //US-35 aynur
 
+
+
+    @FindBy(xpath = " //i[@class='fa-caret-down']")
+    public WebElement facaretDown;
+
+
+    @FindBy(xpath = "//i[@class='fa-bars']")
+    public WebElement facbars;
+
+    @FindBy(xpath = "//a[contains(.,'Favorites')]")
+    public WebElement favoritesContent;
+
+    @FindBy(xpath = "//a[.='Vehicle Costs - Entities - System - Car - Entities - System']")
+    public WebElement VehicleCostsEntitiesSystem;
 
 }
+
