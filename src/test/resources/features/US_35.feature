@@ -48,7 +48,7 @@ Feature:
 		   Then user able to log out
 
 		   Given the user login as a "sales manager"
-		   Then user should be able to log in
+		   Then the user should be able to login
 		   When click on  favourites dropdown
 		   And click  on  favourites button  
 		   Then user should be able to see favourites top page and page pin
