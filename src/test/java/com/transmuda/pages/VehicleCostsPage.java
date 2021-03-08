@@ -240,7 +240,7 @@ public class VehicleCostsPage extends BasePage{
     @FindBy(xpath = "//i[@class='sidebar-widget-icon mail-icon']")
     public WebElement amilIcon;
 
-    @FindBy(xpath = "//i[@class='sidebar-widget-icon fa-sticky-note-o']")
+    @FindBy(xpath = "//div[@class='sidebar-widget sidebar-widget-sticky-note ui-sortable-handle']")
      public WebElement stickyIcon;
 
     @FindBy(xpath = "//i[@class='sidebar-widget-icon fa-tasks']")

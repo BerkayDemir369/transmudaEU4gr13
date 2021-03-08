@@ -482,12 +482,13 @@ public class VehicleCostsStepDefs {
 
         DashboardPage dashboardPage=new DashboardPage();
         dashboardPage.navigateToModule("Fleet","Vehicle Costs");
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(7);
 
     }
     @When("click on Add sign on the sidebar widgets")
     public void clickOnAddSignOnTheSidebarWidgets() {
         vehicleCostsPage.AddSign.click();
+
         BrowserUtils.waitFor(3);
 
     }
@@ -496,21 +497,21 @@ public class VehicleCostsStepDefs {
     @And("click on Recent Emial Add Button on the sidebar widgets window")
     public void clickOnRecentEmialAddButtonOnTheSidebarWidgetsWindow() {
         vehicleCostsPage.recentAddBNT.click();
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(5);
     }
 
 
     @And("click on Sticky Note Add Button on the sidebar widgets window")
     public void clickOnStickyNoteAddButtonOnTheSidebarWidgetsWindow() {
-        vehicleCostsPage.stickyIcon.click();
-        BrowserUtils.waitFor(3);
+        vehicleCostsPage.stickyAddBNT.click();
+        BrowserUtils.waitFor(5);
     }
 
 
 
     @And("click on Task list Add Button on the sidebar widgets window")
     public void clickOnTaskListAddButtonOnTheSidebarWidgetsWindow() {
-        vehicleCostsPage.tasklistIcon.click();
+        vehicleCostsPage.tasklistAddBNT.click();
         BrowserUtils.waitFor(3);
     }
 
@@ -536,8 +537,8 @@ public class VehicleCostsStepDefs {
     @Given("sales manager navigate Fleet to Vehicle Costs page")
     public void salesManagerNavigateFleetToVehicleCostsPage() {
         DashboardPage dashboardPage=new DashboardPage();
-        dashboardPage.navigateToModule("Fleet","Vehicle Cost");
-        BrowserUtils.waitFor(3);
+        dashboardPage.navigateToModule("Fleet","Vehicle Costs");
+        BrowserUtils.waitFor(5);
 
     }
 
