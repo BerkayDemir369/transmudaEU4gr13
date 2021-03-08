@@ -11,8 +11,8 @@ import org.junit.runner.RunWith;
                 "rerun:target/rerun.txt"},
         features = "src/test/resources/features",
         glue = "com/transmuda/stepdefinitions",
-        dryRun = false,
-        tags = "@smoke"
+        dryRun = true,
+        tags = "@TR-262"
 )
 public class CukesRunner {
 }
