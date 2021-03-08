@@ -59,7 +59,7 @@ public class LoginPage {
         submit.click();
     }
 
-    public void loginForSalesManagerStoreManager(String userType) {
+    public void loginAs(String userType) {
 
         Driver.get().get(ConfigurationReader.get("url"));
 
@@ -69,10 +69,10 @@ public class LoginPage {
         if (userType.equals("driver")) {
             username = ConfigurationReader.get("driver_username");
             password = ConfigurationReader.get("driver_password");
-        } else if (userType.equals("sales manager")) {
+        } else if (userType.equals("sales manager") || userType.equals("salesmanager")) {
             username = ConfigurationReader.get("sales_manager_username");
             password = ConfigurationReader.get("sales_manager_password");
-        } else if (userType.equals("store manager")) {
+        } else if (userType.equals("store manager") || userType.equals("storemanager")) {
             username = ConfigurationReader.get("store_manager_username");
             password = ConfigurationReader.get("store_manager_password");
         }
