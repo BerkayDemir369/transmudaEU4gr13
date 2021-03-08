@@ -4,6 +4,8 @@ Feature:
 		#@TR-174
 		Given the user login as a "driver/storemanager/salesmanager"
 		Then the user should be able to login
+		When Navigate to Fleet Vehicle Costs.
+		Then Truck driver can reach the Vehicle Costs Page.
 		
 		
 
@@ -20,7 +22,7 @@ Feature:
 	#add event."
 	@TR-250 @TR-249
 	Scenario: US-31-Truck Driver Add Event function Test Case1
-		Given Navigate to Fleet Vehicle Costs.
+
 		When  Click on any Vehicle Cost.
 		And   Click on Add Event Button on the specific Vehicle Cost Page.
 		Then  Truck driver can see Add Event Window.
@@ -38,7 +40,7 @@ Feature:
 	#add event."
 	@TR-251 @TR-249
 	Scenario: US-31-Truck Driver Add Event function Test Case2
-		Given Navigate to Fleet Vehicle Costs.
+
 		When  Click on any Vehicle Cost.
 		And   Click on Add Event Button on the specific Vehicle Cost Page.
 		Then  Truck driver can see Add Event Window.
@@ -56,7 +58,7 @@ Feature:
 	#add event."
 	@TR-263 @TR-249
 	Scenario: US-31-Truck Driver Add Event function Test Case3
-		Given Navigate to Fleet Vehicle Costs.
+
 		When  Click on that specific Vehicle Cost.
 		Then  Truck driver can see the Event under the General.
 		When  Click on the Activity Button on that specific VehiclVehicle Cost page.e Cost page.
