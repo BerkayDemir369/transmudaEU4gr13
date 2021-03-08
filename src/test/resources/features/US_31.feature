@@ -5,7 +5,8 @@ Feature:
 		Given the user login as a "driver/storemanager/salesmanager"
 		Then the user should be able to login
 		When Navigate to Fleet Vehicle Costs.
-		Then Truck driver can reach the Vehicle Costs Page.
+		Then the user should be able to see costs information
+
 		
 		
 
