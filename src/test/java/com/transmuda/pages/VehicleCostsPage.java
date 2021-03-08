@@ -11,7 +11,8 @@ public class VehicleCostsPage extends BasePage{
     public VehicleCostsPage() {
         PageFactory.initElements(Driver.get(), this);
     }
-                  //US-25
+
+    //US-25
 
     //change page number for getting following vehicle costs informations
     @FindBy(xpath = "//i[contains(text(),'Next')]")
