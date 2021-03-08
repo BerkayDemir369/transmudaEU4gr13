@@ -10,7 +10,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class Us_18_StepDefs {
+public class VehiclePageStepDefs {
     VehicleInfoPage vehicleInfoPage=new VehicleInfoPage();
     @Given("Navigate Fleet Vecihle")
     public void navigate_Fleet_Vecihle() {
