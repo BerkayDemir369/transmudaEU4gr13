@@ -3,11 +3,9 @@ package com.transmuda.stepdefinitions;
 import com.transmuda.pages.BasePage;
 import com.transmuda.pages.LoginPage;
 import com.transmuda.utilities.BrowserUtils;
-import com.transmuda.utilities.ConfigurationReader;
 import com.transmuda.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 public class LoginStepDefs extends BasePage {

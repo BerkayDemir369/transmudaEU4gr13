@@ -3,7 +3,7 @@ package com.transmuda.stepdefinitions;
 import com.transmuda.pages.BasePage;
 import io.cucumber.java.en.Given;
 
-public class Navigation_StepDefs extends BasePage {
+public class NavigationStepDefs extends BasePage {
 
     // Please use this feature step template. Dont create again and again.
     // When navigate "Fleet" to "Vehicle Costs"
