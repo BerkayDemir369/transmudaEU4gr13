@@ -64,6 +64,8 @@ public class VehicleCostsPage extends BasePage{
 
     @FindBy(xpath = "//div[@class='flash-messages-holder']")
     public WebElement flashMessage;
+
+
     @FindBy(xpath ="//i[@class='fa-cog hide-text']")
     public WebElement gridSettingsButton;
 
@@ -138,40 +140,12 @@ public class VehicleCostsPage extends BasePage{
 
 
 
-    // US-27 (aynur)
 
-    @FindBy(xpath="//button[@class='sidebar__add-widget']")
-    public WebElement AddSign;
 
-    @FindBy(xpath = "//div[@class='widget-picker-containers']/div[1]//a[contains(.,'Add')]")
-    public WebElement recentAddBNT;
 
-    @FindBy(xpath = "//div[@class='widget-picker-containers']/div[2]//a[contains(.,'Add')]")
-    public WebElement stickyAddBNT;
 
-    @FindBy(xpath = "//div[@class='widget-picker-containers']/div[3]//a[contains(.,'Add')]")
-    public WebElement tasklistAddBNT;
 
-    @FindBy(xpath = "//a[.='Close']")
-    public WebElement closeAddBNT;
 
-    @FindBy(xpath = "//i[@class='sidebar-widget-icon mail-icon']")
-    public WebElement amilIcon;
-
-    @FindBy(xpath = "//i[@class='sidebar-widget-icon fa-sticky-note-o']")
-     public WebElement stickyIcon;
-
-    @FindBy(xpath = "//i[@class='sidebar-widget-icon fa-tasks']")
-    public WebElement tasklistIcon;
-
-    @FindBy(xpath = "//i[@class='fa-thumb-tack hide-text']")
-    public WebElement pinIcon;
-
-    @FindBy(xpath = " //i[@class='fa-star hide-text']")
-    public WebElement favoriteIcon;
-
-    @FindBy(xpath = " //div[@class='list-bar']//a[.='Vehicle Costs - Entities - System']")
-    public WebElement addpinInformation;
 
 
 
