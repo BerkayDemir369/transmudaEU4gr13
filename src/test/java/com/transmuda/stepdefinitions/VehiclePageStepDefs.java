@@ -1,6 +1,6 @@
 package com.transmuda.stepdefinitions;
 
-import com.transmuda.pages.DashboardPage;
+import com.transmuda.pages.BasePage;
 import com.transmuda.pages.VehicleInfoPage;
 import com.transmuda.utilities.BrowserUtils;
 import com.transmuda.utilities.Driver;
@@ -10,13 +10,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class VehiclePageStepDefs {
-    VehicleInfoPage vehicleInfoPage=new VehicleInfoPage();
+public class VehiclePageStepDefs extends BasePage {
+    VehicleInfoPage vehicleInfoPage = new VehicleInfoPage();
+
     @Given("Navigate Fleet Vecihle")
     public void navigate_Fleet_Vecihle() {
-
-        DashboardPage dashboardPage=new DashboardPage();
-        dashboardPage.navigateToModule("Fleet","Vehicles");
+        navigateToModule("Fleet", "Vehicles");
         BrowserUtils.waitFor(8);
 
     }
@@ -58,23 +57,22 @@ public class VehiclePageStepDefs {
 
     @Given("navigate to Fleet Vehicle")
     public void navigate_to_Fleet_Vehicle() {
-        DashboardPage dashboardPage=new DashboardPage();
-        dashboardPage.navigateToModule("Fleet","Vehicles");
+        navigateToModule("Fleet", "Vehicles");
         BrowserUtils.waitFor(5);
 
     }
 
     @When("click on the pin button on the vehicle page")
     public void click_on_the_pin_button_on_the_vehicle_page() {
-       vehicleInfoPage.pinButton.click();
-       BrowserUtils.waitFor(10);
+        vehicleInfoPage.pinButton.click();
+        BrowserUtils.waitFor(10);
     }
 
     @Then("truck driver can pin the page")
     public void truck_driver_can_pin_the_page() {
-        String actualURL= Driver.get().getCurrentUrl();
-        String expectURL="https://qa.transmuda.com/entity/Extend_Entity_Carreservation?restore=1";
-        Assert.assertEquals(actualURL,expectURL);
+        String actualURL = Driver.get().getCurrentUrl();
+        String expectURL = "https://qa.transmuda.com/entity/Extend_Entity_Carreservation?restore=1";
+        Assert.assertEquals(actualURL, expectURL);
         BrowserUtils.waitFor(5);
     }
 

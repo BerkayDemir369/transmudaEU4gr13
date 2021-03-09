@@ -78,7 +78,9 @@
                             <inputDirectory>${project.build.directory}</inputDirectory>
                             <jsonFiles>
                                 <param>**/cucumber*.json</param>
+                                <param>**/failedTests*.json</param>
                             </jsonFiles>
+                            <checkBuildResult>false</checkBuildResult>
                             <classificationFiles>
                                 <param>**/classifications/*.properties</param>
                             </classificationFiles>

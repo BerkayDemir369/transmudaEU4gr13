@@ -13,7 +13,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public abstract class  BasePage {
+public abstract class BasePage {
+
+    public BasePage() {
+        PageFactory.initElements(Driver.get(), this);
+    }
 
     @FindBy(css = "span.title-level-1")
     public List<WebElement> menuOptions;
@@ -25,6 +29,103 @@ public abstract class  BasePage {
     @FindBy(css = "h1[class='oro-subtitle']")
     public WebElement pageSubTitle;
 
+    @FindBy(css = ".list-bar")
+    public WebElement pinBar;
+
+    @FindBy(xpath = "//div[@class='list-bar']//li[@class='pin-holder active']")
+    public WebElement pinBarActivePin;
+
+    @FindBy(xpath = "//div[@class='list-bar']//li/button[@class='btn-close fa-close']")
+    public List<WebElement> pinBarDeletePinButtons;
+
+    @FindBy(xpath = "//div[@class='list-bar']//ul/li")
+    public List<WebElement> listBarPinnedPages;
+
+    @FindBy(xpath = "//h1[@class='logo logo-text']")
+    public WebElement logo;
+
+    @FindBy(css = ".top-search")
+    public WebElement ShortCutsSearchButton;
+
+    @FindBy(xpath = "//ul[contains(.,'Shortcuts')]")
+    public WebElement shortCutsPopup;
+
+    @FindBy(css = "[placeholder='Enter shortcut action']")
+    public WebElement shortCutActionInputText;
+
+
+    public WebElement foundedShortCut(String SearchingShortCutValue) {
+        String shortCutName = "//li[@class='active']/a[.='" + SearchingShortCutValue + "']";
+        return Driver.get().findElement(By.xpath(shortCutName));
+    }
+
+    @FindBy(xpath = "//a[.='See full list']")
+    public WebElement shortCutsActionFullListLink;
+
+    @FindBy(xpath = "//tbody//tr/td[1]")
+    public List<WebElement> shortCutsList;
+
+    public void shortCutListClick(String shortCutName) {
+        for (WebElement shortCut : shortCutsList) {
+            if (shortCut.getText().equals(shortCutName)) {
+                shortCut.click();
+            }
+        }
+    }
+
+    public boolean shortCutListCheck(String shortCutName) {
+        for (WebElement shortCut : shortCutsList) {
+            if (shortCut.getText().equals(shortCutName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @FindBy(css = ".fa-question-circle")
+    public WebElement helpLinkButton;
+
+    @FindBy(xpath = "//ul[@class='breadcrumb']/li")
+    public List<WebElement> breadCrumb;
+
+    @FindBy(css = ".favorite-button")
+    public WebElement favoriteButton;
+
+    @FindBy(css = ".minimize-button")
+    public WebElement pinButton;
+
+
+
+    @FindBy(css = ".dot-menu")
+    public WebElement historyAndFavoritesButton;
+
+    @FindBy(xpath = "//li[@class='dot-menu dropdown open']/div[@class='dropdown-menu pull-right']")
+    public WebElement historyAndFavoritesPopup;
+
+    @FindBy(xpath = "//a[contains(.,'History')]")
+    public WebElement historyTab;
+
+    @FindBy(xpath = "//div[@id='history-content']/ul[@class='extra-list']//li")
+    public List<WebElement> historyTabContentLinks;
+
+    @FindBy(xpath = "//a[contains(.,'Favorites')]")
+    public WebElement favoritesTab;
+
+    @FindBy(xpath = "//div[@id='favorite-content']/ul[@class='extra-list']/li")
+    public List<WebElement> favoritesTabContentLinks;
+
+    @FindBy(xpath = "//a[contains(.,'Most Viewed')]")
+    public WebElement mostViewedTab;
+
+    @FindBy(xpath = "//div[@id='mostviewed-content']/ul[@class='extra-list']/li")
+    public List<WebElement> mostViewedTabContentLinks;
+
+    @FindBy(css = ".email-notification-menu")
+    public WebElement mailButton;
+
+    @FindBy(xpath = "//li[@title='Recent Emails']/div")
+    public WebElement mailPopup;
+
     @FindBy(css = "#user-menu > a")
     public WebElement userName;
 
@@ -34,9 +135,20 @@ public abstract class  BasePage {
     @FindBy(linkText = "My User")
     public WebElement myUser;
 
-    public BasePage() {
-        PageFactory.initElements(Driver.get(), this);
-    }
+    // Alert Messages
+    @FindBy(xpath = "//div[@class='alert alert-error fade in top-messages ']")
+    public WebElement alertMessage;
+
+    @FindBy(xpath = "//div[@class='flash-messages-holder']/div")
+    public List<WebElement> alertMessages;
+
+    @FindBy(xpath = "//div[@class='alert alert-error fade in top-messages ']/button")
+    public WebElement alertCloseButton;
+
+
+    //Page Sidebar Elements
+
+    @FindBy(css = ".sidebar__toggle")     public WebElement sideBarToggle;
 
 
     /**
@@ -65,20 +177,20 @@ public abstract class  BasePage {
 
     }
 
-    public String getUserName(){
+    public String getUserName() {
         waitUntilLoaderScreenDisappear();
         BrowserUtils.waitForVisibility(userName, 5);
         return userName.getText();
     }
 
 
-
-    public void logOut(){
+    public void logOut() {
         BrowserUtils.waitFor(2);
         BrowserUtils.clickWithJS(userName);
         BrowserUtils.clickWithJS(logOutLink);
     }
-    public void goToMyUser(){
+
+    public void goToMyUser() {
         waitUntilLoaderScreenDisappear();
         BrowserUtils.waitForClickablility(userName, 5).click();
         BrowserUtils.waitForClickablility(myUser, 5).click();
@@ -110,7 +222,7 @@ public abstract class  BasePage {
             Driver.get().findElement(By.xpath(moduleLocator)).click();
         } catch (Exception e) {
 //            BrowserUtils.waitForStaleElement(Driver.get().findElement(By.xpath(moduleLocator)));
-            BrowserUtils.clickWithTimeOut(Driver.get().findElement(By.xpath(moduleLocator)),  5);
+            BrowserUtils.clickWithTimeOut(Driver.get().findElement(By.xpath(moduleLocator)), 5);
         }
     }
 
