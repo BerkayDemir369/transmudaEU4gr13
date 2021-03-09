@@ -9,8 +9,8 @@ Feature:
   @TR-230 @TR-252
   Scenario: 1-Truck Driver can see all information about specific vehicle cost when click on it.
     When navigate "Fleet" to "Vehicle Costs"
-    And click on the Vehicle Costs grid table any rows
-    Then Truck Driver can see all informations about specific vehicle cost
+    And click on the table row "Depreciation and Interests"
+    Then Truck Driver can see all information about specific record "Depreciation and Interests"
 
   @TR-231 @TR-252
   Scenario: 2-Truck Driver can filter activities by using either Activity Type button or Date Range button

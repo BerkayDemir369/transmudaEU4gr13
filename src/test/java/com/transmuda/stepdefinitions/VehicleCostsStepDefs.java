@@ -1,6 +1,7 @@
 package com.transmuda.stepdefinitions;
 
 import com.transmuda.pages.BasePage;
+import com.transmuda.pages.GridBasePage;
 import com.transmuda.pages.VehicleCostsPage;
 import com.transmuda.utilities.BrowserUtils;
 import com.transmuda.utilities.Driver;
@@ -10,7 +11,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class VehicleCostsStepDefs extends BasePage {
+public class VehicleCostsStepDefs extends GridBasePage {
 
 //US-25
 
@@ -171,7 +172,20 @@ public class VehicleCostsStepDefs extends BasePage {
         BrowserUtils.waitFor(3);
 
     }
-// US-30
+
+    // US-30 -- Sukru
+
+    @And("click on the table row {string}")
+    public void clickOnTheTableFirstRow(String Text) {
+        BrowserUtils.waitFor(3);
+        findRowWebElement("Type", Text).click();
+    }
+
+    @Then("Truck Driver can see all information about specific record {string}")
+    public void truckDriverCanSeeAllInformationAboutSpecificRecord(String text) {
+        BrowserUtils.waitFor(3);
+        Assert.assertTrue(VehicleCostsPage.elementNamedElement(text).isDisplayed());
+    }
 
 
 //US-33
@@ -678,6 +692,7 @@ public class VehicleCostsStepDefs extends BasePage {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
+
 
 }
 
