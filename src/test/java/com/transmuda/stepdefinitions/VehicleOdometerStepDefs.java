@@ -83,8 +83,7 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
     @Then("verify record table content decrease {int}")
     public void verify_record_table_content_decrease(Integer int1) {
-        int number = new  VehicleOdometerPage().tableRow.size();
-        Integer number1=Integer.valueOf(number);
+        Integer number1= new  VehicleOdometerPage().tableRow.size();
         Assert.assertEquals(int1,number1);
 
     }
@@ -117,7 +116,7 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
     @Given("The truck driver user accesses the {string} - {string}")
     public void theTruckDriverUserAccessesThe(String tab, String module) {
-        new DashboardPage().navigateToModule(tab, module);
+        navigateToModule(tab, module);
     }
 
     @When("The truck driver click Grid Settings button")
@@ -297,12 +296,7 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
     @Given("navigate  Fleet to  Vehicle Odometer")
     public void navigateFleetToVehicleOdometer() {
-
-
-        DashboardPage dashboardPage = new DashboardPage();
-
-        //  new DashboardPage().navigateToModule(tab,module);
-        dashboardPage.navigateToModule("Fleet", "Vehicle Odometer");
+        navigateToModule("Fleet", "Vehicle Odometer");
         BrowserUtils.waitFor(10);
     }
 
@@ -572,7 +566,7 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
 
         BrowserUtils.waitFor(1);
-        new DashboardPage().navigateToModule(tab,module);
+        navigateToModule(tab,module);
 
 
     }
@@ -723,8 +717,7 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
     @Given("navigate Fleet to Vehicle Odometer")
     public void navigate_Fleet_to_Vehicle_Odometer() {
-        DashboardPage dashboardPage=new DashboardPage();
-        dashboardPage.navigateToModule("Fleet","Vehicle Odometer");
+        navigateToModule("Fleet","Vehicle Odometer");
         BrowserUtils.waitFor(10);
     }
 
