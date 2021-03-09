@@ -16,12 +16,14 @@ public class VehicleCostsStepDefs {
 //US-25
 
     VehicleCostsPage vehicleCostsPage=new VehicleCostsPage();
-    @Given("navigate to Fleet Vehicle Costs")
+    /*@Given("navigate to Fleet Vehicle Costs")
     public void navigate_to_Fleet_Vehicle_Costs() {
         DashboardPage dashboardPage=new DashboardPage();
         dashboardPage.navigateToModule("Fleet","Vehicle Costs");
         BrowserUtils.waitFor(10);
     }
+
+     */
 
     @When("click on the Page button on the Vehicle Costs page")
     public void click_on_the_Page_button_on_the_Vehicle_Costs_page() {
@@ -174,13 +176,13 @@ public class VehicleCostsStepDefs {
 
     }
     //======US-28   Hamdulla====
-   /* @When("Navigate to Fleet Vehicle Costs.")
+    @When("Navigate to Fleet Vehicle Costs.")
     public void navigate_to_Fleet_Vehicle_Costs() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
 
-    */
+
 
     @When("Move to ... sign and click on Eye Button of any Vehicle Costs.")
     public void move_to_sign_and_click_on_Eye_Button_of_any_Vehicle_Costs() {
