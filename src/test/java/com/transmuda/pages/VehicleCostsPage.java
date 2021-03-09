@@ -199,5 +199,121 @@ public class VehicleCostsPage extends BasePage {
     @FindBy(xpath = "//a[.='Vehicle Costs - Entities - System - Car - Entities - System']")
     public WebElement VehicleCostsEntitiesSystem;
 
+
+    // =============================
+
+
+    // US-28 (Hamdulla)
+
+    @FindBy(xpath = "(//td[contains(text(),'Tax Roll')])[1]")
+    public WebElement TaxRoll1;
+
+    @FindBy(xpath = "//tbody[@class='grid-body']/tr[2]//a[.='...']")
+    public WebElement PoinsSignOfTaxRoll1;
+
+    @FindBy(xpath = "(//i[@class='fa-eye hide-text'])[2]")
+    public WebElement EyeButton;
+
+    @FindBy(xpath = "//h1[contains(text(),'Item #3')]")
+    public WebElement TaxRollItem3;
+
+    @FindBy(xpath = "(//i[@class='fa-pencil-square-o hide-text'])[2]")
+    public WebElement EditButton;
+
+    @FindBy(xpath = "(//h1[contains(text(),'Quick Launchpad')])[1]")
+    public WebElement EditResultQuickLaunchpad;
+
+    @FindBy(xpath = "(//i[@class='fa-trash-o hide-text'])[2]")
+    public WebElement DeleteButton;
+
+    @FindBy(xpath = "//a[@class='btn ok btn-danger']")
+    public WebElement DeleteYesButton;
+
+    @FindBy(xpath = "//div[@class='message']")
+    public WebElement DeleteErrorMessage;
+
+
+    // ===========================
+
+    //US-31  Hamdulla
+
+    @FindBy(xpath = "//a[.='Add EventAdd Event']")
+    public WebElement AddEventButton;
+
+    @FindBy(xpath = "//span[contains(text(),'Add Event')]")
+    public WebElement AddEventWindow;
+
+    @FindBy(name = "oro_calendar_event_form[title]")
+    public WebElement TitleInputBox;
+
+    @FindBy(name = "oro_calendar_event_form[organizerDisplayName]")
+    public WebElement OrganizerNameBox;
+
+    @FindBy(name = "oro_calendar_event_form[organizerEmail]")
+    public WebElement OrganizerEmailBox;
+
+    @FindBy(xpath = "(//input[@placeholder='Choose a date'])[1]")
+    public WebElement StartDate;
+
+    @FindBy(xpath = "(//a[contains(text(),'10')])[5]")
+    public WebElement Date10;
+
+    @FindBy(xpath = "(//input[@placeholder='time'])[1]")
+    public WebElement StartHour;
+
+    @FindBy(xpath = "//li[contains(text(),'8:00 AM')]")
+    public WebElement Hour8AM;
+
+    @FindBy(xpath = "(//input[@placeholder='Choose a date'])[2]")
+    public WebElement EndDate;
+
+    @FindBy(xpath = "//a[contains(text(),'12')]")
+    public WebElement Date12;
+
+    @FindBy(xpath = "(//input[@placeholder='time'])[2]")
+    public WebElement EndHour;
+
+    @FindBy(xpath = "//li[contains(text(),'6:07 PM')]")
+    public WebElement Hour607PM;
+
+    @FindBy(xpath = "//button[contains(text(),'Save')]")
+    public WebElement SaveButton;
+
+    @FindBy(xpath = "//span[contains(text(),'not be blank')]")
+    public WebElement ErrorMessage;
+
+    @FindBy(xpath = "//strong[contains(text(),'Hamdulla1')]")
+    public WebElement EventName;
+
+    @FindBy(xpath = "//a[contains(text(),'Activity')]")
+    public WebElement ActivityTab;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
 
