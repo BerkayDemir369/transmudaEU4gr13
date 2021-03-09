@@ -17,20 +17,7 @@ public class GridBasePage extends BasePage {
 
     //page elements
 
-    @FindBy(css = ".oro-subtitle")
-    public WebElement PageSubTitle;
 
-    @FindBy(css = ".favorite-button")
-    public WebElement FavoriteButton;
-
-    @FindBy(css = ".minimize-button")
-    public WebElement PinButton;
-
-    @FindBy(xpath = "//div[@class='alert alert-error fade in top-messages ']")
-    public WebElement AlertMessage;
-
-    @FindBy(xpath = "//div[@class='alert alert-error fade in top-messages ']/button")
-    public WebElement AlertCloseButton;
 
     @FindBy(xpath = "//div[@class='pull-right title-buttons-container']/a[contains(.,'Create')]")
     public WebElement CreateButton;

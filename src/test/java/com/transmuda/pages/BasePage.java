@@ -15,6 +15,10 @@ import java.util.List;
 
 public abstract class BasePage {
 
+    public BasePage() {
+        PageFactory.initElements(Driver.get(), this);
+    }
+
     @FindBy(css = "span.title-level-1")
     public List<WebElement> menuOptions;
 
@@ -120,9 +124,21 @@ public abstract class BasePage {
     @FindBy(linkText = "My User")
     public WebElement myUser;
 
-    public BasePage() {
-        PageFactory.initElements(Driver.get(), this);
-    }
+
+    @FindBy(css = ".oro-subtitle")
+    public WebElement PageSubTitle;
+
+    @FindBy(css = ".favorite-button")
+    public WebElement FavoriteButton;
+
+    @FindBy(css = ".minimize-button")
+    public WebElement PinButton;
+
+    @FindBy(xpath = "//div[@class='alert alert-error fade in top-messages ']")
+    public WebElement AlertMessage;
+
+    @FindBy(xpath = "//div[@class='alert alert-error fade in top-messages ']/button")
+    public WebElement AlertCloseButton;
 
 
     /**
