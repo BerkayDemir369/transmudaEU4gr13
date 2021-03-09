@@ -30,51 +30,51 @@ public abstract class BasePage {
     public WebElement pageSubTitle;
 
     @FindBy(css = ".list-bar")
-    public WebElement PinBar;
+    public WebElement pinBar;
 
     @FindBy(xpath = "//div[@class='list-bar']//li[@class='pin-holder active']")
-    public WebElement PinBarActivePin;
+    public WebElement pinBarActivePin;
 
     @FindBy(xpath = "//div[@class='list-bar']//li/button[@class='btn-close fa-close']")
-    public List<WebElement> PinBarDeletePinButtons;
+    public List<WebElement> pinBarDeletePinButtons;
 
     @FindBy(xpath = "//div[@class='list-bar']//ul/li")
-    public List<WebElement> ListBarPinnedPages;
+    public List<WebElement> listBarPinnedPages;
 
     @FindBy(xpath = "//h1[@class='logo logo-text']")
-    public WebElement Logo;
+    public WebElement logo;
 
     @FindBy(css = ".top-search")
     public WebElement ShortCutsSearchButton;
 
     @FindBy(xpath = "//ul[contains(.,'Shortcuts')]")
-    public WebElement ShortCutsPopup;
+    public WebElement shortCutsPopup;
 
     @FindBy(css = "[placeholder='Enter shortcut action']")
-    public WebElement ShortCutActionInputText;
+    public WebElement shortCutActionInputText;
 
 
-    public WebElement FoundedShortCut(String SearchingShortCutValue) {
+    public WebElement foundedShortCut(String SearchingShortCutValue) {
         String shortCutName = "//li[@class='active']/a[.='" + SearchingShortCutValue + "']";
         return Driver.get().findElement(By.xpath(shortCutName));
     }
 
     @FindBy(xpath = "//a[.='See full list']")
-    public WebElement ShortCutsActionFullListLink;
+    public WebElement shortCutsActionFullListLink;
 
     @FindBy(xpath = "//tbody//tr/td[1]")
-    public List<WebElement> ShortCutsList;
+    public List<WebElement> shortCutsList;
 
-    public void ShortCutListClick(String shortCutName) {
-        for (WebElement shortCut : ShortCutsList) {
+    public void shortCutListClick(String shortCutName) {
+        for (WebElement shortCut : shortCutsList) {
             if (shortCut.getText().equals(shortCutName)) {
                 shortCut.click();
             }
         }
     }
 
-    public boolean ShortCutListCheck(String shortCutName) {
-        for (WebElement shortCut : ShortCutsList) {
+    public boolean shortCutListCheck(String shortCutName) {
+        for (WebElement shortCut : shortCutsList) {
             if (shortCut.getText().equals(shortCutName)) {
                 return true;
             }
@@ -83,37 +83,48 @@ public abstract class BasePage {
     }
 
     @FindBy(css = ".fa-question-circle")
-    public WebElement HelpLinkButton;
+    public WebElement helpLinkButton;
+
+    @FindBy(xpath = "//ul[@class='breadcrumb']/li")
+    public List<WebElement> breadCrumb;
+
+    @FindBy(css = ".favorite-button")
+    public WebElement favoriteButton;
+
+    @FindBy(css = ".minimize-button")
+    public WebElement pinButton;
+
+
 
     @FindBy(css = ".dot-menu")
-    public WebElement HistoryAndFavoritesButton;
+    public WebElement historyAndFavoritesButton;
 
     @FindBy(xpath = "//li[@class='dot-menu dropdown open']/div[@class='dropdown-menu pull-right']")
-    public WebElement HistoryAndFavoritesPopup;
+    public WebElement historyAndFavoritesPopup;
 
     @FindBy(xpath = "//a[contains(.,'History')]")
-    public WebElement HistoryTab;
+    public WebElement historyTab;
 
     @FindBy(xpath = "//div[@id='history-content']/ul[@class='extra-list']//li")
-    public List<WebElement> HistoryTabContentLinks;
+    public List<WebElement> historyTabContentLinks;
 
     @FindBy(xpath = "//a[contains(.,'Favorites')]")
-    public WebElement FavoritesTab;
+    public WebElement favoritesTab;
 
     @FindBy(xpath = "//div[@id='favorite-content']/ul[@class='extra-list']/li")
-    public List<WebElement> FavoritesTabContentLinks;
+    public List<WebElement> favoritesTabContentLinks;
 
     @FindBy(xpath = "//a[contains(.,'Most Viewed')]")
-    public WebElement MostViewedTab;
+    public WebElement mostViewedTab;
 
     @FindBy(xpath = "//div[@id='mostviewed-content']/ul[@class='extra-list']/li")
-    public List<WebElement> MostViewedTabContentLinks;
+    public List<WebElement> mostViewedTabContentLinks;
 
     @FindBy(css = ".email-notification-menu")
-    public WebElement MailButton;
+    public WebElement mailButton;
 
     @FindBy(xpath = "//li[@title='Recent Emails']/div")
-    public WebElement MailPopup;
+    public WebElement mailPopup;
 
     @FindBy(css = "#user-menu > a")
     public WebElement userName;
@@ -124,21 +135,20 @@ public abstract class BasePage {
     @FindBy(linkText = "My User")
     public WebElement myUser;
 
-
-    @FindBy(css = ".oro-subtitle")
-    public WebElement PageSubTitle;
-
-    @FindBy(css = ".favorite-button")
-    public WebElement FavoriteButton;
-
-    @FindBy(css = ".minimize-button")
-    public WebElement PinButton;
-
+    // Alert Messages
     @FindBy(xpath = "//div[@class='alert alert-error fade in top-messages ']")
-    public WebElement AlertMessage;
+    public WebElement alertMessage;
+
+    @FindBy(xpath = "//div[@class='flash-messages-holder']/div")
+    public List<WebElement> alertMessages;
 
     @FindBy(xpath = "//div[@class='alert alert-error fade in top-messages ']/button")
-    public WebElement AlertCloseButton;
+    public WebElement alertCloseButton;
+
+
+    //Page Sidebar Elements
+
+    @FindBy(css = ".sidebar__toggle")     public WebElement sideBarToggle;
 
 
     /**
