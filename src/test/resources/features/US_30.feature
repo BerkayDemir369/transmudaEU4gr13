@@ -23,10 +23,10 @@ Feature:
     Then Truck driver user should be able to see selected "Type" filter setting on the right side of manage filter
     When Truck driver user Click selected Filter Option "Type" button
     Then Truck driver user should be able to see "Type" in the Filter Option popup
-    When Truck driver user Select Condition keyword "Is Any Of" for in the selected Filter Option popup
+    When Truck driver user Select Condition keyword "is any of" for in the selected Filter Option popup
     And Truck driver user enter data "Vehicle Registration" "" for Condition keyword in the selected Filter Option popup
     And Truck driver user Click Update button in the selected Filter Option popup
-    Then Truck driver user should only be able to see results for "Is Any Of" "Vehicle Registration" "" selected filter settings in the Filter settings
+    Then Truck driver user should only be able to see results for "is any of" "Vehicle Registration" "" selected filter settings in the Filter settings
 
     When The truck driver user clicks Reset button
     And The truck driver user clicks Filters button
