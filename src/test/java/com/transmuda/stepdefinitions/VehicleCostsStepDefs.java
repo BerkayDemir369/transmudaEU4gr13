@@ -254,8 +254,8 @@ VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
 
     @When("Click on any Vehicle Cost.")
     public void click_on_any_Vehicle_Cost() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        vehicleCostsPage.TaxRoll1.click();
+        BrowserUtils.waitFor(4);
     }
 
     @When("Click on Add Event Button on the specific Vehicle Cost Page.")
