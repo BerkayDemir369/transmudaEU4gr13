@@ -173,16 +173,59 @@ public class GridBasePage extends BasePage {
     @FindBy(xpath = "//button[@class='btn dropdown-toggle']")
     public WebElement FilterConditionButton;
 
+
+    public WebElement conditionKeyword(String conditionKeyword) {
+        String locator = "//a[.='" + conditionKeyword + "']";
+        return Driver.get().findElement(By.xpath(locator));
+    }
+
+
     @FindBy(xpath = "//a[.='equals']")
     public WebElement ConditionType;
 
-    @FindBy(xpath = "//div[@class='filter-start']/input[@name='value']")
+    @FindBy(xpath = "//input[@name='value']")
     public WebElement FilterStartValue;
+
+    @FindBy(xpath = "//input[@class='select2-input select2-default']")
+    public WebElement FilterValue;
+
+    public WebElement selectElement(String Keyword) {
+        String locator = "//li[.='" + Keyword + "']";
+        return Driver.get().findElement(By.xpath(locator));
+    }
+
+
+    public void enterConditionText(String activeFilter, String condition, String searchText, String searchText2) {
+
+        if (findHeader(activeFilter)) {
+            int i = getGridTableHeaderIndex(activeFilter);
+            String findRow = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[" + i + "]";
+            List<WebElement> findRowData = Driver.get().findElements(By.xpath(findRow));
+            System.out.println("checkRow active found");
+
+            for (WebElement value : findRowData) {
+                if (!value.getText().equals(searchText)) {
+                    switch (condition) {
+                        case "Equal":
+                        case "Not Equals":
+                            findRowValue(activeFilter, searchText);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
+    }
+
+
+
 
     @FindBy(xpath = "//input[@name='value_end']")
     public WebElement FilterEndValue;
 
-    @FindBy(xpath = "//div[@class='choice-filter number-range-filter']//button[@class='btn btn-primary filter-update']")
+    @FindBy(xpath = "//div[@style='visibility: visible; margin-left: auto;']//button[@class='btn btn-primary filter-update']")
     public WebElement FilterUpdateButton;
 
     //Grid Settings Elements

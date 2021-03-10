@@ -9,6 +9,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -191,7 +192,7 @@ public class VehicleOdometerStepDefs extends GridBasePage {
 
     @When("The truck driver user clicks Filters button")
     public void theTruckDriverUserClicksFiltersButton() {
-        BrowserUtils.waitFor(10);
+        BrowserUtils.waitFor(5);
         FilterButton.click();
     }
 
@@ -242,14 +243,18 @@ public class VehicleOdometerStepDefs extends GridBasePage {
     @When("Truck driver user Select Condition keyword {string} for in the selected Filter Option popup")
     public void truckDriverUserSelectConditionKeywordInTheSelectedFilterOptionPopup(String conditionKeyword) {
         FilterConditionButton.click();
-        ConditionType.click();
+        BrowserUtils.waitFor(1);
+        conditionKeyword(conditionKeyword).click();
         // TO-DO: select condition type must be dynamic
 
     }
 
     @And("Truck driver user enter data {string} {string} for Condition keyword in the selected Filter Option popup")
     public void truckDriverUserEnterDataForSelectedConditionKeywordInTheSelectedFilterOptionPopup(String searchText, String searchText2) {
-        FilterStartValue.sendKeys(searchText);
+        FilterValue.sendKeys(searchText);
+        BrowserUtils.waitFor(2);
+        selectElement(searchText).click();
+
         if (searchText2 != null) {
             try {
                 FilterEndValue.sendKeys(searchText2);
@@ -260,6 +265,7 @@ public class VehicleOdometerStepDefs extends GridBasePage {
 
     @And("Truck driver user Click Update button in the selected Filter Option popup")
     public void truckDriverUserClickUpdateButtonInTheSelectedFilterOptionPopup() {
+        BrowserUtils.waitFor(2);
         FilterUpdateButton.click();
     }
 
