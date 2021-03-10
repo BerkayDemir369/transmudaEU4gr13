@@ -2,8 +2,7 @@ package com.transmuda.pages;
 
 import com.transmuda.utilities.BrowserUtils;
 import com.transmuda.utilities.Driver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.Set;
 
 public abstract class BasePage {
 
@@ -225,5 +225,41 @@ public abstract class BasePage {
             BrowserUtils.clickWithTimeOut(Driver.get().findElement(By.xpath(moduleLocator)), 5);
         }
     }
+
+
+    //OPEN NEW TAB
+    public void openNewTab(){
+
+//        Driver.get().findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL+"t");
+//        Driver.get().get(url);
+
+//        String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN);
+//        Driver.get().findElement(By.linkText("www.facebook.com")).sendKeys(selectLinkOpeninNewTab);
+
+
+        ((JavascriptExecutor)Driver.get()).executeScript("window.open()");
+
+
+//        String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN);
+//        locator.sendKeys(selectLinkOpeninNewTab);
+
+
+    }
+
+    public void changeToNewWindow(){
+        String currentWindowHandle = Driver.get().getWindowHandle();
+
+        Set<String> windowHandles = Driver.get().getWindowHandles();
+        for (String handle : windowHandles) {
+            //print all chrome windows handels
+            System.out.println("handle = " + handle);
+            if (!handle.equals(currentWindowHandle)) {
+                Driver.get().switchTo().window(handle);
+            }
+        }
+
+    }
+
+
 
 }

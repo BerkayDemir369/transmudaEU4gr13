@@ -10,12 +10,16 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+
+import java.util.Set;
 
 public class VehicleCostsStepDefs extends GridBasePage {
 
 //US-25
 
-    VehicleCostsPage vehicleCostsPage=new VehicleCostsPage();
+    VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
   
     /*@Given("navigate to Fleet Vehicle Costs")
 VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
@@ -201,7 +205,6 @@ VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
     }
 
 
-
     @When("Move to ... sign and click on Eye Button of any Vehicle Costs.")
     public void move_to_sign_and_click_on_Eye_Button_of_any_Vehicle_Costs() {
         // Write code here that turns the phrase above into concrete actions
@@ -317,9 +320,6 @@ VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
-
-
-
 
 
 //US-33
@@ -557,10 +557,35 @@ VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
 
     }
 
+    String previousRecordNumber = null;
+    String currentRecordNumber = null;
+
     @When("the user click Refresh Button")
     public void the_user_click_Refresh_Button() {
 
+        // take open new tab
+
+        BrowserUtils.waitFor(10);
+        previousRecordNumber = String.valueOf(getTotalRecords());
+
+        System.out.println("previousRecordNumber = " + previousRecordNumber);
+        openNewTab();
+        BrowserUtils.waitFor(2);
+
+        changeToNewWindow();
+        BrowserUtils.waitFor(2);
+
+        Driver.get().get("https://qa.transmuda.com/entity/update/Extend_Entity_VehicleCosts/item");
+
+        BrowserUtils.waitFor(3);
+        vehicleCostsPage.saveAndClose.click();
+        BrowserUtils.waitFor(3);
+        changeToNewWindow();
+        BrowserUtils.waitFor(2);
         vehicleCostsPage.refreshButton.click();
+        BrowserUtils.waitFor(2);
+        currentRecordNumber = String.valueOf(getTotalRecords());
+        System.out.println("actualPageNumber = " + actualPageNumber);
 
 
     }
@@ -568,8 +593,10 @@ VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
     @Then("system should be able to refresh the page")
     public void system_should_be_able_to_refresh_the_page() {
 
-        BrowserUtils.waitFor(2);
-        vehicleCostsPage.refreshButton.isDisplayed();
+        BrowserUtils.waitFor(3);
+
+
+        Assert.assertNotEquals(previousRecordNumber, currentRecordNumber);
 
     }
 
