@@ -9,6 +9,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
@@ -19,18 +20,6 @@ public class VehicleCostsStepDefs extends GridBasePage {
 //US-25
 
     VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
-  
-    /*@Given("navigate to Fleet Vehicle Costs")
-VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
-
-    @Given("navigate to Fleet Vehicle Costs")
-    public void navigate_to_Fleet_Vehicle_Costs() {
-        navigateToModule("Fleet", "Vehicle Costs");
-        BrowserUtils.waitFor(10);
-    }
-
-     */
-    VehicleCostsPage vehicleCostsPage=new VehicleCostsPage();
 
     @When("click on the Page button on the Vehicle Costs page")
     public void click_on_the_Page_button_on_the_Vehicle_Costs_page() {
@@ -198,125 +187,145 @@ VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
     //======US-28   Hamdulla====
     @When("Navigate to Fleet Vehicle Costs.")
     public void navigate_to_Fleet_Vehicle_Costs() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        navigateToModule("Fleet", "Vehicle Costs");
+        BrowserUtils.waitFor(4);
+
     }
 
+    @Then("Truck driver should be able to see costs information")
+    public void truck_driver_should_be_able_to_see_costs_information() {
+        Assert.assertTrue(vehicleCostsPage.allVehicleCosts.isDisplayed());
+        BrowserUtils.waitFor(2);
+
+
+    }
 
     @When("Move to ... sign and click on Eye Button of any Vehicle Costs.")
     public void move_to_sign_and_click_on_Eye_Button_of_any_Vehicle_Costs() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+       // Actions actions = new Actions(driver);
+       // actions.moveToElement(vehicleCostsPage.PoinsSignOfTaxRoll1).perform();
+        vehicleCostsPage.PoinsSignOfTaxRoll1.click();
+        BrowserUtils.waitFor(4);
+        vehicleCostsPage.PoinsSignOfTaxRoll1.click();
+        vehicleCostsPage.EyeButton.click();
+        BrowserUtils.waitFor(3);
+
+
+
     }
 
     @Then("Truck driver can view specific Vehicle Cost.")
     public void truck_driver_can_view_specific_Vehicle_Cost() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        String actualItemTitle=vehicleCostsPage.TaxRoll1Title.getText();
+        String expectedItemTitle=vehicleCostsPage.TaxRoll1Type.getText();
+        Assert.assertEquals(expectedItemTitle,actualItemTitle);
+        BrowserUtils.waitFor(5);
+
     }
 
     @When("Move to ... sign and click on Delete Button of any Vehicle Costs.")
     public void move_to_sign_and_click_on_Delete_Button_of_any_Vehicle_Costs() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        // Actions actions = new Actions(driver);
+        // actions.moveToElement(vehicleCostsPage.PoinsSignOfTaxRoll1).perform();
+        vehicleCostsPage.PoinsSignOfTaxRoll1.click();
+        BrowserUtils.waitFor(5);
+        vehicleCostsPage.PoinsSignOfTaxRoll1.click();
+        vehicleCostsPage.DeleteButton.click();
+        vehicleCostsPage.DeleteYesButton.click();
+        BrowserUtils.waitFor(3);
+
     }
 
     @Then("Truck driver can not delete Vehicle Cost.")
     public void truck_driver_can_not_delete_Vehicle_Cost() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Assert.assertTrue(vehicleCostsPage.DeleteErrorMessage.isDisplayed());
+        BrowserUtils.waitFor(3);
+
+
+
+
     }
 
     @When("Move to ... sign and click on Edit Button of any Vehicle Costs.")
     public void move_to_sign_and_click_on_Edit_Button_of_any_Vehicle_Costs() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        // Actions actions = new Actions(driver);
+        // actions.moveToElement(vehicleCostsPage.PoinsSignOfTaxRoll1).perform();
+        vehicleCostsPage.PoinsSignOfTaxRoll1.click();
+        BrowserUtils.waitFor(5);
+        vehicleCostsPage.PoinsSignOfTaxRoll1.click();
+        vehicleCostsPage.EditButton.click();
+        BrowserUtils.waitFor(3);
+
     }
 
     @Then("Truck driver can not edit Vehicle Cost.")
     public void truck_driver_can_not_edit_Vehicle_Cost() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        String EditResultTitle=vehicleCostsPage.EditResultQuickLaunchpad.getText();
+        Assert.assertEquals("Quick Launchpad",EditResultTitle);
+        BrowserUtils.waitFor(3);
+
+
     }
 
 
-// US-30
+
+
 
 
     // US-31    Hamdulla  ====
-    /*
-    @When("Navigate to Fleet Vehicle Costs.")
-    public void navigate_to_Fleet_Vehicle_Costs() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-     */
-
     @When("Click on any Vehicle Cost.")
     public void click_on_any_Vehicle_Cost() {
-        vehicleCostsPage.TaxRoll1.click();
-        BrowserUtils.waitFor(4);
+
     }
 
     @When("Click on Add Event Button on the specific Vehicle Cost Page.")
     public void click_on_Add_Event_Button_on_the_specific_Vehicle_Cost_Page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @Then("Truck driver can see Add Event Window.")
     public void truck_driver_can_see_Add_Event_Window() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @Then("Fill all information on the Add Event Window and click on Save Button.")
     public void fill_all_information_on_the_Add_Event_Window_and_click_on_Save_Button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @Then("Truck driver can see new calendar event on that specific vehicle cost page.")
     public void truck_driver_can_see_new_calendar_event_on_that_specific_vehicle_cost_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @Then("Click on Save Button without filling any information.")
     public void click_on_Save_Button_without_filling_any_information() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @Then("{string} error message should be displayed.")
     public void error_message_should_be_displayed(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @When("Click on that specific Vehicle Cost.")
     public void click_on_that_specific_Vehicle_Cost() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @Then("Truck driver can see the Event under the General.")
     public void truck_driver_can_see_the_Event_under_the_General() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @When("Click on the Activity Button on that specific VehiclVehicle Cost page.e Cost page.")
     public void click_on_the_Activity_Button_on_that_specific_VehiclVehicle_Cost_page_e_Cost_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @Then("Truck driver can see the Event under the Activity.")
     public void truck_driver_can_see_the_Event_under_the_Activity() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
     }
 
 

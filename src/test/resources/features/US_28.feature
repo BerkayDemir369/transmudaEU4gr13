@@ -23,7 +23,7 @@ Feature:
   @TR-247 @TR-246
   Scenario: US-28-Truck Driver view specific vehicle costs Test Case1
     When Navigate to Fleet Vehicle Costs.
-    Then the user should be able to see costs information
+    Then Truck driver should be able to see costs information
     When Move to ... sign and click on Eye Button of any Vehicle Costs.
     Then Truck driver can view specific Vehicle Cost.
 
@@ -39,7 +39,7 @@ Feature:
   @TR-248 @TR-246
   Scenario: US-28-Truck Driver view specific vehicle costs Test Case2
     When Navigate to Fleet Vehicle Costs.
-    Then the user should be able to see costs information
+    Then Truck driver should be able to see costs information
     When Move to ... sign and click on Delete Button of any Vehicle Costs.
     Then Truck driver can not delete Vehicle Cost.
     When Move to ... sign and click on Edit Button of any Vehicle Costs.
