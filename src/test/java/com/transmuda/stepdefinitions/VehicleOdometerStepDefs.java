@@ -698,6 +698,9 @@ public class VehicleOdometerStepDefs extends GridBasePage {
         String actualMessage = new VehicleOdometerPage().AlertMessage.getText();
         Assert.assertEquals(expectedErrorMessage, actualMessage);
 
+        String actualMessage1 = new VehicleOdometerPage().fileChoosingErrorMessage.getText();
+        Assert.assertEquals(expectedErrorMessage, actualMessage);
+
 
     }
 
@@ -824,7 +827,7 @@ public class VehicleOdometerStepDefs extends GridBasePage {
     }
 
 // To do Berky
-//    @Then("{string} error message should be displayed.")
+//   @Then("{string} error message should be displayed.")
 //    public void error_message_should_be_displayed(String expectedMessage) {
 //
 //
