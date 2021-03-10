@@ -200,7 +200,11 @@ VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
         throw new io.cucumber.java.PendingException();
     }
 
-
+    @Then("Truck driver should be able to see costs information")
+    public void truck_driver_should_be_able_to_see_costs_information() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
 
     @When("Move to ... sign and click on Eye Button of any Vehicle Costs.")
     public void move_to_sign_and_click_on_Eye_Button_of_any_Vehicle_Costs() {
@@ -239,23 +243,15 @@ VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
     }
 
 
-// US-30
+
+
 
 
     // US-31    Hamdulla  ====
-    /*
-    @When("Navigate to Fleet Vehicle Costs.")
-    public void navigate_to_Fleet_Vehicle_Costs() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-     */
-
     @When("Click on any Vehicle Cost.")
     public void click_on_any_Vehicle_Cost() {
-        vehicleCostsPage.TaxRoll1.click();
-        BrowserUtils.waitFor(4);
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
     }
 
     @When("Click on Add Event Button on the specific Vehicle Cost Page.")
@@ -317,6 +313,9 @@ VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
+
+
+
 
 
 

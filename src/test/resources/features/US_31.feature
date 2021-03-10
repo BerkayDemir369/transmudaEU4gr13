@@ -23,7 +23,7 @@ Feature:
   @TR-250 @TR-249
   Scenario: US-31-Truck Driver Add Event function Test Case1
     When Navigate to Fleet Vehicle Costs.
-    Then the user should be able to see costs information
+    Then Truck driver should be able to see costs information
     When  Click on any Vehicle Cost.
     And   Click on Add Event Button on the specific Vehicle Cost Page.
     Then  Truck driver can see Add Event Window.
@@ -42,7 +42,7 @@ Feature:
   @TR-251 @TR-249
   Scenario: US-31-Truck Driver Add Event function Test Case2
     When Navigate to Fleet Vehicle Costs.
-    Then the user should be able to see costs information
+    Then Truck driver should be able to see costs information
     When  Click on any Vehicle Cost.
     And   Click on Add Event Button on the specific Vehicle Cost Page.
     Then  Truck driver can see Add Event Window.
@@ -61,7 +61,7 @@ Feature:
   @TR-263 @TR-249
   Scenario: US-31-Truck Driver Add Event function Test Case3
     When Navigate to Fleet Vehicle Costs.
-    Then the user should be able to see costs information
+    Then Truck driver should be able to see costs information
     When  Click on that specific Vehicle Cost.
     Then  Truck driver can see the Event under the General.
     When  Click on the Activity Button on that specific VehiclVehicle Cost page.e Cost page.
