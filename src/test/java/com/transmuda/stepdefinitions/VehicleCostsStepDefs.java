@@ -8,16 +8,18 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 
 public class VehicleCostsStepDefs {
 
 //US-25
 
-    VehicleCostsPage vehicleCostsPage=new VehicleCostsPage();
+    VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
+
     @Given("navigate to Fleet Vehicle Costs")
     public void navigate_to_Fleet_Vehicle_Costs() {
-        DashboardPage dashboardPage=new DashboardPage();
-        dashboardPage.navigateToModule("Fleet","Vehicle Costs");
+        DashboardPage dashboardPage = new DashboardPage();
+        dashboardPage.navigateToModule("Fleet", "Vehicle Costs");
         BrowserUtils.waitFor(10);
     }
 
@@ -63,6 +65,7 @@ public class VehicleCostsStepDefs {
 
 
     }
+
     @When("click on the Export Grid XLSX button on the Vehicle Costs page")
     public void click_on_the_Export_Grid_XLSX_button_on_the_Vehicle_Costs_page() {
         vehicleCostsPage.exportGridButton.click();
@@ -72,7 +75,7 @@ public class VehicleCostsStepDefs {
 
     @Then("truck driver can get all informations to own email adress")
     public void truck_driver_can_get_all_informations_to_own_email_adress() {
-        String expectMessage="Export started successfully. You will receive email notification upon completion.";
+        String expectMessage = "Export started successfully. You will receive email notification upon completion.";
         BrowserUtils.waitFor(3);
         Assert.assertTrue(vehicleCostsPage.AlertMessage.getText().contains(expectMessage));
 
@@ -83,8 +86,8 @@ public class VehicleCostsStepDefs {
     @Given("truck driver navigate Fleet to Vehicle Costs")
     public void truck_driver_navigate_Fleet_to_Vechicle_Costs() {
 
-        DashboardPage dashboardPage=new DashboardPage();
-        dashboardPage.navigateToModule("Fleet","Vehicle Costs");
+        DashboardPage dashboardPage = new DashboardPage();
+        dashboardPage.navigateToModule("Fleet", "Vehicle Costs");
         BrowserUtils.waitFor(5);
 
 
@@ -107,7 +110,8 @@ public class VehicleCostsStepDefs {
     }
 
     @And("click on the Sticky Note Add Button on the Sidebar Widgets")
-    public void click_on_the_Sticky_Note_Add_Button_on_the_Sidebar_Widgets() {;
+    public void click_on_the_Sticky_Note_Add_Button_on_the_Sidebar_Widgets() {
+        ;
 
         vehicleCostsPage.stickyAddBNT.click();
         BrowserUtils.waitFor(3);
@@ -151,7 +155,6 @@ public class VehicleCostsStepDefs {
 
         vehicleCostsPage.pinIcon.click();
         BrowserUtils.waitFor(3);
-
 
 
     }
@@ -286,12 +289,12 @@ public class VehicleCostsStepDefs {
     public void email_message_should_be_displayed(String expectedMessage) {
 
         BrowserUtils.waitFor(2);
-        String actualMessage= vehicleCostsPage.AlertMessage.getText();
-        String arrangeMessage=actualMessage.substring(1).trim();
+        String actualMessage = vehicleCostsPage.AlertMessage.getText();
+        String arrangeMessage = actualMessage.substring(1).trim();
         System.out.println("arrangeMessage = " + arrangeMessage);
         System.out.println("actualMessage = " + actualMessage);
 
-        Assert.assertEquals(expectedMessage,arrangeMessage);
+        Assert.assertEquals(expectedMessage, arrangeMessage);
 
         //lazy way
         Assert.assertTrue(vehicleCostsPage.AlertMessage.isDisplayed());
@@ -415,9 +418,6 @@ public class VehicleCostsStepDefs {
         vehicleCostsPage.refreshButton.click();
 
 
-
-
-
     }
 
     @Then("system should be able to refresh the page")
@@ -455,7 +455,6 @@ public class VehicleCostsStepDefs {
     public void system_should_be_able_to_reset_the_filtering_settings() {
 
 
-
         vehicleCostsPage.manageFiltersButton.click();
         BrowserUtils.waitFor(1);
 
@@ -464,10 +463,6 @@ public class VehicleCostsStepDefs {
         Assert.assertFalse(vehicleCostsPage.totalPriceFilterBox.isSelected());
 
         Assert.assertFalse(vehicleCostsPage.dateFilterBox.isSelected());
-
-
-
-
 
 
     }
@@ -529,6 +524,7 @@ public class VehicleCostsStepDefs {
     @Then("user able to log out")
     public void userAbleToLogOut() {
     }
+
     @Given("the user login as a “sales manager")
     public void theUserLoginAsASalesManager() {
     }
@@ -551,17 +547,21 @@ public class VehicleCostsStepDefs {
 
     }
 
-//US-29
-@When("the user click {string}")
-public void the_user_click(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
-}
+    //US-29
+
+    @When("the user click {string}")
+    public void the_user_click(String str1) {
+        BrowserUtils.waitFor(15);
+        vehicleCostsPage.createVehicleCostsButton.click();
+    }
 
     @When("the user select Type as {string}")
     public void the_user_select_Type_as(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+       // BrowserUtils.waitForClickablility(vehicleCostsPage.typeDropDown,20);
+        BrowserUtils.waitFor(5);
+        vehicleCostsPage.typeDropDown.click();
+        BrowserUtils.waitFor(2);
+        vehicleCostsPage.typeInputBox.sendKeys(string, Keys.ENTER);
     }
 
     @When("the user enter value to Total Price as {string}")
@@ -578,20 +578,13 @@ public void the_user_click(String string) {
 
     @When("the user enter value to Total Price as {int}")
     public void the_user_enter_value_to_Total_Price_as(Integer int1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        vehicleCostsPage.totalPriceInputBox.sendKeys(int1.toString());
     }
 
     @When("the user choose date as {string}")
     public void the_user_choose_date_as(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @When("the user choose date as Mar {int}, {int}")
-    public void the_user_choose_date_as_Mar(Integer int1, Integer int2) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        vehicleCostsPage.dateInputBox.sendKeys(string);
+        System.out.println(vehicleCostsPage.getCurrentDate());
     }
 
     @When("the user write Cost Description {string}")
@@ -606,8 +599,8 @@ public void the_user_click(String string) {
         throw new io.cucumber.java.PendingException();
     }
 
-    @When("the user select first chasis number")
-    public void the_user_select_first_chasis_number() {
+    @When("the user select first chassis number")
+    public void the_user_select_first_chassis_number() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
@@ -636,6 +629,48 @@ public void the_user_click(String string) {
         throw new io.cucumber.java.PendingException();
     }
 
+    //US_32
+    @When("the user click spesific vehicle which added attachment")
+    public void the_user_click_spesific_vehicle_which_added_attachment() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("verify Attachment File Name is {string}")
+    public void verify_Attachment_File_Name_is(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("verify comment is {string}")
+    public void verify_comment_is(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user click spesific vehicle")
+    public void the_user_click_spesific_vehicle() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user select {string}")
+    public void the_user_select(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user write Comment {string}")
+    public void the_user_write_Comment(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("verify {string} message appeared on the top")
+    public void verify_message_appeared_on_the_top(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
 }
 
 

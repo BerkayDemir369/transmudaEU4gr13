@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.nio.file.Watchable;
+import java.util.Date;
 
 public class VehicleCostsPage extends BasePage{
     public VehicleCostsPage() {
@@ -172,6 +173,70 @@ public class VehicleCostsPage extends BasePage{
 
     @FindBy(xpath = " //div[@class='list-bar']//a[.='Vehicle Costs - Entities - System']")
     public WebElement addpinInformation;
+//US_29
+
+    @FindBy(xpath = "//a[@title='Create Vehicle Costs']")
+    public WebElement createVehicleCostsButton;
+
+    @FindBy(xpath = "//span[text()='Choose a value...']")
+    public WebElement typeDropDown;
+
+    @FindBy(xpath = "//span[text()='Tax Roll']")
+    public WebElement taxRollDropDownItem;
+
+    @FindBy(xpath = "//input[@class='select2-input']")
+    public WebElement typeInputBox ;
+
+    @FindBy(xpath = "//input[@name='custom_entity_type[TotalPrice]']")
+    public WebElement totalPriceInputBox;
+
+    @FindBy(xpath = "//input[@placeholder='Choose a date']")
+    public WebElement dateInputBox;
+
+    @FindBy(xpath = "//textarea[@name='custom_entity_type[CostDescriptions]']")
+    public WebElement costDescriptionInputBox;
+
+    @FindBy(xpath = "//button[@class='btn btn-success action-button']")
+    public WebElement saveAndCloseSubmitButton;
+
+    @FindBy(xpath = "//div[@class='message']")
+    public WebElement entitySavedMessage;
+
+    @FindBy(xpath = "(//button[@class='btn btn-medium add-btn'])[1]")
+    public WebElement chassisNumberAddButton;
+
+    @FindBy(xpath = "(//button[@class='btn btn-medium add-btn'])[1]")
+    public WebElement licensePlateAddButton;
+
+    @FindBy(xpath = "(//table/tbody/tr)[1]")
+    public WebElement chassisNumberFirstRow;
+
+    @FindBy(xpath = "//button[@data-action-name='select']")
+    public WebElement chassisNumberSelectButton;
+
+    @FindBy(xpath = "(//table/tbody/tr)[1]")
+    public WebElement licensePlateFirstRow;
+
+    @FindBy(xpath = "//button[@data-action-name='select']")
+    public WebElement licensePlateSelectButton;
+
+    @FindBy(xpath = "(//a[@class='entity-info'])[1]")
+    public WebElement addedChassisNumberList;
+
+    @FindBy(xpath = "(//a[@class='entity-info'])[2]")
+    public WebElement addedLicensePlateList;
+
+
+
+
+    public String getCurrentDate(){
+        Date date=new Date();
+        //Mar 11, 2021
+        //Wed Mar 10 16:22:49 IST 2021
+        String currentDate;
+        currentDate=date.toString().substring(4,9)+", "+date.toString().substring(24,27);
+        return currentDate;
+    }
 
 
 

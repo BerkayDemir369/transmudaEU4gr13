@@ -3,7 +3,7 @@ Feature:
 
 	Background:
 		#@TR-174
-		Given the user login as a "driver/storemanager/salesmanager"
+		Given the user login as a "driver"
 		Then the user should be able to login
 		
 		
@@ -22,7 +22,7 @@ Feature:
 	Scenario: US-029 Create Vehicle Costs button negative test
 		When the user navigates to "Fleet" , "Vehicle Costs"
 		And the user click "Create Vehicle Costs"
-		And the user select Type as "Tax Roll" 
+		And the user select Type as "Tax Roll"
 		And the user enter value to Total Price as "text"
 		And the user click "Save And Close"
 		Then verify "This value is not valid." validation message appeared 
@@ -48,10 +48,10 @@ Feature:
 		And the user click "Create Vehicle Costs"
 		And the user select Type as "Tax Roll" 
 		And the user enter value to Total Price as 1000
-		And the user choose date as Mar 11, 2021
+		And the user choose date as "Mar 11, 2021"
 		And the user write Cost Description "description comes here"
-		When the user click "chasis number add" button
-		And the user select first chasis number
+		When the user click "chassis number add" button
+		And the user select first chassis number
 		And the user click "Select" button
 		When the user click license plate add button
 		And the user select first license plate
@@ -76,9 +76,9 @@ Feature:
 	Scenario: US-029 Create Vehicle Costs button test
 		When the user navigates to "Fleet" , "Vehicle Costs"
 		And the user click "Create Vehicle Costs"
-		And the user select Type as "Tax Roll" 
+		And the user select Type as "Tax Roll"
 		And the user enter value to Total Price as 1000
-		And the user choose date as Mar 11, 2021
+		And the user choose date as "Mar 11, 2021"
 		And the user write Cost Description "description comes here"
 		And the user click "Save And Close"
 		Then verify "Entity saved" message apper on the top of the page
