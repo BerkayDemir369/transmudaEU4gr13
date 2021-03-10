@@ -214,8 +214,11 @@ public class VehicleCostsPage extends BasePage {
     @FindBy(xpath = "(//i[@class='fa-eye hide-text'])[2]")
     public WebElement EyeButton;
 
-    @FindBy(xpath = "//h1[contains(text(),'Item #3')]")
-    public WebElement TaxRollItem3;
+    @FindBy(xpath = "//tbody/tr[2]/td[1]")
+    public  WebElement TaxRoll1Title;
+
+    @FindBy(xpath = "(//div[@class='control-label'])[1]")
+    public WebElement TaxRoll1Type;
 
     @FindBy(xpath = "(//i[@class='fa-pencil-square-o hide-text'])[2]")
     public WebElement EditButton;

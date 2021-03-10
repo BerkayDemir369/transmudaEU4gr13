@@ -207,6 +207,7 @@ public class VehicleCostsStepDefs extends GridBasePage {
     @Then("Truck driver should be able to see costs information")
     public void truck_driver_should_be_able_to_see_costs_information() {
         Assert.assertTrue(vehicleCostsPage.allVehicleCosts.isDisplayed());
+        BrowserUtils.waitFor(2);
 
     }
 
@@ -214,7 +215,11 @@ public class VehicleCostsStepDefs extends GridBasePage {
     public void move_to_sign_and_click_on_Eye_Button_of_any_Vehicle_Costs() {
        // Actions actions = new Actions(driver);
        // actions.moveToElement(vehicleCostsPage.PoinsSignOfTaxRoll1).perform();
+        vehicleCostsPage.PoinsSignOfTaxRoll1.click();
+        BrowserUtils.waitFor(4);
+        vehicleCostsPage.PoinsSignOfTaxRoll1.click();
         vehicleCostsPage.EyeButton.click();
+        BrowserUtils.waitFor(3);
 
 
 
@@ -222,26 +227,54 @@ public class VehicleCostsStepDefs extends GridBasePage {
 
     @Then("Truck driver can view specific Vehicle Cost.")
     public void truck_driver_can_view_specific_Vehicle_Cost() {
+        String actualItemTitle=vehicleCostsPage.TaxRoll1Title.getText();
+        String expectedItemTitle=vehicleCostsPage.TaxRoll1Type.getText();
+        Assert.assertEquals(expectedItemTitle,actualItemTitle);
+        BrowserUtils.waitFor(5);
 
     }
 
     @When("Move to ... sign and click on Delete Button of any Vehicle Costs.")
     public void move_to_sign_and_click_on_Delete_Button_of_any_Vehicle_Costs() {
+        // Actions actions = new Actions(driver);
+        // actions.moveToElement(vehicleCostsPage.PoinsSignOfTaxRoll1).perform();
+        vehicleCostsPage.PoinsSignOfTaxRoll1.click();
+        BrowserUtils.waitFor(5);
+        vehicleCostsPage.PoinsSignOfTaxRoll1.click();
+        vehicleCostsPage.DeleteButton.click();
+        vehicleCostsPage.DeleteYesButton.click();
+        BrowserUtils.waitFor(3);
 
     }
 
     @Then("Truck driver can not delete Vehicle Cost.")
     public void truck_driver_can_not_delete_Vehicle_Cost() {
+        Assert.assertTrue(vehicleCostsPage.DeleteErrorMessage.isDisplayed());
+        BrowserUtils.waitFor(3);
+
+
+
 
     }
 
     @When("Move to ... sign and click on Edit Button of any Vehicle Costs.")
     public void move_to_sign_and_click_on_Edit_Button_of_any_Vehicle_Costs() {
+        // Actions actions = new Actions(driver);
+        // actions.moveToElement(vehicleCostsPage.PoinsSignOfTaxRoll1).perform();
+        vehicleCostsPage.PoinsSignOfTaxRoll1.click();
+        BrowserUtils.waitFor(5);
+        vehicleCostsPage.PoinsSignOfTaxRoll1.click();
+        vehicleCostsPage.EditButton.click();
+        BrowserUtils.waitFor(3);
 
     }
 
     @Then("Truck driver can not edit Vehicle Cost.")
     public void truck_driver_can_not_edit_Vehicle_Cost() {
+        String EditResultTitle=vehicleCostsPage.EditResultQuickLaunchpad.getText();
+        Assert.assertEquals("Quick Launchpad",EditResultTitle);
+        BrowserUtils.waitFor(3);
+
 
     }
 
