@@ -1,6 +1,5 @@
 package com.transmuda.stepdefinitions;
 
-import com.transmuda.pages.BasePage;
 import com.transmuda.pages.GridBasePage;
 import com.transmuda.pages.VehicleCostsPage;
 import com.transmuda.utilities.BrowserUtils;
@@ -31,6 +30,7 @@ VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
     }
 
      */
+    VehicleCostsPage vehicleCostsPage=new VehicleCostsPage();
 
     @When("click on the Page button on the Vehicle Costs page")
     public void click_on_the_Page_button_on_the_Vehicle_Costs_page() {
@@ -71,8 +71,6 @@ VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
         vehicleCostsPage.exportGridButton.click();
         BrowserUtils.waitFor(3);
         vehicleCostsPage.csvButton.click();
-
-
     }
 
     @When("click on the Export Grid XLSX button on the Vehicle Costs page")
@@ -257,8 +255,8 @@ VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
 
     @When("Click on any Vehicle Cost.")
     public void click_on_any_Vehicle_Cost() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        vehicleCostsPage.TaxRoll1.click();
+        BrowserUtils.waitFor(4);
     }
 
     @When("Click on Add Event Button on the specific Vehicle Cost Page.")
