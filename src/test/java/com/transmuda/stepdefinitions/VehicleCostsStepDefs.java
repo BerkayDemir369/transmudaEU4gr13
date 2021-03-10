@@ -1,6 +1,5 @@
 package com.transmuda.stepdefinitions;
 
-import com.transmuda.pages.BasePage;
 import com.transmuda.pages.GridBasePage;
 import com.transmuda.pages.VehicleCostsPage;
 import com.transmuda.utilities.BrowserUtils;
@@ -16,17 +15,6 @@ public class VehicleCostsStepDefs extends GridBasePage {
 //US-25
 
     VehicleCostsPage vehicleCostsPage=new VehicleCostsPage();
-  
-    /*@Given("navigate to Fleet Vehicle Costs")
-VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
-
-    @Given("navigate to Fleet Vehicle Costs")
-    public void navigate_to_Fleet_Vehicle_Costs() {
-        navigateToModule("Fleet", "Vehicle Costs");
-        BrowserUtils.waitFor(10);
-    }
-
-     */
 
     @When("click on the Page button on the Vehicle Costs page")
     public void click_on_the_Page_button_on_the_Vehicle_Costs_page() {
@@ -67,8 +55,6 @@ VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
         vehicleCostsPage.exportGridButton.click();
         BrowserUtils.waitFor(3);
         vehicleCostsPage.csvButton.click();
-
-
     }
 
     @When("click on the Export Grid XLSX button on the Vehicle Costs page")
