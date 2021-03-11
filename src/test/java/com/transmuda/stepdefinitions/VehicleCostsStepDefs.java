@@ -200,7 +200,7 @@ public class VehicleCostsStepDefs extends GridBasePage {
     @When("Navigate to Fleet Vehicle Costs.")
     public void navigate_to_Fleet_Vehicle_Costs() {
         navigateToModule("Fleet", "Vehicle Costs");
-        BrowserUtils.waitFor(4);
+        BrowserUtils.waitFor(8);
 
     }
 
@@ -216,7 +216,7 @@ public class VehicleCostsStepDefs extends GridBasePage {
        // Actions actions = new Actions(driver);
        // actions.moveToElement(vehicleCostsPage.PoinsSignOfTaxRoll1).perform();
         vehicleCostsPage.PoinsSignOfTaxRoll1.click();
-        BrowserUtils.waitFor(4);
+        BrowserUtils.waitFor(5);
         vehicleCostsPage.PoinsSignOfTaxRoll1.click();
         vehicleCostsPage.EyeButton.click();
         BrowserUtils.waitFor(3);
@@ -286,56 +286,109 @@ public class VehicleCostsStepDefs extends GridBasePage {
     // US-31    Hamdulla  ====
     @When("Click on any Vehicle Cost.")
     public void click_on_any_Vehicle_Cost() {
+        vehicleCostsPage.TaxRoll1.click();
+        BrowserUtils.waitFor(5);
 
     }
 
     @When("Click on Add Event Button on the specific Vehicle Cost Page.")
     public void click_on_Add_Event_Button_on_the_specific_Vehicle_Cost_Page() {
+        vehicleCostsPage.AddEventButton.click();
+        BrowserUtils.waitFor(4);
 
     }
 
     @Then("Truck driver can see Add Event Window.")
     public void truck_driver_can_see_Add_Event_Window() {
+        String AddEveWindowTitle=vehicleCostsPage.AddEventWindow.getText();
+        Assert.assertEquals("Add Event",AddEveWindowTitle);
+        BrowserUtils.waitFor(3);
+
 
     }
 
     @Then("Fill all information on the Add Event Window and click on Save Button.")
     public void fill_all_information_on_the_Add_Event_Window_and_click_on_Save_Button() {
+        String EventName="Victory";
+        vehicleCostsPage.TitleInputBox.sendKeys(EventName);
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.OrganizerNameBox.sendKeys("Hamdulla");
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.OrganizerEmailBox.sendKeys("hamdulla@yahoo.com");
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.StartDate.click();
+        BrowserUtils.waitFor(4);
+        vehicleCostsPage.Date10.click();
+        BrowserUtils.waitFor(4);
+        vehicleCostsPage.StartHour.click();
+        BrowserUtils.waitFor(4);
+        vehicleCostsPage.Hour8AM.click();
+        BrowserUtils.waitFor(4);
+        vehicleCostsPage.EndDate.click();
+        BrowserUtils.waitFor(3);
+        vehicleCostsPage.Date12.click();
+        BrowserUtils.waitFor(3);
+        vehicleCostsPage.EndHour.click();
+        BrowserUtils.waitFor(3);
+        vehicleCostsPage.Hour607PM.click();
+        BrowserUtils.waitFor(3);
+        vehicleCostsPage.SaveButton.click();
+        BrowserUtils.waitFor(3);
+
 
     }
 
     @Then("Truck driver can see new calendar event on that specific vehicle cost page.")
     public void truck_driver_can_see_new_calendar_event_on_that_specific_vehicle_cost_page() {
+        Assert.assertEquals("Victory",vehicleCostsPage.EventName.getText());
+        BrowserUtils.waitFor(3);
+
+
 
     }
 
     @Then("Click on Save Button without filling any information.")
     public void click_on_Save_Button_without_filling_any_information() {
+        vehicleCostsPage.SaveButton.click();
+        BrowserUtils.waitFor(3);
 
     }
 
     @Then("{string} error message should be displayed.")
     public void error_message_should_be_displayed(String string) {
+        Assert.assertEquals(string,vehicleCostsPage.ErrorMessage.getText());
+        BrowserUtils.waitFor(2);
+        vehicleCostsPage.CancelButton.click();
+        BrowserUtils.waitFor(2);
+
 
     }
 
     @When("Click on that specific Vehicle Cost.")
     public void click_on_that_specific_Vehicle_Cost() {
+        vehicleCostsPage.TaxRoll1.click();
+        BrowserUtils.waitFor(3);
 
     }
 
     @Then("Truck driver can see the Event under the General.")
     public void truck_driver_can_see_the_Event_under_the_General() {
+        Assert.assertEquals("Victory",vehicleCostsPage.EventName.getText());
+        BrowserUtils.waitFor(3);
 
     }
 
-    @When("Click on the Activity Button on that specific VehiclVehicle Cost page.e Cost page.")
-    public void click_on_the_Activity_Button_on_that_specific_VehiclVehicle_Cost_page_e_Cost_page() {
+    @When("Click on the Activity Button on that specific VehiclVehicle Cost page.")
+    public void click_on_the_Activity_Button_on_that_specific_VehiclVehicle_Cost_page() {
+        vehicleCostsPage.ActivityTab.click();
+        BrowserUtils.waitFor(3);
 
     }
 
     @Then("Truck driver can see the Event under the Activity.")
     public void truck_driver_can_see_the_Event_under_the_Activity() {
+        Assert.assertEquals("Victory",vehicleCostsPage.EventName.getText());
+        BrowserUtils.waitFor(3);
 
     }
 
