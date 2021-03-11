@@ -81,6 +81,13 @@ public class VehicleCostsPage extends BasePage {
     @FindBy(xpath = "//tbody[@class='ui-sortable']/tr[4]//input[1]")
     public WebElement dateCheckBox;
 
+    @FindBy(xpath = "//button[@class='btn btn-success action-button']")
+    public WebElement saveAndClose;
+
+
+
+
+
 
     @FindBy(xpath = "//a[.='Select All']")
     public WebElement selectAll;

@@ -40,5 +40,5 @@ Feature:
 
 		And the user click Add Attachment Button
 		When the user click Save Button without any choose file
-		Then "This value should not be blank." error message should be displayed.
+		Then "This value should not be blank." error message should be displayed
 		
