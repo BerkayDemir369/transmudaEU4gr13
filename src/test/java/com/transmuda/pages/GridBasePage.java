@@ -17,20 +17,6 @@ public class GridBasePage extends BasePage {
 
     //page elements
 
-    @FindBy(css = ".oro-subtitle")
-    public WebElement PageSubTitle;
-
-    @FindBy(css = ".favorite-button")
-    public WebElement FavoriteButton;
-
-    @FindBy(css = ".minimize-button")
-    public WebElement PinButton;
-
-    @FindBy(xpath = "//div[@class='alert alert-error fade in top-messages ']")
-    public WebElement AlertMessage;
-
-    @FindBy(xpath = "//div[@class='alert alert-error fade in top-messages ']/button")
-    public WebElement AlertCloseButton;
 
     @FindBy(xpath = "//div[@class='pull-right title-buttons-container']/a[contains(.,'Create')]")
     public WebElement CreateButton;
@@ -78,21 +64,22 @@ public class GridBasePage extends BasePage {
     @FindBy(css = "div[class*='page-size'] > div > div > button")
     public WebElement ViewPerPageSelect;
 
-    @FindBy(linkText = "Reset")
+    @FindBy(css = ".reset-action")
     public WebElement ResetButton;
 
-    @FindBy(css = "a[class*='refresh-action']")
+    @FindBy(css = ".refresh-action")
     public WebElement RefreshButton;
 
     //Filter Button and popup elements
     @FindBy(css = ".fa-filter")
     public WebElement FilterButton;
 
-    @FindBy(css = "button[class*='ui-multiselect']")
+    @FindBy(xpath = "//a[.='Manage filters']")
     public WebElement ManageFilters;
 
-    @FindBy(css = "div[class*='ui-multiselect-menu']")
+    @FindBy(xpath = "//div[@class='ui-multiselect-menu ui-corner-all select-filter-widget dropdown-menu']")
     public WebElement ManageFiltersPopup;
+
 
     @FindBy(xpath = "//div[@class='filter-item oro-drop open-filter']/div[@class='filter-criteria dropdown-menu']")
     public WebElement ManageFilterSelectedPopup;
@@ -186,16 +173,59 @@ public class GridBasePage extends BasePage {
     @FindBy(xpath = "//button[@class='btn dropdown-toggle']")
     public WebElement FilterConditionButton;
 
+
+    public WebElement conditionKeyword(String conditionKeyword) {
+        String locator = "//a[.='" + conditionKeyword + "']";
+        return Driver.get().findElement(By.xpath(locator));
+    }
+
+
     @FindBy(xpath = "//a[.='equals']")
     public WebElement ConditionType;
 
-    @FindBy(xpath = "//div[@class='filter-start']/input[@name='value']")
+    @FindBy(xpath = "//input[@name='value']")
     public WebElement FilterStartValue;
+
+    @FindBy(xpath = "//input[@class='select2-input select2-default']")
+    public WebElement FilterValue;
+
+    public WebElement selectElement(String Keyword) {
+        String locator = "//li[.='" + Keyword + "']";
+        return Driver.get().findElement(By.xpath(locator));
+    }
+
+
+    public void enterConditionText(String activeFilter, String condition, String searchText, String searchText2) {
+
+        if (findHeader(activeFilter)) {
+            int i = getGridTableHeaderIndex(activeFilter);
+            String findRow = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[" + i + "]";
+            List<WebElement> findRowData = Driver.get().findElements(By.xpath(findRow));
+            System.out.println("checkRow active found");
+
+            for (WebElement value : findRowData) {
+                if (!value.getText().equals(searchText)) {
+                    switch (condition) {
+                        case "Equal":
+                        case "Not Equals":
+                            findRowValue(activeFilter, searchText);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
+    }
+
+
+
 
     @FindBy(xpath = "//input[@name='value_end']")
     public WebElement FilterEndValue;
 
-    @FindBy(xpath = "//div[@class='choice-filter number-range-filter']//button[@class='btn btn-primary filter-update']")
+    @FindBy(xpath = "//div[@style='visibility: visible; margin-left: auto;']//button[@class='btn btn-primary filter-update']")
     public WebElement FilterUpdateButton;
 
     //Grid Settings Elements
@@ -242,6 +272,12 @@ public class GridBasePage extends BasePage {
             rowNames = GridSettingsRowNames.get(index).getText();
         }
         return rowNames;
+    }
+
+    public WebElement getGridTableRowElement(int index) {
+
+        String findRow = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr[" + index + "]";
+        return Driver.get().findElement(By.xpath(findRow));
     }
 
     @FindBy(xpath = "//div[@class='table-wrapper']//table[@class='grid table-hover table table-condensed']/tbody/tr/td[3]/input")
@@ -314,6 +350,38 @@ public class GridBasePage extends BasePage {
             }
         }
         return false;
+    }
+
+    public void findRowValueAndClick(String headerName, String RowData) {
+        if (findHeader(headerName)) {
+            int i = getGridTableHeaderIndex(headerName);
+            System.out.println("i = " + i);
+            String findRow = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[" + i + "]";
+            List<WebElement> findRowData = Driver.get().findElements(By.xpath(findRow));
+
+            for (WebElement value : findRowData) {
+                System.out.println("value.getText() = " + value.getText());
+                if (value.getText().equals(RowData))
+                    value.click();
+            }
+        }
+    }
+
+    public WebElement findRowWebElement(String headerName, String RowData) {
+        WebElement rowElement = null;
+
+        int i = getGridTableHeaderIndex(headerName);
+        System.out.println("i = " + i);
+        String findRow = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[" + (i - 2) + "]";
+        List<WebElement> findRowData = Driver.get().findElements(By.xpath(findRow));
+
+        for (WebElement value : findRowData) {
+            System.out.println("value.getText() = " + value.getText());
+            if (value.getText().equals(RowData))
+                rowElement = value;
+        }
+        //if (findHeader(headerName)) { }
+        return rowElement;
     }
 
 

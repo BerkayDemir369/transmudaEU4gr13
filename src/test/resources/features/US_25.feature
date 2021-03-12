@@ -22,7 +22,7 @@ Feature:
 	@TR-199 @TR-200
 	Scenario: US-025-Truck Driver Vehicle Costs Page Test Case
 		
-		Given navigate to Fleet Vehicle Costs
+		Given navigate "Fleet" to "Vehicle Costs"
 		When  click on the Page button on the Vehicle Costs page
 		Then truck driver can change page number 
 		When click on the View Per Page button on the Vehicle Costs page

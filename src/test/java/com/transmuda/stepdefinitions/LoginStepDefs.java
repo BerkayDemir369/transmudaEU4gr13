@@ -3,11 +3,9 @@ package com.transmuda.stepdefinitions;
 import com.transmuda.pages.BasePage;
 import com.transmuda.pages.LoginPage;
 import com.transmuda.utilities.BrowserUtils;
-import com.transmuda.utilities.ConfigurationReader;
 import com.transmuda.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 public class LoginStepDefs extends BasePage {
@@ -16,7 +14,7 @@ public class LoginStepDefs extends BasePage {
 
     @Given("the user login as a {string}")
     public void the_user_login_as_a(String usernameType) {
-        loginPage.loginForSalesManagerStoreManager(usernameType);
+        loginPage.loginAs(usernameType);
     }
 
 
@@ -27,13 +25,13 @@ public class LoginStepDefs extends BasePage {
         Assert.assertEquals("Dashboard", actualTitle);
     }
 
-    @Given("the user is on the login page")
-    public void theUserIsOnTheLoginPage() {
-        ConfigurationReader.get("url");
-    }
+//    @Given("the user is on the login page")
+//    public void theUserIsOnTheLoginPage() {
+//        ConfigurationReader.get("url");
+//    }
 
-    @When("the user logs in using {string} and {string}")
-    public void theUserLogsInUsingAnd(String username, String password) {
-        loginPage.login(username,password);
-    }
+//    @When("the user logs in using {string} and {string}")
+//    public void theUserLogsInUsingAnd(String username, String password) {
+//        loginPage.login(username,password);
+//    }
 }
