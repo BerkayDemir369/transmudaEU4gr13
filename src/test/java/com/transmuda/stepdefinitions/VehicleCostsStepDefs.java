@@ -24,8 +24,7 @@ public class VehicleCostsStepDefs extends GridBasePage {
 
     @Given("navigate to Fleet Vehicle Costs")
     public void navigate_to_Fleet_Vehicle_Costs() {
-        DashboardPage dashboardPage = new DashboardPage();
-        dashboardPage.navigateToModule("Fleet", "Vehicle Costs");
+        navigateToModule("Fleet", "Vehicle Costs");
         BrowserUtils.waitFor(10);
     }
 
