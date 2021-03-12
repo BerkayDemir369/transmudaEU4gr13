@@ -265,7 +265,7 @@ public class VehicleCostsPage extends BasePage {
     @FindBy(xpath = "(//input[@placeholder='Choose a date'])[1]")
     public WebElement StartDate;
 
-    @FindBy(xpath = "(//a[contains(text(),'10')])[5]")
+    @FindBy(xpath = "(//a[contains(text(),'10')])[3]")
     public WebElement Date10;
 
     @FindBy(xpath = "(//input[@placeholder='time'])[1]")
@@ -283,7 +283,7 @@ public class VehicleCostsPage extends BasePage {
     @FindBy(xpath = "(//input[@placeholder='time'])[2]")
     public WebElement EndHour;
 
-    @FindBy(xpath = "//li[contains(text(),'6:07 PM')]")
+    @FindBy(xpath = "//body/div[11]/ul[1]/li[37]")
     public WebElement Hour607PM;
 
     @FindBy(xpath = "//button[contains(text(),'Save')]")
@@ -292,11 +292,15 @@ public class VehicleCostsPage extends BasePage {
     @FindBy(xpath = "//span[contains(text(),'not be blank')]")
     public WebElement ErrorMessage;
 
-    @FindBy(xpath = "//strong[contains(text(),'Hamdulla1')]")
+    @FindBy(xpath = "//button[contains(text(),'Cancel')]")
+    public WebElement CancelButton;
+
+    @FindBy(xpath = "//strong[contains(text(),'Victory')]")
     public WebElement EventName;
 
     @FindBy(xpath = "//a[contains(text(),'Activity')]")
     public WebElement ActivityTab;
+
 
 
 
