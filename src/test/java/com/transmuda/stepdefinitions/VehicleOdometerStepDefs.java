@@ -852,6 +852,12 @@ public class VehicleOdometerStepDefs extends GridBasePage {
         Assert.assertEquals(expectedTitle, title);
 
     }
+    @Then("The user should see all information Vehicle Odometer page")
+    public void the_user_should_see_all_information_Vehicle_Odometer_page() {
+        System.out.println("Driver.get().getTitle() = " + Driver.get().getTitle());
+        Assert.assertEquals("Vehicle Odometer - Entities - System - Car - Entities - System",Driver.get().getTitle());
+
+    }
 
 //    @Then("{string} message should be displayed.")
 //    public void message_should_be_displayed(String expectedPermissionMessage) {
