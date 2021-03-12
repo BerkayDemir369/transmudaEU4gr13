@@ -9,7 +9,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -192,12 +191,13 @@ public class VehicleOdometerStepDefs extends GridBasePage {
 
     @When("The truck driver user clicks Filters button")
     public void theTruckDriverUserClicksFiltersButton() {
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(4);
         FilterButton.click();
     }
 
     @Then("The truck driver user can see Manage Filters Box")
     public void theTruckDriverUserCanSeeManageFiltersBox() {
+        BrowserUtils.waitFor(1);
         Assert.assertTrue(FilterBoxArea.isDisplayed());
     }
 
@@ -242,22 +242,21 @@ public class VehicleOdometerStepDefs extends GridBasePage {
 
     @When("Truck driver user Select Condition keyword {string} for in the selected Filter Option popup")
     public void truckDriverUserSelectConditionKeywordInTheSelectedFilterOptionPopup(String conditionKeyword) {
-        FilterConditionButton.click();
-        BrowserUtils.waitFor(1);
-        conditionKeyword(conditionKeyword).click();
+        filterConditionButton().click();
+        BrowserUtils.waitFor(2);
+        conditionKeywordClick(conditionKeyword);
         // TO-DO: select condition type must be dynamic
 
     }
 
     @And("Truck driver user enter data {string} {string} for Condition keyword in the selected Filter Option popup")
     public void truckDriverUserEnterDataForSelectedConditionKeywordInTheSelectedFilterOptionPopup(String searchText, String searchText2) {
-        FilterValue.sendKeys(searchText);
         BrowserUtils.waitFor(2);
-        selectElement(searchText).click();
-
+        filterStartValue(searchText);
+        BrowserUtils.waitFor(2);
         if (searchText2 != null) {
             try {
-                FilterEndValue.sendKeys(searchText2);
+                filterEndValue(searchText2);
             } catch (Exception ignored) {
             }
         }
@@ -271,6 +270,7 @@ public class VehicleOdometerStepDefs extends GridBasePage {
 
     @Then("Truck driver user should only be able to see results for {string} {string} {string} selected filter settings in the Filter settings")
     public void truckDriverUserShouldBeAbleToSeeResultsForSelectedFilterSettingsInTheFilterSettings(String condition, String searchText, String searchText2) {
+        BrowserUtils.waitFor(3);
         Assert.assertTrue(checkRowValue(activeFilter, condition, searchText, searchText2));
     }
 
@@ -287,6 +287,7 @@ public class VehicleOdometerStepDefs extends GridBasePage {
     @When("The truck driver user clicks Reset button")
     public void theTruckDriverUserClicksResetButton() {
         ResetButton.click();
+        BrowserUtils.waitFor(2);
     }
 
     @Then("The truck driver user should be able to see if all filters and settings applied to the page have been reset and reloaded")
