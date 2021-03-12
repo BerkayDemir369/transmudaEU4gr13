@@ -3,11 +3,13 @@ package com.transmuda.stepdefinitions;
 import com.transmuda.pages.DashboardPage;
 import com.transmuda.pages.VehicleCostsPage;
 import com.transmuda.utilities.BrowserUtils;
+import com.transmuda.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 
 public class VehicleCostsStepDefs {
@@ -111,8 +113,6 @@ public class VehicleCostsStepDefs {
 
     @And("click on the Sticky Note Add Button on the Sidebar Widgets")
     public void click_on_the_Sticky_Note_Add_Button_on_the_Sidebar_Widgets() {
-        ;
-
         vehicleCostsPage.stickyAddBNT.click();
         BrowserUtils.waitFor(3);
 
@@ -549,19 +549,19 @@ public class VehicleCostsStepDefs {
 
     //US-29
 
-    @When("the user click {string}")
-    public void the_user_click(String str1) {
+    @When("the user click Create Vehicle Costs")
+    public void the_user_click() {
         BrowserUtils.waitFor(15);
         vehicleCostsPage.createVehicleCostsButton.click();
     }
 
     @When("the user select Type as {string}")
     public void the_user_select_Type_as(String string) {
-       // BrowserUtils.waitForClickablility(vehicleCostsPage.typeDropDown,20);
+        // BrowserUtils.waitForClickablility(vehicleCostsPage.typeDropDown,20);
         BrowserUtils.waitFor(5);
         vehicleCostsPage.typeDropDown.click();
         BrowserUtils.waitFor(2);
-        vehicleCostsPage.typeInputBox.sendKeys(string, Keys.ENTER);
+        vehicleCostsPage.taxRollDropDownItem.click();
     }
 
     @When("the user enter value to Total Price as {string}")
@@ -578,55 +578,80 @@ public class VehicleCostsStepDefs {
 
     @When("the user enter value to Total Price as {int}")
     public void the_user_enter_value_to_Total_Price_as(Integer int1) {
+        BrowserUtils.waitFor(2);
         vehicleCostsPage.totalPriceInputBox.sendKeys(int1.toString());
     }
 
     @When("the user choose date as {string}")
     public void the_user_choose_date_as(String string) {
-        vehicleCostsPage.dateInputBox.sendKeys(string);
-        System.out.println(vehicleCostsPage.getCurrentDate());
+        //vehicleCostsPage.dateInputBox.sendKeys(string);
+        vehicleCostsPage.dateInputBox.click();
+        //System.out.println(vehicleCostsPage.getCurrentDate());
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.daySelectorToday.click();
+
     }
 
     @When("the user write Cost Description {string}")
-    public void the_user_write_Cost_Description(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void the_user_write_Cost_Description(String text) {
+        vehicleCostsPage.costDescriptionInputBox.click();
+        vehicleCostsPage.costDescriptionInputBox.sendKeys(text);
     }
 
-    @When("the user click {string} button")
-    public void the_user_click_button(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @When("the user click Save And Close")
+    public void the_user_click_Save_And_Close() {
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.saveAndCloseSubmitButton.click();
     }
 
     @When("the user select first chassis number")
     public void the_user_select_first_chassis_number() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        BrowserUtils.waitFor(10);
+        try{
+            vehicleCostsPage.chassisNumberFirstRow.click();
+        }
+        catch(Exception e) {
+            JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
+            jse.executeScript("arguments[0].click();", vehicleCostsPage.chassisNumberFirstRow);
+        }
     }
 
     @When("the user click license plate add button")
     public void the_user_click_license_plate_add_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        vehicleCostsPage.licensePlateAddButton.click();
     }
 
     @When("the user select first license plate")
     public void the_user_select_first_license_plate() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        BrowserUtils.waitFor(5);
+        try{
+            vehicleCostsPage.licensePlateFirstRow.click();
+        }
+        catch(Exception e) {
+            JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
+            jse.executeScript("arguments[0].click();", vehicleCostsPage.licensePlateFirstRow);
+        }
     }
 
     @Then("verify {string} message apper on the top of the page")
-    public void verify_message_apper_on_the_top_of_the_page(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void verify_message_apper_on_the_top_of_the_page(String expectedMessage) {
+
+        BrowserUtils.waitForVisibility(vehicleCostsPage.entitySavedMessage,10);
+        Assert.assertEquals("message verification", vehicleCostsPage.entitySavedMessage.getText(), expectedMessage);
+
+
     }
 
     @Then("verify Chasis Number and License Plate added successfully")
     public void verify_Chasis_Number_and_License_Plate_added_successfully() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        try {
+            BrowserUtils.waitForVisibility(vehicleCostsPage.addedChassisNumberList, 10);
+        } catch(Exception e) {
+            BrowserUtils.waitFor(5);
+            System.out.println("waited 5 sec");
+        }
+            Assert.assertNotEquals("verify chassis number", vehicleCostsPage.addedChassisNumberList.getText(), "N/A");
+            Assert.assertNotEquals("verify license plate", vehicleCostsPage.addedLicensePlateList.getText(), "N/A");
     }
 
     //US_32
@@ -670,6 +695,16 @@ public class VehicleCostsStepDefs {
     public void verify_message_appeared_on_the_top(String string) {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
+    }
+    @When("the user click chassis number add button")
+    public void the_user_click_chassis_number_add_button() {
+        BrowserUtils.waitFor(3);
+        vehicleCostsPage.chassisNumberAddButton.click();
+    }
+
+    @When("the user click Select button")
+    public void the_user_click_Select_button() {
+        vehicleCostsPage.chassisNumberSelectButton.click();
     }
 }
 
