@@ -1,6 +1,6 @@
 package com.transmuda.stepdefinitions;
 
-import com.transmuda.pages.DashboardPage;
+import com.transmuda.pages.GridBasePage;
 import com.transmuda.pages.VehicleCostsPage;
 import com.transmuda.utilities.BrowserUtils;
 import com.transmuda.utilities.Driver;
@@ -10,9 +10,13 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
-public class VehicleCostsStepDefs {
+import java.util.Set;
+
+public class VehicleCostsStepDefs extends GridBasePage {
 
 //US-25
 
@@ -24,6 +28,7 @@ public class VehicleCostsStepDefs {
         dashboardPage.navigateToModule("Fleet", "Vehicle Costs");
         BrowserUtils.waitFor(10);
     }
+
 
     @When("click on the Page button on the Vehicle Costs page")
     public void click_on_the_Page_button_on_the_Vehicle_Costs_page() {
@@ -64,8 +69,6 @@ public class VehicleCostsStepDefs {
         vehicleCostsPage.exportGridButton.click();
         BrowserUtils.waitFor(3);
         vehicleCostsPage.csvButton.click();
-
-
     }
 
     @When("click on the Export Grid XLSX button on the Vehicle Costs page")
@@ -87,21 +90,14 @@ public class VehicleCostsStepDefs {
 
     @Given("truck driver navigate Fleet to Vehicle Costs")
     public void truck_driver_navigate_Fleet_to_Vechicle_Costs() {
-
-        DashboardPage dashboardPage = new DashboardPage();
-        dashboardPage.navigateToModule("Fleet", "Vehicle Costs");
+        navigateToModule("Fleet", "Vehicle Costs");
         BrowserUtils.waitFor(5);
-
-
     }
 
     @When("click on the Add sign on the Vehicle Costs page")
     public void click_on_the_Add_sign_on_the_Vehicle_Costs_page() {
-
         vehicleCostsPage.AddSign.click();
-
         BrowserUtils.waitFor(7);
-
     }
 
     @And("click on the Recent emails Add Button on the  Sidebar Widgets")
@@ -174,7 +170,218 @@ public class VehicleCostsStepDefs {
         BrowserUtils.waitFor(3);
 
     }
-// US-30
+
+
+    // US-30 -- Sukru
+
+    @And("click on the table row {string}")
+    public void clickOnTheTableFirstRow(String Text) {
+        BrowserUtils.waitFor(3);
+        findRowWebElement("Type", Text).click();
+    }
+
+    @Then("Truck Driver can see all information about specific record {string}")
+    public void truckDriverCanSeeAllInformationAboutSpecificRecord(String text) {
+        BrowserUtils.waitFor(3);
+        Assert.assertTrue(VehicleCostsPage.elementNamedElement(text).isDisplayed());
+    }
+
+    //======US-28   Hamdulla====
+    @When("Navigate to Fleet Vehicle Costs.")
+    public void navigate_to_Fleet_Vehicle_Costs() {
+        navigateToModule("Fleet", "Vehicle Costs");
+        BrowserUtils.waitFor(8);
+
+    }
+
+    @Then("Truck driver should be able to see costs information")
+    public void truck_driver_should_be_able_to_see_costs_information() {
+        Assert.assertTrue(vehicleCostsPage.allVehicleCosts.isDisplayed());
+        BrowserUtils.waitFor(2);
+
+
+    }
+
+    @When("Move to ... sign and click on Eye Button of any Vehicle Costs.")
+    public void move_to_sign_and_click_on_Eye_Button_of_any_Vehicle_Costs() {
+       // Actions actions = new Actions(driver);
+       // actions.moveToElement(vehicleCostsPage.PoinsSignOfTaxRoll1).perform();
+        vehicleCostsPage.PoinsSignOfTaxRoll1.click();
+        BrowserUtils.waitFor(5);
+        vehicleCostsPage.PoinsSignOfTaxRoll1.click();
+        vehicleCostsPage.EyeButton.click();
+        BrowserUtils.waitFor(3);
+
+
+
+    }
+
+    @Then("Truck driver can view specific Vehicle Cost.")
+    public void truck_driver_can_view_specific_Vehicle_Cost() {
+        String actualItemTitle=vehicleCostsPage.TaxRoll1Title.getText();
+        String expectedItemTitle=vehicleCostsPage.TaxRoll1Type.getText();
+        Assert.assertEquals(expectedItemTitle,actualItemTitle);
+        BrowserUtils.waitFor(5);
+
+    }
+
+    @When("Move to ... sign and click on Delete Button of any Vehicle Costs.")
+    public void move_to_sign_and_click_on_Delete_Button_of_any_Vehicle_Costs() {
+        // Actions actions = new Actions(driver);
+        // actions.moveToElement(vehicleCostsPage.PoinsSignOfTaxRoll1).perform();
+        vehicleCostsPage.PoinsSignOfTaxRoll1.click();
+        BrowserUtils.waitFor(5);
+        vehicleCostsPage.PoinsSignOfTaxRoll1.click();
+        vehicleCostsPage.DeleteButton.click();
+        vehicleCostsPage.DeleteYesButton.click();
+        BrowserUtils.waitFor(3);
+
+    }
+
+    @Then("Truck driver can not delete Vehicle Cost.")
+    public void truck_driver_can_not_delete_Vehicle_Cost() {
+        Assert.assertTrue(vehicleCostsPage.DeleteErrorMessage.isDisplayed());
+        BrowserUtils.waitFor(3);
+
+
+
+
+    }
+
+    @When("Move to ... sign and click on Edit Button of any Vehicle Costs.")
+    public void move_to_sign_and_click_on_Edit_Button_of_any_Vehicle_Costs() {
+        // Actions actions = new Actions(driver);
+        // actions.moveToElement(vehicleCostsPage.PoinsSignOfTaxRoll1).perform();
+        vehicleCostsPage.PoinsSignOfTaxRoll1.click();
+        BrowserUtils.waitFor(5);
+        vehicleCostsPage.PoinsSignOfTaxRoll1.click();
+        vehicleCostsPage.EditButton.click();
+        BrowserUtils.waitFor(3);
+
+    }
+
+    @Then("Truck driver can not edit Vehicle Cost.")
+    public void truck_driver_can_not_edit_Vehicle_Cost() {
+        String EditResultTitle=vehicleCostsPage.EditResultQuickLaunchpad.getText();
+        Assert.assertEquals("Quick Launchpad",EditResultTitle);
+        BrowserUtils.waitFor(3);
+
+
+    }
+
+
+
+
+
+
+    // US-31    Hamdulla  ====
+    @When("Click on any Vehicle Cost.")
+    public void click_on_any_Vehicle_Cost() {
+        vehicleCostsPage.TaxRoll1.click();
+        BrowserUtils.waitFor(5);
+
+    }
+
+    @When("Click on Add Event Button on the specific Vehicle Cost Page.")
+    public void click_on_Add_Event_Button_on_the_specific_Vehicle_Cost_Page() {
+        vehicleCostsPage.AddEventButton.click();
+        BrowserUtils.waitFor(4);
+
+    }
+
+    @Then("Truck driver can see Add Event Window.")
+    public void truck_driver_can_see_Add_Event_Window() {
+        String AddEveWindowTitle=vehicleCostsPage.AddEventWindow.getText();
+        Assert.assertEquals("Add Event",AddEveWindowTitle);
+        BrowserUtils.waitFor(3);
+
+
+    }
+
+    @Then("Fill all information on the Add Event Window and click on Save Button.")
+    public void fill_all_information_on_the_Add_Event_Window_and_click_on_Save_Button() {
+        String EventName="Victory";
+        vehicleCostsPage.TitleInputBox.sendKeys(EventName);
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.OrganizerNameBox.sendKeys("Hamdulla");
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.OrganizerEmailBox.sendKeys("hamdulla@yahoo.com");
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.StartDate.click();
+        BrowserUtils.waitFor(4);
+        vehicleCostsPage.Date10.click();
+        BrowserUtils.waitFor(4);
+        vehicleCostsPage.StartHour.click();
+        BrowserUtils.waitFor(4);
+        vehicleCostsPage.Hour8AM.click();
+        BrowserUtils.waitFor(4);
+        vehicleCostsPage.EndDate.click();
+        BrowserUtils.waitFor(3);
+        vehicleCostsPage.Date12.click();
+        BrowserUtils.waitFor(3);
+        vehicleCostsPage.EndHour.click();
+        BrowserUtils.waitFor(3);
+        vehicleCostsPage.Hour607PM.click();
+        BrowserUtils.waitFor(3);
+        vehicleCostsPage.SaveButton.click();
+        BrowserUtils.waitFor(3);
+
+
+    }
+
+    @Then("Truck driver can see new calendar event on that specific vehicle cost page.")
+    public void truck_driver_can_see_new_calendar_event_on_that_specific_vehicle_cost_page() {
+        Assert.assertEquals("Victory",vehicleCostsPage.EventName.getText());
+        BrowserUtils.waitFor(3);
+
+
+
+    }
+
+    @Then("Click on Save Button without filling any information.")
+    public void click_on_Save_Button_without_filling_any_information() {
+        vehicleCostsPage.SaveButton.click();
+        BrowserUtils.waitFor(3);
+
+    }
+
+    @Then("{string} error message should be displayed.")
+    public void error_message_should_be_displayed(String string) {
+        Assert.assertEquals(string,vehicleCostsPage.ErrorMessage.getText());
+        BrowserUtils.waitFor(2);
+        vehicleCostsPage.CancelButton.click();
+        BrowserUtils.waitFor(2);
+
+
+    }
+
+    @When("Click on that specific Vehicle Cost.")
+    public void click_on_that_specific_Vehicle_Cost() {
+        vehicleCostsPage.TaxRoll1.click();
+        BrowserUtils.waitFor(3);
+
+    }
+
+    @Then("Truck driver can see the Event under the General.")
+    public void truck_driver_can_see_the_Event_under_the_General() {
+        Assert.assertEquals("Victory",vehicleCostsPage.EventName.getText());
+        BrowserUtils.waitFor(3);
+
+    }
+
+    @When("Click on the Activity Button on that specific VehiclVehicle Cost page.")
+    public void click_on_the_Activity_Button_on_that_specific_VehiclVehicle_Cost_page() {
+        vehicleCostsPage.ActivityTab.click();
+        BrowserUtils.waitFor(3);
+
+    }
+
+    @Then("Truck driver can see the Event under the Activity.")
+    public void truck_driver_can_see_the_Event_under_the_Activity() {
+        Assert.assertEquals("Victory",vehicleCostsPage.EventName.getText());
+        BrowserUtils.waitFor(3);
+
+    }
 
 
 //US-33
@@ -412,10 +619,36 @@ public class VehicleCostsStepDefs {
 
     }
 
+    String previousRecordNumber = null;
+    String currentRecordNumber = null;
+
     @When("the user click Refresh Button")
     public void the_user_click_Refresh_Button() {
 
+        // take open new tab
+
+        BrowserUtils.waitFor(10);
+        previousRecordNumber = String.valueOf(getTotalRecords());
+
+        System.out.println("previousRecordNumber = " + previousRecordNumber);
+        openNewTab();
+        BrowserUtils.waitFor(2);
+
+        changeToNewWindow();
+        BrowserUtils.waitFor(2);
+
+
+        Driver.get().get("https://qa.transmuda.com/entity/update/Extend_Entity_VehicleCosts/item");
+
+        BrowserUtils.waitFor(3);
+        vehicleCostsPage.saveAndClose.click();
+        BrowserUtils.waitFor(3);
+        changeToNewWindow();
+        BrowserUtils.waitFor(2);
         vehicleCostsPage.refreshButton.click();
+        BrowserUtils.waitFor(2);
+        currentRecordNumber = String.valueOf(getTotalRecords());
+        System.out.println("actualPageNumber = " + actualPageNumber);
 
 
     }
@@ -423,8 +656,10 @@ public class VehicleCostsStepDefs {
     @Then("system should be able to refresh the page")
     public void system_should_be_able_to_refresh_the_page() {
 
-        BrowserUtils.waitFor(2);
-        vehicleCostsPage.refreshButton.isDisplayed();
+        BrowserUtils.waitFor(3);
+
+
+        Assert.assertNotEquals(previousRecordNumber, currentRecordNumber);
 
     }
 
@@ -471,88 +706,150 @@ public class VehicleCostsStepDefs {
 
     @Given("sales manager navigate Fleet to Vehicle Costs")
     public void salesManagerNavigateFleetToVehicleCosts() {
+
+        navigateToModule("Fleet", "Vehicle Costs");
+        BrowserUtils.waitFor(3);
+
     }
 
     @When("click on Add sign on the sidebar widgets")
     public void clickOnAddSignOnTheSidebarWidgets() {
+        vehicleCostsPage.AddSign.click();
+        BrowserUtils.waitFor(3);
+
     }
+
 
     @And("click on Recent Emial Add Button on the sidebar widgets window")
     public void clickOnRecentEmialAddButtonOnTheSidebarWidgetsWindow() {
+        vehicleCostsPage.recentAddBNT.click();
+        BrowserUtils.waitFor(3);
     }
+
 
     @And("click on Sticky Note Add Button on the sidebar widgets window")
     public void clickOnStickyNoteAddButtonOnTheSidebarWidgetsWindow() {
+        vehicleCostsPage.stickyIcon.click();
+        BrowserUtils.waitFor(3);
     }
+
 
     @And("click on Task list Add Button on the sidebar widgets window")
     public void clickOnTaskListAddButtonOnTheSidebarWidgetsWindow() {
+        vehicleCostsPage.tasklistIcon.click();
+        BrowserUtils.waitFor(3);
     }
 
     @And("click on Close Button on the sidebar widgets window")
     public void clickOnCloseButtonOnTheSidebarWidgetsWindow() {
+        vehicleCostsPage.closeAddBNT.click();
+        BrowserUtils.waitFor(3);
     }
 
     @Then("sales manager can use sidebar widgets on the vehicle cost page")
     public void salesManagerCanUseSidebarWidgetsOnTheVehicleCostPage() {
+
+        Assert.assertTrue("verify email is added", vehicleCostsPage.amilIcon.isDisplayed());
+        BrowserUtils.waitFor(3);
+        Assert.assertTrue("verify sticky note is added", vehicleCostsPage.stickyIcon.isDisplayed());
+        BrowserUtils.waitFor(3);
+
+        Assert.assertTrue("verify sticky note is added", vehicleCostsPage.tasklistIcon.isDisplayed());
+        BrowserUtils.waitFor(3);
+
     }
 
     @Given("sales manager navigate Fleet to Vehicle Costs page")
     public void salesManagerNavigateFleetToVehicleCostsPage() {
+        navigateToModule("Fleet", "Vehicle Cost");
+        BrowserUtils.waitFor(3);
+
     }
 
     @When("click on the Pin Icon on the Vehicle Costs page")
     public void clickOnThePinIconOnTheVehicleCostsPage() {
+        vehicleCostsPage.pinIcon.click();
+        BrowserUtils.waitFor(3);
     }
 
     @And("click on the Favourite on the Vehicle Costs page")
     public void clickOnTheFavouriteOnTheVehicleCostsPage() {
+        vehicleCostsPage.favoriteIcon.click();
+        BrowserUtils.waitFor(3);
     }
 
     @Then("sales manager can pin, favourite the Vehicle Costs page")
     public void salesManagerCanPinFavouriteTheVehicleCostsPage() {
+        Assert.assertTrue(vehicleCostsPage.addpinInformation.isDisplayed());
+        BrowserUtils.waitFor(3);
+
     }
 
     @When("click on the Username Dropdown Icon on Vehicle Costs page")
     public void clickOnTheUsernameDropdownIconOnVehicleCostsPage() {
+        vehicleCostsPage.facaretDown.click();
+        BrowserUtils.waitFor(3);
     }
 
     @And("select the Logout on the Dropdown list")
     public void selectTheLogoutOnTheDropdownList() {
+        vehicleCostsPage.logOutLink.click();
+        BrowserUtils.waitFor(3);
     }
 
     @Then("user able to log out")
     public void userAbleToLogOut() {
+
     }
 
     @Given("the user login as a “sales manager")
     public void theUserLoginAsASalesManager() {
+   //Yasin please correct this method
+        String actualUrl = Driver.get().getCurrentUrl();
+        String expectedUrl = "https://qa.transmuda.com/user/login";
+        Assert.assertEquals(expectedUrl, actualUrl);
+        BrowserUtils.waitFor(3);
+
+
     }
 
-    @Then("user should be able to log in")
-    public void userShouldBeAbleToLogIn() {
-    }
 
     @When("click on  favourites dropdown")
     public void clickOnFavouritesDropdown() {
+
+        vehicleCostsPage.facbars.click();
+        BrowserUtils.waitFor(3);
     }
 
     @And("click  on  favourites button")
     public void clickOnFavouritesButton() {
+
+        vehicleCostsPage.favoritesContent.click();
+        BrowserUtils.waitFor(3);
+
+
     }
 
 
     @Then("user should be able to see favourites top page and page pin")
     public void userShouldBeAbleToSeeFavouritesTopPageAndPagePin() {
 
+        Assert.assertTrue(vehicleCostsPage.VehicleCostsEntitiesSystem.isDisplayed());
+        Assert.assertTrue(vehicleCostsPage.addpinInformation.isDisplayed());
+        BrowserUtils.waitFor(3);
     }
 
     //US-29
+
 
     @When("the user click Create Vehicle Costs")
     public void the_user_click() {
         BrowserUtils.waitFor(15);
         vehicleCostsPage.createVehicleCostsButton.click();
+
+    @When("the user click {string}")
+    public void the_user_click(String string) {
+
     }
 
     @When("the user select Type as {string}")
@@ -702,10 +999,12 @@ public class VehicleCostsStepDefs {
         vehicleCostsPage.chassisNumberAddButton.click();
     }
 
+
     @When("the user click Select button")
     public void the_user_click_Select_button() {
         vehicleCostsPage.chassisNumberSelectButton.click();
     }
+
 }
 
 

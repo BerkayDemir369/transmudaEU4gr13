@@ -16,9 +16,9 @@ import java.awt.*;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class VehicleOdometerStepDefs  extends GridBasePage {
+public class VehicleOdometerStepDefs extends GridBasePage {
 
-   //US-16
+    //US-16
 
     @When("the user click export grid")
     public void the_user_click_export_grid() {
@@ -28,7 +28,7 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
     @Then("verify options are CSV, XLSX")
     public void verify_options_are_CSV_XLSX() {
-        VehicleOdometerPage vehicleOdometerPage=new VehicleOdometerPage();
+        VehicleOdometerPage vehicleOdometerPage = new VehicleOdometerPage();
         Assert.assertTrue(vehicleOdometerPage.csv.getText().equals("CSV"));
         Assert.assertTrue(vehicleOdometerPage.xlsx.getText().equals("XLSX"));
     }
@@ -40,7 +40,7 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
     @Then("verify {string} message appear on the top")
     public void verify_message_appear_on_the_top(String message) {
-        message="Export started successfully. You will receive email notification upon completion.";
+        message = "Export started successfully. You will receive email notification upon completion.";
         Assert.assertEquals(message, new VehicleOdometerPage().successfullyMessage.getText());
     }
 
@@ -59,22 +59,22 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
     @Then("verify options are {int}, {int}, {int}, {int}")
     public void verify_options_are(Integer int1, Integer int2, Integer int3, Integer int4) {
-        List<String> dropdownElement=BrowserUtils.getElementsText(new VehicleOdometerPage().dropdownItemList);
-        Assert.assertEquals("10",dropdownElement.get(0));
-        Assert.assertEquals("25",dropdownElement.get(1));
-        Assert.assertEquals("50",dropdownElement.get(2));
-        Assert.assertEquals("100",dropdownElement.get(3));
+        List<String> dropdownElement = BrowserUtils.getElementsText(new VehicleOdometerPage().dropdownItemList);
+        Assert.assertEquals("10", dropdownElement.get(0));
+        Assert.assertEquals("25", dropdownElement.get(1));
+        Assert.assertEquals("50", dropdownElement.get(2));
+        Assert.assertEquals("100", dropdownElement.get(3));
     }
 
     @When("the user select {int}")
     public void the_user_select(Integer int1) {
-        if(int1==10) {
+        if (int1 == 10) {
             new VehicleOdometerPage().dropdownItemList.get(0).click();
-        }else if(int1==25) {
+        } else if (int1 == 25) {
             new VehicleOdometerPage().dropdownItemList.get(1).click();
-        } else if(int1==50) {
+        } else if (int1 == 50) {
             new VehicleOdometerPage().dropdownItemList.get(2).click();
-        }else if(int1==100) {
+        } else if (int1 == 100) {
             new VehicleOdometerPage().dropdownItemList.get(3).click();
         }
         BrowserUtils.waitFor(2);
@@ -83,9 +83,8 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
     @Then("verify record table content decrease {int}")
     public void verify_record_table_content_decrease(Integer int1) {
-        int number = new  VehicleOdometerPage().tableRow.size();
-        Integer number1=Integer.valueOf(number);
-        Assert.assertEquals(int1,number1);
+        Integer number1 = new VehicleOdometerPage().tableRow.size();
+        Assert.assertEquals(int1, number1);
 
     }
 
@@ -98,17 +97,17 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
     @Then("verify page changed to second page")
     public void verify_page_changed_to_second_page() {
-        String num=new VehicleOdometerPage().pageNumber.getAttribute("value");
-        Assert.assertEquals("2",num);
+        String num = new VehicleOdometerPage().pageNumber.getAttribute("value");
+        Assert.assertEquals("2", num);
     }
 
     @Then("the user can see vehicle odometre page")
     public void the_user_can_see_vehicle_odometre_page() {
         BrowserUtils.waitFor(10);
-        String actualUrl= Driver.get().getCurrentUrl();
+        String actualUrl = Driver.get().getCurrentUrl();
         System.out.println("actualUrl = " + actualUrl);
-        String expectedUrl="https://qa.transmuda.com/entity/Extend_Entity_VehiclesOdometer";
-        Assert.assertEquals(actualUrl,expectedUrl);
+        String expectedUrl = "https://qa.transmuda.com/entity/Extend_Entity_VehiclesOdometer";
+        Assert.assertEquals(actualUrl, expectedUrl);
     }
 
 //US-17
@@ -117,7 +116,7 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
     @Given("The truck driver user accesses the {string} - {string}")
     public void theTruckDriverUserAccessesThe(String tab, String module) {
-        new DashboardPage().navigateToModule(tab, module);
+        navigateToModule(tab, module);
     }
 
     @When("The truck driver click Grid Settings button")
@@ -181,8 +180,6 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
         BrowserUtils.waitFor(1);
         JavascriptExecutor executor = (JavascriptExecutor) Driver.get();
         executor.executeScript("arguments[0].click();", SelectAll);
-
-        //SelectAll.click();
     }
 
     @Then("The truck driver should be able to see in the popup table that all checkboxes have been marked")
@@ -194,12 +191,13 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
     @When("The truck driver user clicks Filters button")
     public void theTruckDriverUserClicksFiltersButton() {
-        BrowserUtils.waitFor(10);
+        BrowserUtils.waitFor(4);
         FilterButton.click();
     }
 
     @Then("The truck driver user can see Manage Filters Box")
     public void theTruckDriverUserCanSeeManageFiltersBox() {
+        BrowserUtils.waitFor(1);
         Assert.assertTrue(FilterBoxArea.isDisplayed());
     }
 
@@ -244,18 +242,21 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
     @When("Truck driver user Select Condition keyword {string} for in the selected Filter Option popup")
     public void truckDriverUserSelectConditionKeywordInTheSelectedFilterOptionPopup(String conditionKeyword) {
-        FilterConditionButton.click();
-        ConditionType.click();
+        filterConditionButton().click();
+        BrowserUtils.waitFor(2);
+        conditionKeywordClick(conditionKeyword);
         // TO-DO: select condition type must be dynamic
 
     }
 
     @And("Truck driver user enter data {string} {string} for Condition keyword in the selected Filter Option popup")
     public void truckDriverUserEnterDataForSelectedConditionKeywordInTheSelectedFilterOptionPopup(String searchText, String searchText2) {
-        FilterStartValue.sendKeys(searchText);
+        BrowserUtils.waitFor(2);
+        filterStartValue(searchText);
+        BrowserUtils.waitFor(2);
         if (searchText2 != null) {
             try {
-                FilterEndValue.sendKeys(searchText2);
+                filterEndValue(searchText2);
             } catch (Exception ignored) {
             }
         }
@@ -263,11 +264,13 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
     @And("Truck driver user Click Update button in the selected Filter Option popup")
     public void truckDriverUserClickUpdateButtonInTheSelectedFilterOptionPopup() {
+        BrowserUtils.waitFor(2);
         FilterUpdateButton.click();
     }
 
     @Then("Truck driver user should only be able to see results for {string} {string} {string} selected filter settings in the Filter settings")
     public void truckDriverUserShouldBeAbleToSeeResultsForSelectedFilterSettingsInTheFilterSettings(String condition, String searchText, String searchText2) {
+        BrowserUtils.waitFor(3);
         Assert.assertTrue(checkRowValue(activeFilter, condition, searchText, searchText2));
     }
 
@@ -284,6 +287,7 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
     @When("The truck driver user clicks Reset button")
     public void theTruckDriverUserClicksResetButton() {
         ResetButton.click();
+        BrowserUtils.waitFor(2);
     }
 
     @Then("The truck driver user should be able to see if all filters and settings applied to the page have been reset and reloaded")
@@ -297,12 +301,7 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
     @Given("navigate  Fleet to  Vehicle Odometer")
     public void navigateFleetToVehicleOdometer() {
-
-
-        DashboardPage dashboardPage = new DashboardPage();
-
-        //  new DashboardPage().navigateToModule(tab,module);
-        dashboardPage.navigateToModule("Fleet", "Vehicle Odometer");
+        navigateToModule("Fleet", "Vehicle Odometer");
         BrowserUtils.waitFor(10);
     }
 
@@ -415,9 +414,6 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
         BrowserUtils.waitFor(3);
     }
-
-
-
 
 
     @When("truck driver click on the view per page dropdown button on the licence plate information window")
@@ -572,14 +568,13 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
 
         BrowserUtils.waitFor(1);
-        new DashboardPage().navigateToModule(tab,module);
+        navigateToModule(tab, module);
 
 
     }
 
     @When("the user click first odometer information on the table")
     public void the_user_click_first_odometer_information_on_the_table() {
-
 
 
         BrowserUtils.waitFor(12);
@@ -601,9 +596,9 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
     @Then("information  Edit page should be open")
     public void information_Edit_page_should_be_open() {
 
-        String actualTitle= new VehicleOdometerPage().GenaeralText.getText();
-        String expectedTitle="General";
-        Assert.assertEquals(expectedTitle,actualTitle);
+        String actualTitle = new VehicleOdometerPage().GenaeralText.getText();
+        String expectedTitle = "General";
+        Assert.assertEquals(expectedTitle, actualTitle);
 
         BrowserUtils.waitFor(1);
 
@@ -613,7 +608,7 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
     public void the_user_enter_the_valid_values() {
 
 
-        VehicleOdometerPage vehicleOdometer_page =new VehicleOdometerPage();
+        VehicleOdometerPage vehicleOdometer_page = new VehicleOdometerPage();
 
         vehicleOdometer_page.odometerValue.click();
         BrowserUtils.waitFor(1);
@@ -623,11 +618,11 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
         //=======date===========
         vehicleOdometer_page.chooseDate.click();
         BrowserUtils.waitFor(1);
-        Select select=new Select(vehicleOdometer_page.monthSelect);
+        Select select = new Select(vehicleOdometer_page.monthSelect);
 
         select.selectByIndex(4);
 
-        Select selectYear=new Select(vehicleOdometer_page.yearSelect);
+        Select selectYear = new Select(vehicleOdometer_page.yearSelect);
 
         selectYear.selectByIndex(10);
 
@@ -639,8 +634,6 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
         vehicleOdometer_page.driver.click();
         vehicleOdometer_page.driver.clear();
         vehicleOdometer_page.driver.sendKeys("MahmutAbi");
-
-
 
 
         vehicleOdometer_page.xButton.click();
@@ -659,8 +652,6 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
         vehicleOdometer_page.selectButton.click();
 
 
-
-
     }
 
     @When("click Save And Close button")
@@ -676,19 +667,19 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
     public void the_user_should_be_able_to_see_message(String expectedMessage) {
 
         BrowserUtils.waitFor(3);
-        VehicleOdometerPage vehicleOdometer_page =new VehicleOdometerPage();
+        VehicleOdometerPage vehicleOdometer_page = new VehicleOdometerPage();
         //
-        String  actualDisplayMessage= vehicleOdometer_page.entityMessage.getText();
+        String actualDisplayMessage = vehicleOdometer_page.entityMessage.getText();
 //        Alert alert=Driver.get().switchTo().alert();
 //        String actualDisplayMessage=alert.getText();
-        Assert.assertEquals(expectedMessage,actualDisplayMessage);
+        Assert.assertEquals(expectedMessage, actualDisplayMessage);
 
     }
 
     @When("the user enter letter as a Odometer Value")
     public void the_user_enter_letter_as_a_Odometer_Value() {
 
-        VehicleOdometerPage vehicleOdometer_page =new VehicleOdometerPage();
+        VehicleOdometerPage vehicleOdometer_page = new VehicleOdometerPage();
 
         vehicleOdometer_page.odometerValue.click();
         BrowserUtils.waitFor(1);
@@ -711,20 +702,22 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
     @Then("{string} error message should be displayed")
     public void error_message_should_be_displayed(String expectedErrorMessage) {
 
-        String actualMessage=new VehicleOdometerPage().AlertMessage.getText();
-        Assert.assertEquals(expectedErrorMessage,actualMessage);
+        String actualMessage = new VehicleOdometerPage().AlertMessage.getText();
+        Assert.assertEquals(expectedErrorMessage, actualMessage);
+
+        String actualMessage1 = new VehicleOdometerPage().fileChoosingErrorMessage.getText();
+        Assert.assertEquals(expectedErrorMessage, actualMessage);
 
 
     }
 
 //US-22
 
-   // CreateVehicleOdometerPage createVehicleOdometerPage=new CreateVehicleOdometerPage();
+    // CreateVehicleOdometerPage createVehicleOdometerPage=new CreateVehicleOdometerPage();
 
     @Given("navigate Fleet to Vehicle Odometer")
     public void navigate_Fleet_to_Vehicle_Odometer() {
-        DashboardPage dashboardPage=new DashboardPage();
-        dashboardPage.navigateToModule("Fleet","Vehicle Odometer");
+        navigateToModule("Fleet", "Vehicle Odometer");
         BrowserUtils.waitFor(10);
     }
 
@@ -757,10 +750,10 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
     @Then("vehicle odometer deleted from the list")
     public void vehicle_odometer_deleted_information_display() {
 
-        String actualuRL= Driver.get().getCurrentUrl();
-        String expectedUrl="https://qa.transmuda.com/entity/Extend%5CEntity%5CVehiclesOdometer";
+        String actualuRL = Driver.get().getCurrentUrl();
+        String expectedUrl = "https://qa.transmuda.com/entity/Extend%5CEntity%5CVehiclesOdometer";
 
-        Assert.assertEquals(expectedUrl,actualuRL);
+        Assert.assertEquals(expectedUrl, actualuRL);
 
     }
 
@@ -805,8 +798,6 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
         vehicleOdometerPage.firstOwnerRow.click();
 
 
-
-
     }
 
     @When("the user click Save Button")
@@ -817,7 +808,7 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 
     }
 
-//    @Then("{string} message should be displayed")
+    //    @Then("{string} message should be displayed")
 //    public void message_should_be_displayed(String expectedMessage) {
 //
 //        BrowserUtils.waitFor(3);
@@ -831,6 +822,7 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
         String actualMessage = new VehicleOdometerPage().AlertMessage.getText();
         Assert.assertEquals(expectedMessage, actualMessage);
     }
+
     @When("the user click Save Button without any choose file")
     public void the_user_click_Save_Button_without_any_choose_file() {
 
@@ -842,7 +834,7 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
     }
 
 // To do Berky
-//    @Then("{string} error message should be displayed.")
+//   @Then("{string} error message should be displayed.")
 //    public void error_message_should_be_displayed(String expectedMessage) {
 //
 //
@@ -852,15 +844,21 @@ public class VehicleOdometerStepDefs  extends GridBasePage {
 //
 //    }
 
-//US-24
-@Then("expected title should be {string}")
-public void expected_title_should_be(String expectedTitle) {
+    //US-24
+    @Then("expected title should be {string}")
+    public void expected_title_should_be(String expectedTitle) {
 
-    BrowserUtils.waitFor(5);
-    String title= Driver.get().getTitle();
-    Assert.assertEquals(expectedTitle,title);
+        BrowserUtils.waitFor(5);
+        String title = Driver.get().getTitle();
+        Assert.assertEquals(expectedTitle, title);
 
-}
+    }
+    @Then("The user should see all information Vehicle Odometer page")
+    public void the_user_should_see_all_information_Vehicle_Odometer_page() {
+        System.out.println("Driver.get().getTitle() = " + Driver.get().getTitle());
+        Assert.assertEquals("Vehicle Odometer - Entities - System - Car - Entities - System",Driver.get().getTitle());
+
+    }
 
 //    @Then("{string} message should be displayed.")
 //    public void message_should_be_displayed(String expectedPermissionMessage) {

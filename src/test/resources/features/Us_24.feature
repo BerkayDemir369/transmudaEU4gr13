@@ -28,6 +28,6 @@ Feature:
 		Given the user login as a "sales manager"
 		Then the user should be able to login
 		When the user navigates to "Fleet" , "Vehicle Odometer"
-		Then "You do not have permission to perform this action." message should be displayed.
+		Then "You do not have permission to perform this action." message should be displayed
 		
 		
