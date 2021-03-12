@@ -186,12 +186,12 @@ public class VehicleCostsStepDefs extends GridBasePage {
     }
 
     //======US-28   Hamdulla====
-    @When("Navigate to Fleet Vehicle Costs.")
-    public void navigate_to_Fleet_Vehicle_Costs() {
-        navigateToModule("Fleet", "Vehicle Costs");
-        BrowserUtils.waitFor(8);
-
-    }
+//    @When("Navigate to Fleet Vehicle Costs.")
+//    public void navigate_to_Fleet_Vehicle_Costs() {
+//        navigateToModule("Fleet", "Vehicle Costs");
+//        BrowserUtils.waitFor(8);
+//
+//    }
 
     @Then("Truck driver should be able to see costs information")
     public void truck_driver_should_be_able_to_see_costs_information() {
@@ -845,7 +845,7 @@ public class VehicleCostsStepDefs extends GridBasePage {
     public void the_user_click() {
         BrowserUtils.waitFor(15);
         vehicleCostsPage.createVehicleCostsButton.click();
-
+    }
     @When("the user click {string}")
     public void the_user_click(String string) {
 
