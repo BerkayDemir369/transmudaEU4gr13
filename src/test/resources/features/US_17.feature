@@ -6,7 +6,7 @@ Feature:
     Then the user should be able to login
 
 
-  @TR-188 @TR-204
+  @TR-188 @TR-204 @grid
   Scenario: TR-19 1-Truck driver can use Grid Settings button for arranging demanded columns.
     Given The truck driver user accesses the "Fleet" - "Vehicle Odometer"
     When The truck driver click Grid Settings button
@@ -20,7 +20,7 @@ Feature:
     Then The truck driver should be able to see in the popup table that all checkboxes have been marked
     And The truck driver should only be able to see the column headings selected from the grid settings popup in the odometer table
 
-  @TR-201 @TR-204
+  @TR-201 @TR-204 @grid
   Scenario: TR-19 2-Truck driver can use Filters sign with opening Manage Filters button for filtering informations
     Given The truck driver user accesses the "Fleet" - "Vehicle Odometer"
     When The truck driver user clicks Filters button

@@ -15,7 +15,7 @@ Feature:
 		Then Truck Driver can see all information about specific record "Depreciation and Interests"
 
 	
-	@TR-231 @TR-274 @TR-252
+	@TR-231 @TR-274 @TR-252 @grid
 	Scenario: 2-Truck Driver can filter activities by using either Activity Type button or Date Range button
 		When navigate "Fleet" to "Vehicle Costs"
 		    And The truck driver user clicks Filters button
