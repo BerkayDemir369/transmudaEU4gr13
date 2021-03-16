@@ -28,8 +28,24 @@ Feature:
     And Truck driver user Click Update button in the selected Filter Option popup
     Then Truck driver user should only be able to see results for "is any of" "Vehicle Registration" "" selected filter settings in the Filter settings
 
+#    When The truck driver user clicks Reset button
+#    #And The truck driver user clicks Filters button
+#    Then The truck driver user can see Manage Filters Box
+#    And Click Manage filters link button
+#    Then The truck driver user should be able to see Manage filters popup
+#    When The truck driver user select filter option "Total Price" in the Manage filters popup
+#    Then Truck driver user should be able to see selected "Total Price" filter setting on the right side of manage filter
+#    When Truck driver user Click selected Filter Option "Total Price" button
+#    Then Truck driver user should be able to see "Total Price" in the Filter Option popup
+#    When Truck driver user Select Condition keyword "not between" for in the selected Filter Option popup
+#    And Truck driver user enter data "20" "200" for Condition keyword in the selected Filter Option popup
+#    And Truck driver user Click Update button in the selected Filter Option popup
+#    Then Truck driver user should only be able to see results for "not between" "20" "200" selected filter settings in the Filter settings
+
+
+
     When The truck driver user clicks Reset button
-    And The truck driver user clicks Filters button
+    #And The truck driver user clicks Filters button
     Then The truck driver user can see Manage Filters Box
     And Click Manage filters link button
     Then The truck driver user should be able to see Manage filters popup
@@ -40,4 +56,4 @@ Feature:
     When Truck driver user Select Condition keyword "between" for in the selected Filter Option popup
     And Truck driver user enter data "Jan 1, 2019" "Mar 4, 2021" for Condition keyword in the selected Filter Option popup
     And Truck driver user Click Update button in the selected Filter Option popup
-    Then Truck driver user should only be able to see results for "between" "Jan 1, 2019" "Mar 4, 2021" selected filter settings in the Filter settings
+    Then Truck driver user should only be able to see results for "not between" "Jan 1, 2019" "Mar 4, 2021" selected filter settings in the Filter settings

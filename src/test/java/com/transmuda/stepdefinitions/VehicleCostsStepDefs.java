@@ -9,6 +9,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -20,6 +21,13 @@ public class VehicleCostsStepDefs extends GridBasePage {
 //US-25
 
     VehicleCostsPage vehicleCostsPage = new VehicleCostsPage();
+
+    @Given("navigate to Fleet Vehicle Costs")
+    public void navigate_to_Fleet_Vehicle_Costs() {
+        navigateToModule("Fleet", "Vehicle Costs");
+        BrowserUtils.waitFor(10);
+    }
+
 
     @When("click on the Page button on the Vehicle Costs page")
     public void click_on_the_Page_button_on_the_Vehicle_Costs_page() {
@@ -83,17 +91,12 @@ public class VehicleCostsStepDefs extends GridBasePage {
     public void truck_driver_navigate_Fleet_to_Vechicle_Costs() {
         navigateToModule("Fleet", "Vehicle Costs");
         BrowserUtils.waitFor(5);
-
-
     }
 
     @When("click on the Add sign on the Vehicle Costs page")
     public void click_on_the_Add_sign_on_the_Vehicle_Costs_page() {
-
         vehicleCostsPage.AddSign.click();
-
         BrowserUtils.waitFor(7);
-
     }
 
     @And("click on the Recent emails Add Button on the  Sidebar Widgets")
@@ -105,8 +108,6 @@ public class VehicleCostsStepDefs extends GridBasePage {
 
     @And("click on the Sticky Note Add Button on the Sidebar Widgets")
     public void click_on_the_Sticky_Note_Add_Button_on_the_Sidebar_Widgets() {
-        ;
-
         vehicleCostsPage.stickyAddBNT.click();
         BrowserUtils.waitFor(3);
 
@@ -185,12 +186,12 @@ public class VehicleCostsStepDefs extends GridBasePage {
     }
 
     //======US-28   Hamdulla====
-    @When("Navigate to Fleet Vehicle Costs.")
-    public void navigate_to_Fleet_Vehicle_Costs() {
-        navigateToModule("Fleet", "Vehicle Costs");
-        BrowserUtils.waitFor(4);
-
-    }
+//    @When("Navigate to Fleet Vehicle Costs.")
+//    public void navigate_to_Fleet_Vehicle_Costs() {
+//        navigateToModule("Fleet", "Vehicle Costs");
+//        BrowserUtils.waitFor(8);
+//
+//    }
 
     @Then("Truck driver should be able to see costs information")
     public void truck_driver_should_be_able_to_see_costs_information() {
@@ -205,7 +206,7 @@ public class VehicleCostsStepDefs extends GridBasePage {
        // Actions actions = new Actions(driver);
        // actions.moveToElement(vehicleCostsPage.PoinsSignOfTaxRoll1).perform();
         vehicleCostsPage.PoinsSignOfTaxRoll1.click();
-        BrowserUtils.waitFor(4);
+        BrowserUtils.waitFor(5);
         vehicleCostsPage.PoinsSignOfTaxRoll1.click();
         vehicleCostsPage.EyeButton.click();
         BrowserUtils.waitFor(3);
@@ -275,56 +276,109 @@ public class VehicleCostsStepDefs extends GridBasePage {
     // US-31    Hamdulla  ====
     @When("Click on any Vehicle Cost.")
     public void click_on_any_Vehicle_Cost() {
+        vehicleCostsPage.TaxRoll1.click();
+        BrowserUtils.waitFor(5);
 
     }
 
     @When("Click on Add Event Button on the specific Vehicle Cost Page.")
     public void click_on_Add_Event_Button_on_the_specific_Vehicle_Cost_Page() {
+        vehicleCostsPage.AddEventButton.click();
+        BrowserUtils.waitFor(4);
 
     }
 
     @Then("Truck driver can see Add Event Window.")
     public void truck_driver_can_see_Add_Event_Window() {
+        String AddEveWindowTitle=vehicleCostsPage.AddEventWindow.getText();
+        Assert.assertEquals("Add Event",AddEveWindowTitle);
+        BrowserUtils.waitFor(3);
+
 
     }
 
     @Then("Fill all information on the Add Event Window and click on Save Button.")
     public void fill_all_information_on_the_Add_Event_Window_and_click_on_Save_Button() {
+        String EventName="Victory";
+        vehicleCostsPage.TitleInputBox.sendKeys(EventName);
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.OrganizerNameBox.sendKeys("Hamdulla");
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.OrganizerEmailBox.sendKeys("hamdulla@yahoo.com");
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.StartDate.click();
+        BrowserUtils.waitFor(4);
+        vehicleCostsPage.Date10.click();
+        BrowserUtils.waitFor(4);
+        vehicleCostsPage.StartHour.click();
+        BrowserUtils.waitFor(4);
+        vehicleCostsPage.Hour8AM.click();
+        BrowserUtils.waitFor(4);
+        vehicleCostsPage.EndDate.click();
+        BrowserUtils.waitFor(3);
+        vehicleCostsPage.Date12.click();
+        BrowserUtils.waitFor(3);
+        vehicleCostsPage.EndHour.click();
+        BrowserUtils.waitFor(3);
+        vehicleCostsPage.Hour607PM.click();
+        BrowserUtils.waitFor(3);
+        vehicleCostsPage.SaveButton.click();
+        BrowserUtils.waitFor(3);
+
 
     }
 
     @Then("Truck driver can see new calendar event on that specific vehicle cost page.")
     public void truck_driver_can_see_new_calendar_event_on_that_specific_vehicle_cost_page() {
+        Assert.assertEquals("Victory",vehicleCostsPage.EventName.getText());
+        BrowserUtils.waitFor(3);
+
+
 
     }
 
     @Then("Click on Save Button without filling any information.")
     public void click_on_Save_Button_without_filling_any_information() {
+        vehicleCostsPage.SaveButton.click();
+        BrowserUtils.waitFor(3);
 
     }
 
     @Then("{string} error message should be displayed.")
     public void error_message_should_be_displayed(String string) {
+        Assert.assertEquals(string,vehicleCostsPage.ErrorMessage.getText());
+        BrowserUtils.waitFor(2);
+        vehicleCostsPage.CancelButton.click();
+        BrowserUtils.waitFor(2);
+
 
     }
 
     @When("Click on that specific Vehicle Cost.")
     public void click_on_that_specific_Vehicle_Cost() {
+        vehicleCostsPage.TaxRoll1.click();
+        BrowserUtils.waitFor(3);
 
     }
 
     @Then("Truck driver can see the Event under the General.")
     public void truck_driver_can_see_the_Event_under_the_General() {
+        Assert.assertEquals("Victory",vehicleCostsPage.EventName.getText());
+        BrowserUtils.waitFor(3);
 
     }
 
-    @When("Click on the Activity Button on that specific VehiclVehicle Cost page.e Cost page.")
-    public void click_on_the_Activity_Button_on_that_specific_VehiclVehicle_Cost_page_e_Cost_page() {
+    @When("Click on the Activity Button on that specific VehiclVehicle Cost page.")
+    public void click_on_the_Activity_Button_on_that_specific_VehiclVehicle_Cost_page() {
+        vehicleCostsPage.ActivityTab.click();
+        BrowserUtils.waitFor(3);
 
     }
 
     @Then("Truck driver can see the Event under the Activity.")
     public void truck_driver_can_see_the_Event_under_the_Activity() {
+        Assert.assertEquals("Victory",vehicleCostsPage.EventName.getText());
+        BrowserUtils.waitFor(3);
 
     }
 
@@ -582,6 +636,7 @@ public class VehicleCostsStepDefs extends GridBasePage {
         changeToNewWindow();
         BrowserUtils.waitFor(2);
 
+
         Driver.get().get("https://qa.transmuda.com/entity/update/Extend_Entity_VehicleCosts/item");
 
         BrowserUtils.waitFor(3);
@@ -743,10 +798,17 @@ public class VehicleCostsStepDefs extends GridBasePage {
 
     @Then("user able to log out")
     public void userAbleToLogOut() {
+
+    }
+
+    @Given("the user login as a “sales manager")
+    public void theUserLoginAsASalesManager() {
+   //Yasin please correct this method
         String actualUrl = Driver.get().getCurrentUrl();
         String expectedUrl = "https://qa.transmuda.com/user/login";
         Assert.assertEquals(expectedUrl, actualUrl);
         BrowserUtils.waitFor(3);
+
 
     }
 
@@ -777,16 +839,25 @@ public class VehicleCostsStepDefs extends GridBasePage {
     }
 
     //US-29
+
+
+    @When("the user click Create Vehicle Costs")
+    public void the_user_click() {
+        BrowserUtils.waitFor(15);
+        vehicleCostsPage.createVehicleCostsButton.click();
+    }
     @When("the user click {string}")
     public void the_user_click(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @When("the user select Type as {string}")
     public void the_user_select_Type_as(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        // BrowserUtils.waitForClickablility(vehicleCostsPage.typeDropDown,20);
+        BrowserUtils.waitFor(5);
+        vehicleCostsPage.typeDropDown.click();
+        BrowserUtils.waitFor(2);
+        vehicleCostsPage.taxRollDropDownItem.click();
     }
 
     @When("the user enter value to Total Price as {string}")
@@ -803,64 +874,135 @@ public class VehicleCostsStepDefs extends GridBasePage {
 
     @When("the user enter value to Total Price as {int}")
     public void the_user_enter_value_to_Total_Price_as(Integer int1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        BrowserUtils.waitFor(2);
+        vehicleCostsPage.totalPriceInputBox.sendKeys(int1.toString());
     }
 
     @When("the user choose date as {string}")
     public void the_user_choose_date_as(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
+        //vehicleCostsPage.dateInputBox.sendKeys(string);
+        vehicleCostsPage.dateInputBox.click();
+        //System.out.println(vehicleCostsPage.getCurrentDate());
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.daySelectorToday.click();
 
-    @When("the user choose date as Mar {int}, {int}")
-    public void the_user_choose_date_as_Mar(Integer int1, Integer int2) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
     }
 
     @When("the user write Cost Description {string}")
-    public void the_user_write_Cost_Description(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void the_user_write_Cost_Description(String text) {
+        vehicleCostsPage.costDescriptionInputBox.click();
+        vehicleCostsPage.costDescriptionInputBox.sendKeys(text);
     }
 
-    @When("the user click {string} button")
-    public void the_user_click_button(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @When("the user click Save And Close")
+    public void the_user_click_Save_And_Close() {
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.saveAndCloseSubmitButton.click();
     }
 
-    @When("the user select first chasis number")
-    public void the_user_select_first_chasis_number() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @When("the user select first chassis number")
+    public void the_user_select_first_chassis_number() {
+        BrowserUtils.waitFor(10);
+        try{
+            vehicleCostsPage.chassisNumberFirstRow.click();
+        }
+        catch(Exception e) {
+            JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
+            jse.executeScript("arguments[0].click();", vehicleCostsPage.chassisNumberFirstRow);
+        }
     }
 
     @When("the user click license plate add button")
     public void the_user_click_license_plate_add_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        vehicleCostsPage.licensePlateAddButton.click();
     }
 
     @When("the user select first license plate")
     public void the_user_select_first_license_plate() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        BrowserUtils.waitFor(5);
+        try{
+            vehicleCostsPage.licensePlateFirstRow.click();
+        }
+        catch(Exception e) {
+            JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
+            jse.executeScript("arguments[0].click();", vehicleCostsPage.licensePlateFirstRow);
+        }
     }
 
     @Then("verify {string} message apper on the top of the page")
-    public void verify_message_apper_on_the_top_of_the_page(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void verify_message_apper_on_the_top_of_the_page(String expectedMessage) {
+
+        BrowserUtils.waitForVisibility(vehicleCostsPage.entitySavedMessage,10);
+        Assert.assertEquals("message verification", vehicleCostsPage.entitySavedMessage.getText(), expectedMessage);
+
+
     }
 
     @Then("verify Chasis Number and License Plate added successfully")
     public void verify_Chasis_Number_and_License_Plate_added_successfully() {
+        try {
+            BrowserUtils.waitForVisibility(vehicleCostsPage.addedChassisNumberList, 10);
+        } catch(Exception e) {
+            BrowserUtils.waitFor(5);
+            System.out.println("waited 5 sec");
+        }
+            Assert.assertNotEquals("verify chassis number", vehicleCostsPage.addedChassisNumberList.getText(), "N/A");
+            Assert.assertNotEquals("verify license plate", vehicleCostsPage.addedLicensePlateList.getText(), "N/A");
+    }
+
+    //US_32
+    @When("the user click spesific vehicle which added attachment")
+    public void the_user_click_spesific_vehicle_which_added_attachment() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
 
+    @Then("verify Attachment File Name is {string}")
+    public void verify_Attachment_File_Name_is(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("verify comment is {string}")
+    public void verify_comment_is(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user click spesific vehicle")
+    public void the_user_click_spesific_vehicle() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user select {string}")
+    public void the_user_select(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("the user write Comment {string}")
+    public void the_user_write_Comment(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("verify {string} message appeared on the top")
+    public void verify_message_appeared_on_the_top(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @When("the user click chassis number add button")
+    public void the_user_click_chassis_number_add_button() {
+        BrowserUtils.waitFor(3);
+        vehicleCostsPage.chassisNumberAddButton.click();
+    }
+
+
+    @When("the user click Select button")
+    public void the_user_click_Select_button() {
+        vehicleCostsPage.chassisNumberSelectButton.click();
+    }
 
 }
 

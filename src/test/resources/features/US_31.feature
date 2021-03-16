@@ -64,6 +64,6 @@ Feature:
     Then Truck driver should be able to see costs information
     When  Click on that specific Vehicle Cost.
     Then  Truck driver can see the Event under the General.
-    When  Click on the Activity Button on that specific VehiclVehicle Cost page.e Cost page.
+    When  Click on the Activity Button on that specific VehiclVehicle Cost page.
     Then  Truck driver can see the Event under the Activity.
 		
