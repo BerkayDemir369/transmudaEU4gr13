@@ -10,6 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class GridBasePage extends BasePage {
@@ -147,35 +149,237 @@ public class GridBasePage extends BasePage {
      * @param searchText2  ending Data
      * @return if row has searchText or searchText2 value then return true else false
      */
-    public boolean checkRowValue(String activeFilter, String condition, String searchText, String searchText2) {
-        boolean flag = false;
-        System.out.println("checkRow value working");
+    public boolean checkRowValue(String activeFilter, String condition, String searchText, String searchText2) throws ParseException {
+        boolean status = false;
+        //for numbers and moneys
+        Double num1 = null, num2 = null;
+        //For dates                                         Jan 23, 2019
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy");
+        Date startingDate = new Date(), endingDate = new Date(), rowDate = new Date();
+
+        try {
+
+            num1 = Double.parseDouble(searchText);
+            num2 = Double.parseDouble(searchText2);
+
+            System.out.println("num1 = " + num1);
+            System.out.println("num2 = " + num2);
+
+        } catch (Exception ignored) {
+        }
+
+        try {
+
+            startingDate = sdf.parse(searchText);
+            endingDate = sdf.parse(searchText2);
+
+            System.out.println("startingDate = " + startingDate);
+            System.out.println("endingDate = " + endingDate);
+
+        } catch (Exception ignored) {
+        }
+
+
         if (findHeader(activeFilter)) {
             int i = getGridTableHeaderIndex(activeFilter);
-            String findRow = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[" + i + "]";
-            List<WebElement> findRowData = Driver.get().findElements(By.xpath(findRow));
-            System.out.println("index of header= " + i);
-            System.out.println("activeFilter = " + activeFilter);
 
-            for (WebElement value : findRowData) {
-                System.out.println("value.getText() = " + value.getText());
-                if (value.getText().equalsIgnoreCase(searchText)) {
-                    switch (condition) {
-                        case "Equal":
-                        case "equal":
-                        case "Not Equals":
-                        case "not equals":
-                        case "is any of":
-                            flag = findRowValue(activeFilter, searchText);
-                            System.out.println("flag = " + flag);
-                            break;
-                        default:
-                            break;
-                    }
+            //if there have a problem change commented lines
+            //String rows = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[" + i + "]";
+
+            String rows = "//td[@data-column-label='" + activeFilter + "']";
+            List<WebElement> findRowData = Driver.get().findElements(By.xpath(rows));
+
+            for (WebElement rowValue : findRowData) {
+                Date rowValueDate = null;
+                Double rowValueNumber = null;
+
+                System.out.println("rowValue = " + rowValue.getText());
+
+                try {
+                    rowValueDate = sdf.parse(rowValue.getText());
+                } catch (Exception ignored) {
                 }
+
+                try {
+                    rowValueNumber = Double.parseDouble(rowValue.getText().replaceAll("[^0-9]", ""));
+                    System.out.println("rowValueNumber = " + rowValueNumber);
+                } catch (Exception ignored) {
+                }
+                condition = condition.toLowerCase();
+
+                switch (condition) {
+                    case "is equal to":
+                    case "equal":
+                    case "is any of":
+                        if (searchText.split(" ").length > 0 && !condition.equals("is any of") && rowValueDate != null) {
+                            if (rowValueDate.equals(startingDate)) {
+                                status = true;
+                            } else {
+                                return false;
+                            }
+                        } else {
+                            if (rowValue.getText().equalsIgnoreCase(searchText))
+                                status = true;
+                        }
+                        break;
+                    case "not equals":
+                    case "is not any of":
+                        if (searchText.split(" ").length > 0 && !condition.equals("is not any of") && rowValueDate != null) {
+                            if (!rowValueDate.equals(startingDate)) {
+                                status = true;
+                            } else {
+                                return false;
+                            }
+                        } else {
+                            if (!rowValue.getText().equalsIgnoreCase(searchText)) {
+                                status = true;
+                            } else {
+                                return false;
+                            }
+                        }
+                        break;
+                    case "between":
+                        System.out.println("startingDate = " + startingDate);
+                        System.out.println("endingDate = " + endingDate);
+                        System.out.println("rowValueDate = " + rowValueDate);
+
+                        if (searchText.split(" ").length > 0 && rowValueDate != null) {
+
+                            if ((rowValueDate.after(startingDate) || rowValueDate.equals(startingDate))
+                                    && (rowValueDate.before(endingDate) || rowValueDate.equals(endingDate))) {
+                                status = true;
+                            } else {
+                                return false;
+                            }
+                        } else {
+                            if (rowValueNumber >= num1 && rowValueNumber <= num2) {
+                                status = true;
+                            } else {
+                                return false;
+                            }
+                        }
+                        break;
+                    case "not between":
+                        System.out.println("startingDate = " + startingDate);
+                        System.out.println("endingDate = " + endingDate);
+                        System.out.println("rowValueDate = " + rowValueDate);
+
+                        if (searchText.split(" ").length > 0 && rowValueDate != null) {
+                            if (!((rowValueDate.after(startingDate) || rowValueDate.equals(startingDate))
+                                    && (rowValueDate.before(endingDate) || rowValueDate.equals(endingDate)))) {
+                                status = true;
+                            } else {
+                                return false;
+                            }
+                        } else {
+                            if (!(rowValueNumber >= num1 && rowValueNumber <= num2)) {
+                                status = true;
+                            } else {
+                                return false;
+                            }
+                        }
+                        break;
+                    case "more than":
+                    case "later than":
+                        if (searchText.split(" ").length > 0 && rowValueDate != null) {
+                            if (rowValueDate.after(startingDate)) {
+                                status = true;
+                            } else {
+                                return false;
+                            }
+                        } else {
+                            if (rowValueNumber > num1) {
+                                status = true;
+                            } else {
+                                return false;
+                            }
+                        }
+                        break;
+                    case "earlier than":
+                    case "less than":
+                        if (searchText.split(" ").length > 0 && rowValueDate != null) {
+                            if (rowValueDate.before(startingDate)) {
+                                status = true;
+                            } else {
+                                return false;
+                            }
+                        } else {
+                            if (rowValueNumber < num1) {
+                                status = true;
+                            } else {
+                                return false;
+                            }
+                        }
+                        break;
+                    case "equals or more than":
+                        if (rowValueNumber >= num1) {
+                            status = true;
+                        } else {
+                            return false;
+                        }
+                        break;
+                    case "equals or less than":
+                        if (rowValueNumber <= num1) {
+                            status = true;
+                        } else {
+                            return false;
+                        }
+                        break;
+                    case "is empty":
+                        if (rowValue.getText().isBlank() || rowValue.getText().isEmpty()) {
+                            status = true;
+                        } else {
+                            return false;
+                        }
+                        break;
+                    case "is not empty":
+                        if (!(rowValue.getText().isBlank() || rowValue.getText().isEmpty())) {
+                            status = true;
+                        } else {
+                            return false;
+                        }
+                        break;
+                    case "contains":
+                        if (rowValue.getText().toLowerCase().contains(searchText.toLowerCase())) {
+                            status = true;
+                        } else {
+                            return false;
+                        }
+                        break;
+                    case "does not contain":
+                        if (!(rowValue.getText().toLowerCase().contains(searchText.toLowerCase()))) {
+                            status = true;
+                        } else {
+                            return false;
+                        }
+                        break;
+                    case "start with":
+                        if (rowValue.getText().toLowerCase().startsWith(searchText.toLowerCase())) {
+                            status = true;
+                        } else {
+                            return false;
+                        }
+                        break;
+                    case "end with":
+                        if (rowValue.getText().toLowerCase().endsWith(searchText.toLowerCase())) {
+                            status = true;
+                        } else {
+                            return false;
+                        }
+                        break;
+                    case "checkboxes":
+                        //get check box list and do something
+
+                        //div[contains(@class,'multiselect-filter-widget')]//ul[contains(@class,'ui-multiselect-checkboxes')]//li
+
+                    default:
+                        break;
+                }
+
+
             }
         }
-        return flag;
+        return status;
     }
 
 
@@ -194,8 +398,15 @@ public class GridBasePage extends BasePage {
 
 
     public WebElement conditionKeyword(String conditionKeyword) {
-        String locator = "//a[.='" + conditionKeyword + "']";
-        return Driver.get().findElement(By.xpath(locator));
+        //String locator = "//a[.='" + conditionKeyword + "']";
+        String locator = "//*[@style='visibility: visible; margin-left: auto;']//*[contains(text(),'" + conditionKeyword + "')]";
+        String locator2 = "//li[contains(.,'" + conditionKeyword + "')]";
+        try {
+            return Driver.get().findElement(By.xpath(locator));
+        } catch (Exception ignored) {
+            return Driver.get().findElement(By.xpath(locator2));
+        }
+
     }
 
     Select conditionKeywordSelect(String conditionKeyword) {
@@ -207,7 +418,12 @@ public class GridBasePage extends BasePage {
         try {
             conditionKeyword(conditionKeyword).click();
         } catch (Exception e) {
-            conditionKeywordSelect(conditionKeyword).selectByVisibleText(conditionKeyword);
+            try {
+
+            } catch (Exception ignored) {
+                conditionKeywordSelect(conditionKeyword).selectByVisibleText(conditionKeyword);
+            }
+
         }
     }
 
@@ -233,6 +449,7 @@ public class GridBasePage extends BasePage {
         } catch (Exception c) {
             startValue.get(0).click();
             startValue.get(0).sendKeys(text);
+            startValue.get(0).click();
         }
         try {
             BrowserUtils.waitFor(2);
@@ -375,15 +592,12 @@ public class GridBasePage extends BasePage {
      * @return if row has RowData value then return true else false
      */
     public boolean findRowValue(String headerName, String RowData) {
-        System.out.println("find row value working");
         if (findHeader(headerName)) {
             int i = getGridTableHeaderIndex(headerName);
-            System.out.println("index = " + i);
             String findRow = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[" + i + "]";
             List<WebElement> findRowData = Driver.get().findElements(By.xpath(findRow));
 
             for (WebElement value : findRowData) {
-                System.out.println("value.getText() = " + value.getText());
                 if (value.getText().equalsIgnoreCase(RowData))
                     return true;
             }
@@ -394,12 +608,9 @@ public class GridBasePage extends BasePage {
     public void findRowValueAndClick(String headerName, String RowData) {
         if (findHeader(headerName)) {
             int i = getGridTableHeaderIndex(headerName);
-            System.out.println("i = " + i);
             String findRow = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[" + i + "]";
             List<WebElement> findRowData = Driver.get().findElements(By.xpath(findRow));
-
             for (WebElement value : findRowData) {
-                System.out.println("value.getText() = " + value.getText());
                 if (value.getText().equals(RowData))
                     value.click();
             }
@@ -408,18 +619,14 @@ public class GridBasePage extends BasePage {
 
     public WebElement findRowWebElement(String headerName, String RowData) {
         WebElement rowElement = null;
-
         int i = getGridTableHeaderIndex(headerName);
-        System.out.println("i = " + i);
         String findRow = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[" + (i - 2) + "]";
         List<WebElement> findRowData = Driver.get().findElements(By.xpath(findRow));
 
         for (WebElement value : findRowData) {
-            System.out.println("value.getText() = " + value.getText());
             if (value.getText().equals(RowData))
                 rowElement = value;
         }
-        //if (findHeader(headerName)) { }
         return rowElement;
     }
 

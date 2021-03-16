@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.awt.*;
+import java.text.ParseException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -249,7 +250,7 @@ public class VehicleOdometerStepDefs extends GridBasePage {
 
         filterConditionButton().click();
         BrowserUtils.waitFor(2);
-        conditionKeywordClick(conditionKeyword);
+        conditionKeywordClick(conditionKeyword.toLowerCase());
         // TO-DO: select condition type must be dynamic
 
     }
@@ -274,8 +275,8 @@ public class VehicleOdometerStepDefs extends GridBasePage {
     }
 
     @Then("Truck driver user should only be able to see results for {string} {string} {string} selected filter settings in the Filter settings")
-    public void truckDriverUserShouldBeAbleToSeeResultsForSelectedFilterSettingsInTheFilterSettings(String condition, String searchText, String searchText2) {
-        BrowserUtils.waitFor(5);
+    public void truckDriverUserShouldBeAbleToSeeResultsForSelectedFilterSettingsInTheFilterSettings(String condition, String searchText, String searchText2) throws ParseException {
+        BrowserUtils.waitFor(3);
         Assert.assertTrue(checkRowValue(activeFilter, condition, searchText, searchText2));
     }
 
