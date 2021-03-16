@@ -243,6 +243,11 @@ public class VehicleOdometerStepDefs extends GridBasePage {
 
     @When("Truck driver user Select Condition keyword {string} for in the selected Filter Option popup")
     public void truckDriverUserSelectConditionKeywordInTheSelectedFilterOptionPopup(String conditionKeyword) {
+
+        FilterConditionButton.click();
+        BrowserUtils.waitFor(4);
+        conditionKeyword(conditionKeyword).click();
+
         filterConditionButton().click();
         BrowserUtils.waitFor(2);
         conditionKeywordClick(conditionKeyword.toLowerCase());
