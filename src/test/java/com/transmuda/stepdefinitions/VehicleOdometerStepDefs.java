@@ -242,6 +242,11 @@ public class VehicleOdometerStepDefs extends GridBasePage {
 
     @When("Truck driver user Select Condition keyword {string} for in the selected Filter Option popup")
     public void truckDriverUserSelectConditionKeywordInTheSelectedFilterOptionPopup(String conditionKeyword) {
+
+        FilterConditionButton.click();
+        BrowserUtils.waitFor(4);
+        conditionKeyword(conditionKeyword).click();
+
         filterConditionButton().click();
         BrowserUtils.waitFor(2);
         conditionKeywordClick(conditionKeyword);
@@ -270,7 +275,7 @@ public class VehicleOdometerStepDefs extends GridBasePage {
 
     @Then("Truck driver user should only be able to see results for {string} {string} {string} selected filter settings in the Filter settings")
     public void truckDriverUserShouldBeAbleToSeeResultsForSelectedFilterSettingsInTheFilterSettings(String condition, String searchText, String searchText2) {
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(5);
         Assert.assertTrue(checkRowValue(activeFilter, condition, searchText, searchText2));
     }
 

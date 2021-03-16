@@ -175,7 +175,7 @@ public class VehicleCostsStepDefs extends GridBasePage {
 
     @And("click on the table row {string}")
     public void clickOnTheTableFirstRow(String Text) {
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(4);
         findRowWebElement("Type", Text).click();
     }
 
