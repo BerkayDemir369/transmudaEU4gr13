@@ -244,10 +244,6 @@ public class VehicleOdometerStepDefs extends GridBasePage {
     @When("Truck driver user Select Condition keyword {string} for in the selected Filter Option popup")
     public void truckDriverUserSelectConditionKeywordInTheSelectedFilterOptionPopup(String conditionKeyword) {
 
-        FilterConditionButton.click();
-        BrowserUtils.waitFor(4);
-        conditionKeyword(conditionKeyword).click();
-
         filterConditionButton().click();
         BrowserUtils.waitFor(2);
         conditionKeywordClick(conditionKeyword.toLowerCase());
@@ -859,10 +855,11 @@ public class VehicleOdometerStepDefs extends GridBasePage {
         Assert.assertEquals(expectedTitle, title);
 
     }
+
     @Then("The user should see all information Vehicle Odometer page")
     public void the_user_should_see_all_information_Vehicle_Odometer_page() {
         System.out.println("Driver.get().getTitle() = " + Driver.get().getTitle());
-        Assert.assertEquals("Vehicle Odometer - Entities - System - Car - Entities - System",Driver.get().getTitle());
+        Assert.assertEquals("Vehicle Odometer - Entities - System - Car - Entities - System", Driver.get().getTitle());
 
     }
 

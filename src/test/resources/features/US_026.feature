@@ -32,8 +32,8 @@ Feature:
 		    Then Truck driver user should only be able to see results for "Is Any Of" "Vehicle Registration" "" selected filter settings in the Filter settings
 		
 		    When The truck driver user clicks Reset button
-		    And The truck driver user clicks Filters button
-		    Then The truck driver user can see Manage Filters Box
+		    #And The truck driver user clicks Filters button
+		    #Then The truck driver user can see Manage Filters Box
 		    And Click Manage filters link button
 		    Then The truck driver user should be able to see Manage filters popup
 		    When The truck driver user select filter option "Date" in the Manage filters popup
