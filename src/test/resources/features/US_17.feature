@@ -6,7 +6,7 @@ Feature:
     Then the user should be able to login
 
 
-  @TR-188 @TR-204 @grid
+  @TR-188 @TR-204 @smoke
   Scenario: TR-19 1-Truck driver can use Grid Settings button for arranging demanded columns.
     Given The truck driver user accesses the "Fleet" - "Vehicle Odometer"
     When The truck driver click Grid Settings button
@@ -20,7 +20,7 @@ Feature:
     Then The truck driver should be able to see in the popup table that all checkboxes have been marked
     And The truck driver should only be able to see the column headings selected from the grid settings popup in the odometer table
 
-  @TR-201 @TR-204 @grid
+  @TR-201 @TR-204 @smoke
   Scenario: TR-19 2-Truck driver can use Filters sign with opening Manage Filters button for filtering informations
     Given The truck driver user accesses the "Fleet" - "Vehicle Odometer"
     When The truck driver user clicks Filters button
@@ -40,12 +40,18 @@ Feature:
   @TR-202 @TR-204
   Scenario: TR-19 3-Truck driver can refresh the page by using Refresh button
     Given The truck driver user accesses the "Fleet" - "Vehicle Odometer"
-    When The truck driver user clicks Refresh button
+    When The truck driver user open new browser tab and create a vehicle odometer record
+    And The truck driver user clicks Refresh button
     Then The truck driver user should be able to see the page reloaded
 
 
-  @TR-203 @TR-204
+  @TR-203 @TR-204 @smoke
   Scenario: TR-19 4-Truck driver can reset the filtering settings by using Reset button
     Given The truck driver user accesses the "Fleet" - "Vehicle Odometer"
+    When The truck driver click Grid Settings button
+    Then The truck driver can see Grid Settings Popup
+    And The truck driver should only be able to see the column headings selected from the grid settings popup in the odometer table
+    When The truck driver change selected header "Odometer Value" in the grid settings popup
+    And The truck driver close the grid settings popup
     When The truck driver user clicks Reset button
     Then The truck driver user should be able to see if all filters and settings applied to the page have been reset and reloaded

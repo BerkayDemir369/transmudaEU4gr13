@@ -489,6 +489,9 @@ public class GridBasePage extends BasePage {
     @FindBy(xpath = "//div[@class='dropdown-menu']")
     public WebElement GridSettingsPopup;
 
+    @FindBy(xpath = "//span[@class='close']")
+    public WebElement GridSettingsPopupClose;
+
     @FindBy(css = "div[class*='column-manager-search'] > input")
     public WebElement QuickSearch;
 

@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.awt.*;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -150,11 +151,17 @@ public class VehicleOdometerStepDefs extends GridBasePage {
         }
     }
 
+    public List<String> defaultGridTableHeaders = getGridTableHeaders();
+    public List<String> changedGridTableHeaders = new ArrayList<>();
+
     @When("The truck driver change selected header {string} in the grid settings popup")
     public void theTruckDriverChangeSelectedHeaderInTheGridSettingsPopup(String RowHeaderName) {
+
         for (WebElement gridSettingsRowName : GridSettingsRowNames) {
             if (gridSettingsRowName.getText().equals(RowHeaderName)) {
                 GridSettingsRowCheckBoxes.get(GridSettingsRowNames.indexOf(gridSettingsRowName)).click();
+            } else {
+                changedGridTableHeaders.add(gridSettingsRowName.getText());
             }
         }
     }
@@ -276,24 +283,64 @@ public class VehicleOdometerStepDefs extends GridBasePage {
         Assert.assertTrue(checkRowValue(activeFilter, condition, searchText, searchText2));
     }
 
-    @When("The truck driver user clicks Refresh button")
+
+
+    String previousRecordNumber = null;
+    String currentRecordNumber = null;
+
+    @When("The truck driver user open new browser tab and create a vehicle odometer record")
+    public void theTruckDriverUserOpenNewBrowserTabAndCreateAVehicleOdometerRecord() {
+        BrowserUtils.waitFor(10);
+        previousRecordNumber = String.valueOf(getTotalRecords());
+
+        System.out.println("previousRecordNumber = " + previousRecordNumber);
+        openNewTab();
+        BrowserUtils.waitFor(2);
+
+        changeToNewWindow();
+        BrowserUtils.waitFor(2);
+
+        Driver.get().get("https://qa.transmuda.com/entity/update/Extend_Entity_VehiclesOdometer/item");
+
+        BrowserUtils.waitFor(3);
+        createVehicleOdometerPage.saveAndClose.click();
+        BrowserUtils.waitFor(3);
+        changeToNewWindow();
+
+    }
+
+
+    @And("The truck driver user clicks Refresh button")
     public void theTruckDriverUserClicksRefreshButton() {
+
+        BrowserUtils.waitFor(2);
         RefreshButton.click();
     }
 
     @Then("The truck driver user should be able to see the page reloaded")
     public void theTruckDriverUserShouldBeAbleToSeeThePageReloaded() {
+        BrowserUtils.waitFor(2);
+        currentRecordNumber = String.valueOf(getTotalRecords());
+        Assert.assertNotEquals(previousRecordNumber,currentRecordNumber);
+    }
+
+    @And("The truck driver close the grid settings popup")
+    public void theTruckDriverCloseTheGridSettingsPopup() {
+        GridSettingsPopupClose.click();
 
     }
 
     @When("The truck driver user clicks Reset button")
     public void theTruckDriverUserClicksResetButton() {
+        BrowserUtils.waitFor(3);
         ResetButton.click();
-        BrowserUtils.waitFor(2);
+
     }
 
     @Then("The truck driver user should be able to see if all filters and settings applied to the page have been reset and reloaded")
     public void theTruckDriverUserShouldBeAbleToSeeIfAllFiltersAndSettingsAppliedToThePageHaveBeenResetAndReloaded() {
+
+        Assert.assertNotEquals(changedGridTableHeaders, defaultGridTableHeaders);
 
     }
 
@@ -862,6 +909,9 @@ public class VehicleOdometerStepDefs extends GridBasePage {
         Assert.assertEquals("Vehicle Odometer - Entities - System - Car - Entities - System", Driver.get().getTitle());
 
     }
+
+
+
 
 //    @Then("{string} message should be displayed.")
 //    public void message_should_be_displayed(String expectedPermissionMessage) {
