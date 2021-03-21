@@ -10,11 +10,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-
-import java.util.Set;
+import org.openqa.selenium.WebElement;
 
 public class VehicleCostsStepDefs extends GridBasePage {
 
@@ -175,7 +172,7 @@ public class VehicleCostsStepDefs extends GridBasePage {
 
     @And("click on the table row {string}")
     public void clickOnTheTableFirstRow(String Text) {
-        BrowserUtils.waitFor(4);
+        BrowserUtils.waitFor(8);
         findRowWebElement("Type", Text).click();
     }
 
@@ -203,8 +200,8 @@ public class VehicleCostsStepDefs extends GridBasePage {
 
     @When("Move to ... sign and click on Eye Button of any Vehicle Costs.")
     public void move_to_sign_and_click_on_Eye_Button_of_any_Vehicle_Costs() {
-       // Actions actions = new Actions(driver);
-       // actions.moveToElement(vehicleCostsPage.PoinsSignOfTaxRoll1).perform();
+        // Actions actions = new Actions(driver);
+        // actions.moveToElement(vehicleCostsPage.PoinsSignOfTaxRoll1).perform();
         vehicleCostsPage.PoinsSignOfTaxRoll1.click();
         BrowserUtils.waitFor(5);
         vehicleCostsPage.PoinsSignOfTaxRoll1.click();
@@ -212,14 +209,13 @@ public class VehicleCostsStepDefs extends GridBasePage {
         BrowserUtils.waitFor(3);
 
 
-
     }
 
     @Then("Truck driver can view specific Vehicle Cost.")
     public void truck_driver_can_view_specific_Vehicle_Cost() {
-        String actualItemTitle=vehicleCostsPage.TaxRoll1Title.getText();
-        String expectedItemTitle=vehicleCostsPage.TaxRoll1Type.getText();
-        Assert.assertEquals(expectedItemTitle,actualItemTitle);
+        String actualItemTitle = vehicleCostsPage.TaxRoll1Title.getText();
+        String expectedItemTitle = vehicleCostsPage.TaxRoll1Type.getText();
+        Assert.assertEquals(expectedItemTitle, actualItemTitle);
         BrowserUtils.waitFor(5);
 
     }
@@ -243,8 +239,6 @@ public class VehicleCostsStepDefs extends GridBasePage {
         BrowserUtils.waitFor(3);
 
 
-
-
     }
 
     @When("Move to ... sign and click on Edit Button of any Vehicle Costs.")
@@ -261,16 +255,12 @@ public class VehicleCostsStepDefs extends GridBasePage {
 
     @Then("Truck driver can not edit Vehicle Cost.")
     public void truck_driver_can_not_edit_Vehicle_Cost() {
-        String EditResultTitle=vehicleCostsPage.EditResultQuickLaunchpad.getText();
-        Assert.assertEquals("Quick Launchpad",EditResultTitle);
+        String EditResultTitle = vehicleCostsPage.EditResultQuickLaunchpad.getText();
+        Assert.assertEquals("Quick Launchpad", EditResultTitle);
         BrowserUtils.waitFor(3);
 
 
     }
-
-
-
-
 
 
     // US-31    Hamdulla  ====
@@ -290,8 +280,8 @@ public class VehicleCostsStepDefs extends GridBasePage {
 
     @Then("Truck driver can see Add Event Window.")
     public void truck_driver_can_see_Add_Event_Window() {
-        String AddEveWindowTitle=vehicleCostsPage.AddEventWindow.getText();
-        Assert.assertEquals("Add Event",AddEveWindowTitle);
+        String AddEveWindowTitle = vehicleCostsPage.AddEventWindow.getText();
+        Assert.assertEquals("Add Event", AddEveWindowTitle);
         BrowserUtils.waitFor(3);
 
 
@@ -299,7 +289,7 @@ public class VehicleCostsStepDefs extends GridBasePage {
 
     @Then("Fill all information on the Add Event Window and click on Save Button.")
     public void fill_all_information_on_the_Add_Event_Window_and_click_on_Save_Button() {
-        String EventName="Victory";
+        String EventName = "Victory";
         vehicleCostsPage.TitleInputBox.sendKeys(EventName);
         BrowserUtils.waitFor(1);
         vehicleCostsPage.OrganizerNameBox.sendKeys("Hamdulla");
@@ -330,9 +320,8 @@ public class VehicleCostsStepDefs extends GridBasePage {
 
     @Then("Truck driver can see new calendar event on that specific vehicle cost page.")
     public void truck_driver_can_see_new_calendar_event_on_that_specific_vehicle_cost_page() {
-        Assert.assertEquals("Victory",vehicleCostsPage.EventName.getText());
+        Assert.assertEquals("Victory", vehicleCostsPage.EventName.getText());
         BrowserUtils.waitFor(3);
-
 
 
     }
@@ -346,7 +335,7 @@ public class VehicleCostsStepDefs extends GridBasePage {
 
     @Then("{string} error message should be displayed.")
     public void error_message_should_be_displayed(String string) {
-        Assert.assertEquals(string,vehicleCostsPage.ErrorMessage.getText());
+        Assert.assertEquals(string, vehicleCostsPage.ErrorMessage.getText());
         BrowserUtils.waitFor(2);
         vehicleCostsPage.CancelButton.click();
         BrowserUtils.waitFor(2);
@@ -363,7 +352,7 @@ public class VehicleCostsStepDefs extends GridBasePage {
 
     @Then("Truck driver can see the Event under the General.")
     public void truck_driver_can_see_the_Event_under_the_General() {
-        Assert.assertEquals("Victory",vehicleCostsPage.EventName.getText());
+        Assert.assertEquals("Victory", vehicleCostsPage.EventName.getText());
         BrowserUtils.waitFor(3);
 
     }
@@ -377,7 +366,7 @@ public class VehicleCostsStepDefs extends GridBasePage {
 
     @Then("Truck driver can see the Event under the Activity.")
     public void truck_driver_can_see_the_Event_under_the_Activity() {
-        Assert.assertEquals("Victory",vehicleCostsPage.EventName.getText());
+        Assert.assertEquals("Victory", vehicleCostsPage.EventName.getText());
         BrowserUtils.waitFor(3);
 
     }
@@ -803,7 +792,7 @@ public class VehicleCostsStepDefs extends GridBasePage {
 
     @Given("the user login as a “sales manager")
     public void theUserLoginAsASalesManager() {
-   //Yasin please correct this method
+        //Yasin please correct this method
         String actualUrl = Driver.get().getCurrentUrl();
         String expectedUrl = "https://qa.transmuda.com/user/login";
         Assert.assertEquals(expectedUrl, actualUrl);
@@ -846,6 +835,7 @@ public class VehicleCostsStepDefs extends GridBasePage {
         BrowserUtils.waitFor(15);
         vehicleCostsPage.createVehicleCostsButton.click();
     }
+
     @When("the user click {string}")
     public void the_user_click(String string) {
 
@@ -903,10 +893,9 @@ public class VehicleCostsStepDefs extends GridBasePage {
     @When("the user select first chassis number")
     public void the_user_select_first_chassis_number() {
         BrowserUtils.waitFor(10);
-        try{
+        try {
             vehicleCostsPage.chassisNumberFirstRow.click();
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
             jse.executeScript("arguments[0].click();", vehicleCostsPage.chassisNumberFirstRow);
         }
@@ -920,10 +909,9 @@ public class VehicleCostsStepDefs extends GridBasePage {
     @When("the user select first license plate")
     public void the_user_select_first_license_plate() {
         BrowserUtils.waitFor(5);
-        try{
+        try {
             vehicleCostsPage.licensePlateFirstRow.click();
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
             jse.executeScript("arguments[0].click();", vehicleCostsPage.licensePlateFirstRow);
         }
@@ -932,7 +920,7 @@ public class VehicleCostsStepDefs extends GridBasePage {
     @Then("verify {string} message apper on the top of the page")
     public void verify_message_apper_on_the_top_of_the_page(String expectedMessage) {
 
-        BrowserUtils.waitForVisibility(vehicleCostsPage.entitySavedMessage,10);
+        BrowserUtils.waitForVisibility(vehicleCostsPage.entitySavedMessage, 10);
         Assert.assertEquals("message verification", vehicleCostsPage.entitySavedMessage.getText(), expectedMessage);
 
 
@@ -942,12 +930,12 @@ public class VehicleCostsStepDefs extends GridBasePage {
     public void verify_Chasis_Number_and_License_Plate_added_successfully() {
         try {
             BrowserUtils.waitForVisibility(vehicleCostsPage.addedChassisNumberList, 10);
-        } catch(Exception e) {
+        } catch (Exception e) {
             BrowserUtils.waitFor(5);
             System.out.println("waited 5 sec");
         }
-            Assert.assertNotEquals("verify chassis number", vehicleCostsPage.addedChassisNumberList.getText(), "N/A");
-            Assert.assertNotEquals("verify license plate", vehicleCostsPage.addedLicensePlateList.getText(), "N/A");
+        Assert.assertNotEquals("verify chassis number", vehicleCostsPage.addedChassisNumberList.getText(), "N/A");
+        Assert.assertNotEquals("verify license plate", vehicleCostsPage.addedLicensePlateList.getText(), "N/A");
     }
 
     //US_32
@@ -992,6 +980,7 @@ public class VehicleCostsStepDefs extends GridBasePage {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
+
     @When("the user click chassis number add button")
     public void the_user_click_chassis_number_add_button() {
         BrowserUtils.waitFor(3);
@@ -1004,6 +993,98 @@ public class VehicleCostsStepDefs extends GridBasePage {
         vehicleCostsPage.chassisNumberSelectButton.click();
     }
 
+
+    // us-30 sukru
+    @When("Click on Activity Tab")
+    public void clickOnActivityTab() {
+        vehicleCostsPage.ActivityTab.click();
+    }
+
+    @Then("The user should be able to see Activity tab")
+    public void theUserShouldBeAbleToSeeActivityTab() {
+        Assert.assertTrue(vehicleCostsPage.ActivityContent.isDisplayed());
+    }
+
+    @When("The user click on {string} filter button")
+    public void theUserClickOnFilterButton(String filterName) {
+        vehicleCostsPage.ActivityFilter(filterName).click();
+    }
+
+    @Then("The user should be able to see {string} filter popup")
+    public void theUserShouldBeAbleToSeeFilterPopup(String arguman) {
+        Assert.assertTrue(vehicleCostsPage.ActivityTypeFilterPopup.isDisplayed());
+
+    }
+
+    @When("The user select {string} on the opened filter popup")
+    public void theUserSelectOnTheOpenedFilterPopup(String filterOption) {
+        vehicleCostsPage.ActivityFilterOption(filterOption).click();
+    }
+
+    @Then("The user should be able to see {string} records on the table")
+    public void theUserShouldBeAbleToSeeRecordsOnTheTable(String filterValue) {
+        for (WebElement activityData : vehicleCostsPage.activityTable) {
+            Assert.assertTrue(activityData.getText().contains(filterValue));
+        }
+    }
+
+    @When("The user open the new browser tab")
+    public void theUserOpenTheNewBrowserTab() {
+
+        BrowserUtils.waitFor(10);
+        previousRecordNumber = String.valueOf(getTotalRecords());
+
+        System.out.println("previousRecordNumber = " + previousRecordNumber);
+        openNewTab();
+        BrowserUtils.waitFor(2);
+        String getCurrentUrl = Driver.get().getCurrentUrl();
+        changeToNewWindow();
+        BrowserUtils.waitFor(2);
+
+        Driver.get().get(getCurrentUrl);
+        BrowserUtils.waitFor(5);
+
+        vehicleCostsPage.addEventButton.click();
+        BrowserUtils.waitFor(3);
+        String EventName = "Victory";
+        vehicleCostsPage.TitleInputBox.sendKeys(EventName);
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.OrganizerNameBox.sendKeys("Sukru");
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.OrganizerEmailBox.sendKeys("testmail@gmail.com");
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.StartDate.click();
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.Date10.click();
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.StartHour.click();
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.Hour8AM.click();
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.EndDate.click();
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.Date12.click();
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.EndHour.click();
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.Hour607PM.click();
+        BrowserUtils.waitFor(1);
+        vehicleCostsPage.SaveButton.click();
+        BrowserUtils.waitFor(1);
+        changeToNewWindow();
+    }
+
+    @And("The user click on refresh button")
+    public void theUserClickOnRefreshButton() {
+        int prev = vehicleCostsPage.activityTable1.size();
+        vehicleCostsPage.refreshButton.click();
+        int next = vehicleCostsPage.activityTable1.size();
+        Assert.assertTrue(prev != next);
+    }
+
+    @Then("The user should be able to see page reloaded")
+    public void theUserShouldBeAbleToSeePageReloaded() {
+    }
 }
 
 
