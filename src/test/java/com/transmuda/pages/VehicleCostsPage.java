@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.nio.file.Watchable;
 import java.util.Date;
+import java.util.List;
 
 public class VehicleCostsPage extends BasePage {
     public VehicleCostsPage() {
@@ -84,10 +85,6 @@ public class VehicleCostsPage extends BasePage {
 
     @FindBy(xpath = "//button[@class='btn btn-success action-button']")
     public WebElement saveAndClose;
-
-
-
-
 
 
     @FindBy(xpath = "//a[.='Select All']")
@@ -189,7 +186,7 @@ public class VehicleCostsPage extends BasePage {
     public WebElement taxRollDropDownItem;
 
     @FindBy(xpath = "//div[@class='select2-search']")
-    public WebElement typeInputBox ;
+    public WebElement typeInputBox;
 
     @FindBy(xpath = "//input[@name='custom_entity_type[TotalPrice]']")
     public WebElement totalPriceInputBox;
@@ -234,15 +231,12 @@ public class VehicleCostsPage extends BasePage {
     public WebElement daySelectorToday;
 
 
-
-
-
-    public String getCurrentDate(){
-        Date date=new Date();
+    public String getCurrentDate() {
+        Date date = new Date();
         //Mar 11, 2021
         //Wed Mar 10 16:22:49 IST 2021
         String currentDate;
-        currentDate=date.toString().substring(4,10)+", "+date.toString().substring(24,28);
+        currentDate = date.toString().substring(4, 10) + ", " + date.toString().substring(24, 28);
         return currentDate;
     }
 
@@ -256,8 +250,10 @@ public class VehicleCostsPage extends BasePage {
         return Driver.get().findElement(By.xpath(typeString));
     }
 
-    @FindBy(xpath = "//a[contains(.,'Newer')]")     public WebElement newer;
-    @FindBy(xpath = "//a[contains(.,'Older')]")     public WebElement older;
+    @FindBy(xpath = "//a[contains(.,'Newer')]")
+    public WebElement newer;
+    @FindBy(xpath = "//a[contains(.,'Older')]")
+    public WebElement older;
 
     //US-35 aynur
 
@@ -291,7 +287,7 @@ public class VehicleCostsPage extends BasePage {
     public WebElement EyeButton;
 
     @FindBy(xpath = "//tbody/tr[2]/td[1]")
-    public  WebElement TaxRoll1Title;
+    public WebElement TaxRoll1Title;
 
     @FindBy(xpath = "(//div[@class='control-label'])[1]")
     public WebElement TaxRoll1Type;
@@ -367,35 +363,46 @@ public class VehicleCostsPage extends BasePage {
     @FindBy(xpath = "//strong[contains(text(),'Victory')]")
     public WebElement EventName;
 
+
     @FindBy(xpath = "//a[contains(text(),'Activity')]")
     public WebElement ActivityTab;
 
 
+    //sukru  us-30
+    @FindBy(xpath = "//a[.='General']")
+    public WebElement GeneralTab;
 
+    @FindBy(xpath = "//a[.='Additional Information']")
+    public WebElement AdditionalTab;
 
+    // contents
 
+    @FindBy(xpath = "//div[@class='scrollspy container-fluid scrollable-container']/div[2]/div[@class='section-content']")
+    public WebElement ActivityContent;
 
+    public WebElement ActivityFilter(String filterName) {
+        String filterLocator = "//div[@class='filter-container']//*[contains(text(),'" + filterName + "')]";
+        return Driver.get().findElement(By.xpath(filterLocator));
+    }
 
+    public WebElement ActivityFilterOption(String filterOption) {
+        String filterLocator = "//ul[@class='ui-multiselect-checkboxes ui-helper-reset fixed-li']/li[contains(.,'" + filterOption + "')]";
+        return Driver.get().findElement(By.xpath(filterLocator));
+    }
 
+    @FindBy(css = ".ui-multiselect-menu")
+    public WebElement ActivityTypeFilterPopup;
 
+    @FindBy(xpath = "//div[@class='filter-criteria dropdown-menu']")
+    public WebElement DateRangeFilterPopup;
 
+    @FindBy(xpath = "//div[@class='items list-box list-shaped']/div//div[@class='details']")
+    public List<WebElement> activityTable;
 
+    @FindBy(xpath = "//div[@class=\"items list-box list-shaped\"]/div")
+    public List<WebElement> activityTable1;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @FindBy(xpath = "//a[contains(text(),'Add Event')]")     public WebElement addEventButton;
 }
 
 

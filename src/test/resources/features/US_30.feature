@@ -15,45 +15,21 @@ Feature:
   @TR-231 @TR-252 @grid
   Scenario: 2-Truck Driver can filter activities by using either Activity Type button or Date Range button
     When navigate "Fleet" to "Vehicle Costs"
-    And The truck driver user clicks Filters button
-    Then The truck driver user can see Manage Filters Box
-    And Click Manage filters link button
-    Then The truck driver user should be able to see Manage filters popup
-    When The truck driver user select filter option "Type" in the Manage filters popup
-    Then Truck driver user should be able to see selected "Type" filter setting on the right side of manage filter
-    When Truck driver user Click selected Filter Option "Type" button
-    Then Truck driver user should be able to see "Type" in the Filter Option popup
-    When Truck driver user Select Condition keyword "is any of" for in the selected Filter Option popup
-    And Truck driver user enter data "Vehicle Registration" "" for Condition keyword in the selected Filter Option popup
-    And Truck driver user Click Update button in the selected Filter Option popup
-    Then Truck driver user should only be able to see results for "is any of" "Vehicle Registration" "" selected filter settings in the Filter settings
+    And click on the table row "Depreciation and Interests"
+    Then Truck Driver can see all information about specific record "Depreciation and Interests"
+    When  Click on Activity Tab
+    Then The user should be able to see Activity tab
+    When The user click on "Activity Type" filter button
+    Then  The user should be able to see "Activity Type" filter popup
+    When The user select "Calendar event" on the opened filter popup
+    Then The user should be able to see "Calendar event" records on the table
 
-    When The truck driver user clicks Reset button
-    #And The truck driver user clicks Filters button
-    Then The truck driver user can see Manage Filters Box
-    And Click Manage filters link button
-    Then The truck driver user should be able to see Manage filters popup
-    When The truck driver user select filter option "Total Price" in the Manage filters popup
-    Then Truck driver user should be able to see selected "Total Price" filter setting on the right side of manage filter
-    When Truck driver user Click selected Filter Option "Total Price" button
-    Then Truck driver user should be able to see "Total Price" in the Filter Option popup
-    When Truck driver user Select Condition keyword "not between" for in the selected Filter Option popup
-    And Truck driver user enter data "20" "200" for Condition keyword in the selected Filter Option popup
-    And Truck driver user Click Update button in the selected Filter Option popup
-    Then Truck driver user should only be able to see results for "not between" "20" "200" selected filter settings in the Filter settings
-
-
-
-    When The truck driver user clicks Reset button
-    #And The truck driver user clicks Filters button
-    Then The truck driver user can see Manage Filters Box
-    And Click Manage filters link button
-    Then The truck driver user should be able to see Manage filters popup
-    When The truck driver user select filter option "Date" in the Manage filters popup
-    Then Truck driver user should be able to see selected "Date" filter setting on the right side of manage filter
-    When Truck driver user Click selected Filter Option "Date" button
-    Then Truck driver user should be able to see "Date" in the Filter Option popup
-    When Truck driver user Select Condition keyword "between" for in the selected Filter Option popup
-    And Truck driver user enter data "Jan 1, 2019" "Mar 4, 2021" for Condition keyword in the selected Filter Option popup
-    And Truck driver user Click Update button in the selected Filter Option popup
-    Then Truck driver user should only be able to see results for "between" "Jan 1, 2019" "Mar 4, 2021" selected filter settings in the Filter settings
+  Scenario: 3-Truck Driver can refresh the activities by using refresh button
+    When navigate "Fleet" to "Vehicle Costs"
+    And click on the table row "Depreciation and Interests"
+    Then Truck Driver can see all information about specific record "Depreciation and Interests"
+    When  Click on Activity Tab
+    Then The user should be able to see Activity tab
+    When The user open the new browser tab
+    And The user click on refresh button
+    Then The user should be able to see page reloaded

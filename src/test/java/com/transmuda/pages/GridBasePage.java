@@ -158,24 +158,14 @@ public class GridBasePage extends BasePage {
         Date startingDate = new Date(), endingDate = new Date(), rowDate = new Date();
 
         try {
-
             num1 = Double.parseDouble(searchText);
             num2 = Double.parseDouble(searchText2);
-
-            System.out.println("num1 = " + num1);
-            System.out.println("num2 = " + num2);
-
         } catch (Exception ignored) {
         }
 
         try {
-
             startingDate = sdf.parse(searchText);
             endingDate = sdf.parse(searchText2);
-
-            System.out.println("startingDate = " + startingDate);
-            System.out.println("endingDate = " + endingDate);
-
         } catch (Exception ignored) {
         }
 
@@ -193,8 +183,6 @@ public class GridBasePage extends BasePage {
                 Date rowValueDate = null;
                 Double rowValueNumber = null;
 
-                System.out.println("rowValue = " + rowValue.getText());
-
                 try {
                     rowValueDate = sdf.parse(rowValue.getText());
                 } catch (Exception ignored) {
@@ -202,7 +190,6 @@ public class GridBasePage extends BasePage {
 
                 try {
                     rowValueNumber = Double.parseDouble(rowValue.getText().replaceAll("[^0-9]", ""));
-                    System.out.println("rowValueNumber = " + rowValueNumber);
                 } catch (Exception ignored) {
                 }
                 condition = condition.toLowerCase();
@@ -239,10 +226,6 @@ public class GridBasePage extends BasePage {
                         }
                         break;
                     case "between":
-                        System.out.println("startingDate = " + startingDate);
-                        System.out.println("endingDate = " + endingDate);
-                        System.out.println("rowValueDate = " + rowValueDate);
-
                         if (searchText.split(" ").length > 0 && rowValueDate != null) {
 
                             if ((rowValueDate.after(startingDate) || rowValueDate.equals(startingDate))
@@ -260,10 +243,6 @@ public class GridBasePage extends BasePage {
                         }
                         break;
                     case "not between":
-                        System.out.println("startingDate = " + startingDate);
-                        System.out.println("endingDate = " + endingDate);
-                        System.out.println("rowValueDate = " + rowValueDate);
-
                         if (searchText.split(" ").length > 0 && rowValueDate != null) {
                             if (!((rowValueDate.after(startingDate) || rowValueDate.equals(startingDate))
                                     && (rowValueDate.before(endingDate) || rowValueDate.equals(endingDate)))) {
@@ -392,6 +371,7 @@ public class GridBasePage extends BasePage {
             filterSelect = Driver.get().findElement(By.xpath(locator1));
         } catch (Exception e) {
             filterSelect = Driver.get().findElement(By.xpath(locator2));
+
         }
         return filterSelect;
     }
@@ -623,7 +603,7 @@ public class GridBasePage extends BasePage {
     public WebElement findRowWebElement(String headerName, String RowData) {
         WebElement rowElement = null;
         int i = getGridTableHeaderIndex(headerName);
-        String findRow = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[" + (i - 2) + "]";
+        String findRow = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[" + i + "]";
         List<WebElement> findRowData = Driver.get().findElements(By.xpath(findRow));
 
         for (WebElement value : findRowData) {
